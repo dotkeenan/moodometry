@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  width: 667px
+}
+
+.entry-list {
+  /* this is just for testing */
+  border: 2px solid red;
+}
