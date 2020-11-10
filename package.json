@@ -1,7 +1,7 @@
 {
-  "name": "full-stack-project",
+  "name": "moodometry",
   "version": "1.0.0",
-  "description": "A Full Stack Node.js &amp; React app.",
+  "description": "A full stack web application for journalers who want to track their moods and daily activities",
   "main": "server/index.js",
   "scripts": {
     "dev": "npm-run-all --silent --parallel dev:*",
