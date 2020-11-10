@@ -21,17 +21,17 @@ ALTER TABLE IF EXISTS ONLY public."entryCategories" DROP CONSTRAINT IF EXISTS "e
 ALTER TABLE IF EXISTS ONLY public.entries DROP CONSTRAINT IF EXISTS entries_fk1;
 ALTER TABLE IF EXISTS ONLY public.entries DROP CONSTRAINT IF EXISTS entries_fk0;
 ALTER TABLE IF EXISTS ONLY public.moods DROP CONSTRAINT IF EXISTS moods_pk;
-ALTER TABLE IF EXISTS ONLY public."eventTypes" DROP CONSTRAINT IF EXISTS "eventTypes_pk";
+ALTER TABLE IF EXISTS ONLY public.events DROP CONSTRAINT IF EXISTS events_pk;
 ALTER TABLE IF EXISTS ONLY public.entries DROP CONSTRAINT IF EXISTS entries_pk;
 ALTER TABLE IF EXISTS ONLY public.categories DROP CONSTRAINT IF EXISTS categories_pk;
 ALTER TABLE IF EXISTS public.moods ALTER COLUMN "moodId" DROP DEFAULT;
-ALTER TABLE IF EXISTS public."eventTypes" ALTER COLUMN "eventTypeId" DROP DEFAULT;
+ALTER TABLE IF EXISTS public.events ALTER COLUMN "eventsId" DROP DEFAULT;
 ALTER TABLE IF EXISTS public.entries ALTER COLUMN "entryId" DROP DEFAULT;
 ALTER TABLE IF EXISTS public.categories ALTER COLUMN "categoryId" DROP DEFAULT;
 DROP SEQUENCE IF EXISTS public."moods_moodId_seq";
 DROP TABLE IF EXISTS public.moods;
-DROP SEQUENCE IF EXISTS public."eventTypes_eventTypeId_seq";
-DROP TABLE IF EXISTS public."eventTypes";
+DROP SEQUENCE IF EXISTS public."events_eventsId_seq";
+DROP TABLE IF EXISTS public.events;
 DROP TABLE IF EXISTS public."entryCategories";
 DROP SEQUENCE IF EXISTS public."entries_entryId_seq";
 DROP TABLE IF EXISTS public.entries;
@@ -77,8 +77,7 @@ SET default_with_oids = false;
 
 CREATE TABLE public.categories (
     "categoryId" integer NOT NULL,
-    label text NOT NULL,
-    "imageUrl" text NOT NULL
+    label text NOT NULL
 );
 
 
@@ -109,7 +108,7 @@ ALTER SEQUENCE public."categories_categoryId_seq" OWNED BY public.categories."ca
 CREATE TABLE public.entries (
     "entryId" integer NOT NULL,
     "moodId" integer NOT NULL,
-    "eventTypeId" integer NOT NULL,
+    "eventId" integer NOT NULL,
     note text NOT NULL,
     participants text NOT NULL,
     "time" timestamp with time zone NOT NULL
@@ -147,20 +146,21 @@ CREATE TABLE public."entryCategories" (
 
 
 --
--- Name: eventTypes; Type: TABLE; Schema: public; Owner: -
+-- Name: events; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public."eventTypes" (
-    "eventTypeId" integer NOT NULL,
-    label text NOT NULL
+CREATE TABLE public.events (
+    "eventsId" integer NOT NULL,
+    label text NOT NULL,
+    "imageUrl" text NOT NULL
 );
 
 
 --
--- Name: eventTypes_eventTypeId_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: events_eventsId_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public."eventTypes_eventTypeId_seq"
+CREATE SEQUENCE public."events_eventsId_seq"
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -170,10 +170,10 @@ CREATE SEQUENCE public."eventTypes_eventTypeId_seq"
 
 
 --
--- Name: eventTypes_eventTypeId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: events_eventsId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public."eventTypes_eventTypeId_seq" OWNED BY public."eventTypes"."eventTypeId";
+ALTER SEQUENCE public."events_eventsId_seq" OWNED BY public.events."eventsId";
 
 
 --
@@ -222,10 +222,10 @@ ALTER TABLE ONLY public.entries ALTER COLUMN "entryId" SET DEFAULT nextval('publ
 
 
 --
--- Name: eventTypes eventTypeId; Type: DEFAULT; Schema: public; Owner: -
+-- Name: events eventsId; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public."eventTypes" ALTER COLUMN "eventTypeId" SET DEFAULT nextval('public."eventTypes_eventTypeId_seq"'::regclass);
+ALTER TABLE ONLY public.events ALTER COLUMN "eventsId" SET DEFAULT nextval('public."events_eventsId_seq"'::regclass);
 
 
 --
@@ -239,7 +239,7 @@ ALTER TABLE ONLY public.moods ALTER COLUMN "moodId" SET DEFAULT nextval('public.
 -- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.categories ("categoryId", label, "imageUrl") FROM stdin;
+COPY public.categories ("categoryId", label) FROM stdin;
 \.
 
 
@@ -247,7 +247,7 @@ COPY public.categories ("categoryId", label, "imageUrl") FROM stdin;
 -- Data for Name: entries; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.entries ("entryId", "moodId", "eventTypeId", note, participants, "time") FROM stdin;
+COPY public.entries ("entryId", "moodId", "eventId", note, participants, "time") FROM stdin;
 \.
 
 
@@ -260,10 +260,10 @@ COPY public."entryCategories" ("entryId", "categoryId") FROM stdin;
 
 
 --
--- Data for Name: eventTypes; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public."eventTypes" ("eventTypeId", label) FROM stdin;
+COPY public.events ("eventsId", label, "imageUrl") FROM stdin;
 \.
 
 
@@ -290,10 +290,10 @@ SELECT pg_catalog.setval('public."entries_entryId_seq"', 1, false);
 
 
 --
--- Name: eventTypes_eventTypeId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: events_eventsId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."eventTypes_eventTypeId_seq"', 1, false);
+SELECT pg_catalog.setval('public."events_eventsId_seq"', 1, false);
 
 
 --
@@ -320,11 +320,11 @@ ALTER TABLE ONLY public.entries
 
 
 --
--- Name: eventTypes eventTypes_pk; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: events events_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public."eventTypes"
-    ADD CONSTRAINT "eventTypes_pk" PRIMARY KEY ("eventTypeId");
+ALTER TABLE ONLY public.events
+    ADD CONSTRAINT events_pk PRIMARY KEY ("eventsId");
 
 
 --
@@ -348,7 +348,7 @@ ALTER TABLE ONLY public.entries
 --
 
 ALTER TABLE ONLY public.entries
-    ADD CONSTRAINT entries_fk1 FOREIGN KEY ("eventTypeId") REFERENCES public."eventTypes"("eventTypeId");
+    ADD CONSTRAINT entries_fk1 FOREIGN KEY ("eventId") REFERENCES public.events("eventsId");
 
 
 --
