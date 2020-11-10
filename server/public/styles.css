@@ -1,13 +1,39 @@
 * {
+  font-family: 'DM Sans', sans-serif;
   box-sizing: border-box;
   margin: 0;
 }
 
 body {
-  width: 667px
+  /* width: 667px */
 }
 
+/* Nav bar  */
+.nav-container {
+  /* border: solid 5px goldenrod; */
+  display: flex;
+  justify-content: space-between;
+  -webkit-box-shadow: 2px 3px 7px 0px rgba(0,0,0,0.72);
+  box-shadow: 2px 3px 7px 0px rgba(0,0,0,0.72);
+}
+
+.arrow-container {
+  margin-top: 10px;
+  margin-left: 15px;
+}
+
+.burger-container {
+  margin-top: 10px;
+  margin-right: 15px;
+}
+
+.nav-title {
+  color: #67D4D2;
+}
+
+/*--------*/
+
+
 .entry-list {
-  /* this is just for testing */
-  border: 2px solid red;
+
 }
