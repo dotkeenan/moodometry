@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header.jsx';
 import EntryList from './entry-list.jsx';
+import Nav from './nav.jsx';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -21,14 +22,17 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="entry-list">
+      <>
         <Header />
-        <div className="container entry-container">
-          <div className="row entry-row">
-            <EntryList />
+        <div className="entry-list">
+          <div className="container entry-container">
+            <div className="row entry-row">
+              <EntryList />
+            </div>
           </div>
         </div>
-      </ div>
+        <Nav />
+      </>
     );
   }
 }

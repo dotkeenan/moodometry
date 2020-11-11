@@ -14,6 +14,24 @@ app.use(sessionMiddleware);
 
 app.use(express.json());
 
+// Get list of all entries in db
+// Find a way to limit the entries to 1 week old only. (list will get too long otherwise).
+app.get('/api/entries', (req, res, next) => {
+  const sql = `
+    select "m"."label" as "mood",
+           "time",
+           "ev"."label" as "event",
+           "participants",
+           "note"
+      from "entries"
+      join "moods" as "m" using ("moodId")
+      join "eventTypes" as "ev" using ("eventTypeId");
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
 app.get('/api/health-check', (req, res, next) => {
   db.query('select \'successfully connected\' as "message"')
     .then(result => res.json(result.rows[0]))
