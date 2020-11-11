@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './header.jsx';
-// import EntryList from './entry-list.jsx'
+import EntryList from './entry-list.jsx';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ export default class App extends React.Component {
         <Header />
         <div className="container entry-container">
           <div className="row entry-row">
-            {/* <EntryList /> */}
+            <EntryList />
           </div>
         </div>
       </ div>
