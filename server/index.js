@@ -22,10 +22,11 @@ app.get('/api/entries', (req, res, next) => {
            "time",
            "ev"."label" as "event",
            "participants",
-           "note"
+           "note",
+           "entryId"
       from "entries"
       join "moods" as "m" using ("moodId")
-      join "eventTypes" as "ev" using ("eventTypeId");
+      join "events" as "ev" using ("eventsId");
   `;
   db.query(sql)
     .then(result => res.status(200).json(result.rows))
