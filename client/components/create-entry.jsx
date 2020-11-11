@@ -4,6 +4,7 @@ class CreateEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      todaysDate: this.todaysDate(),
       entry: {},
       details: {
         event: false,
@@ -16,6 +17,11 @@ class CreateEntry extends React.Component {
     this.handleMeh = this.handleMeh.bind(this);
     this.handleFrown = this.handleFrown.bind(this);
     this.handleAngry = this.handleAngry.bind(this);
+    this.todaysDate = this.todaysDate.bind(this);
+
+    setInterval(() => {
+      this.setState({ todaysDate: this.todaysDate() });
+    }, 1000);
   }
 
   // this probably is not the right way to do this. seems repetitive
@@ -44,6 +50,36 @@ class CreateEntry extends React.Component {
     this.props.setView('eventDetails');
   }
 
+  todaysDate() {
+    var d = new Date();
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var day = days[d.getDay()];
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var month = months[d.getMonth()];
+    var date = d.getDate();
+    var suf = ['th', 'st', 'nd', 'rd'];
+    var v = date % 100;
+    date = date + (suf[(v - 20) % 10] || suf[v] || suf[0]);
+    var hours = d.getHours();
+    var minutes = d.getMinutes();
+    var noon = '';
+
+    if (hours === 12) {
+      noon = 'pm';
+    } else if (hours > 12) {
+      hours = hours - 12;
+      noon = 'pm';
+    } else {
+      noon = 'am';
+    }
+
+    if (minutes < 10) {
+      minutes = '0' + minutes;
+    }
+
+    return day + ' ' + month + ' ' + date + ', ' + hours + ':' + minutes + ' ' + noon;
+  }
+
   render() {
 
     return (
@@ -54,15 +90,16 @@ class CreateEntry extends React.Component {
           <div className="entry-date-container">
             <div className="date-choice">
               <img src="/images/ui-icons/date-chooser.svg" alt="calendar" />
-              <span className="date">Today, November 9</span>
-              <img src="/images/ui-icons/down-arrow.svg" alt="" />
+              <span className="date">{this.state.todaysDate}</span>
+              {/* <img src="/images/ui-icons/down-arrow.svg" alt="" /> */}
             </div>
-
+            {/*
             <div className="time-choice">
-              <img src="/images/ui-icons/clock.svg" alt="clock" />
-              <span className="date">12:00 PM</span>
-              <img src="/images/ui-icons/down-arrow.svg" alt="" />
-            </div>
+              <img src="/images/ui-icons/clock.svg" alt="clock"/>
+              <span className="date"></span>
+              <img src="/images/ui-icons/down-arrow.svg" alt=""/>
+            </div> */}
+
           </div>
 
         </div>

@@ -68,11 +68,13 @@ export default class App extends React.Component {
     }
 
     return (
-      <>
+      <React.Fragment>
         <Header />
         {view}
-        <Nav setView={this.setView} />
-      </>
+        <Nav setView={this.setView}/>
+      </React.Fragment>
+
+
 
     );
   }
