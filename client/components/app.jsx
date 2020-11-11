@@ -1,18 +1,23 @@
 import React from 'react';
+
 import Header from './header';
 import EntryList from './entry-list';
 import Nav from './nav';
 import CreateEntry from './create-entry';
 import EventDetails from './event-details';
+import Journal from './journal';
+
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
+
         name: 'createEntry'
       },
       entries: []
+
       // message: null,
       // isLoading: true
       // createdEntry: {};
@@ -27,6 +32,7 @@ export default class App extends React.Component {
     //   .catch(err => this.setState({ message: err.message }))
     //   .finally(() => this.setState({ isLoading: false }));
   }
+
 
   // way to get the data from the the entry form
   addEntry(entry) {
@@ -67,6 +73,7 @@ export default class App extends React.Component {
         {view}
         <Nav setView={this.setView}/>
       </>
+
     );
   }
 }
