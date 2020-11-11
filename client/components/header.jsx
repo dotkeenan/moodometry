@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Headers(props) {
-
   return (
     <React.Fragment>
       <div className='nav-container'>
