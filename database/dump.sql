@@ -76,7 +76,7 @@ SET default_with_oids = false;
 CREATE TABLE public.entries (
     "entryId" integer NOT NULL,
     "moodId" integer NOT NULL,
-    "eventId" integer NOT NULL,
+    "eventsId" integer NOT NULL,
     note text NOT NULL,
     participants text NOT NULL,
     "time" timestamp with time zone NOT NULL
@@ -228,8 +228,8 @@ ALTER TABLE ONLY public.moods ALTER COLUMN "moodId" SET DEFAULT nextval('public.
 -- Data for Name: entries; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.entries ("entryId", "moodId", "eventId", note, participants, "time") FROM stdin;
-1	3	8	I am coding and stretching and feeling meh	zack	2020-11-10 20:20:37.124398-08
+COPY public.entries ("entryId", "moodId", "eventsId", note, participants, "time") FROM stdin;
+1	3	8	I am coding and stretching and feeling meh	zack	2020-11-10 22:51:34.451572-08
 \.
 
 
@@ -351,7 +351,7 @@ ALTER TABLE ONLY public.entries
 --
 
 ALTER TABLE ONLY public.entries
-    ADD CONSTRAINT entries_fk1 FOREIGN KEY ("eventId") REFERENCES public.events("eventsId");
+    ADD CONSTRAINT entries_fk1 FOREIGN KEY ("eventsId") REFERENCES public.events("eventsId");
 
 
 --
