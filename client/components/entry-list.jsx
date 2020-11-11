@@ -7,33 +7,41 @@ class EntryList extends React.Component {
     this.state = {
       entries: ['fdjsklfj']
     };
+    this.getEntries = this.getEntries.bind(this);
+    this.createEntries = this.createEntries.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.getEntry();
-  // }
+  componentDidMount() {
+    this.getEntries();
+  }
 
-  // getEntry() {
-  //   fetch('api/entries')
-  //     .then(result => result.json())
-  //     .then(entry => {
-  //       this.setState({ todos: entry });
-  //     });
-  // }
+  getEntries() {
+    fetch('api/entries')
+      .then(result => result.json())
+      .then(entries => {
+        this.setState({ todos: entries });
+      });
+  }
 
-  // createEntry() {
-
-  // }
+  createEntries() {
+    const entryList = this.state.entries.map(entry => {
+      return (
+        <EntryListItem
+          key = {entry.entryId}
+          entry = {this.state.entries}
+        />
+      );
+    });
+    return entryList;
+  }
 
   render() {
-    var entryItems = this.state.entries;
-    var listEntry = entryItems.map(entry => <EntryListItem key={entry.entryId} value={this.state.entries} />);
-
+    // var entryItems = this.state.entries;
+    // var listEntry = entryItems.map(entry => <EntryListItem key={entry.entryId} value={this.state.entries} />);
+    const renderEntries = this.createEntries();
     return (
       <div>
-        <div>
-          {listEntry}
-        </div>
+        {renderEntries}
       </div>
     );
   }
