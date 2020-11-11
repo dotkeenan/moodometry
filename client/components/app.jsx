@@ -7,14 +7,13 @@ import CreateEntry from './create-entry';
 import EventDetails from './event-details';
 import Journal from './journal';
 
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
 
-        name: 'createEntry'
+        name: 'Journal'
       },
       entries: []
 
@@ -32,7 +31,6 @@ export default class App extends React.Component {
     //   .catch(err => this.setState({ message: err.message }))
     //   .finally(() => this.setState({ isLoading: false }));
   }
-
 
   // way to get the data from the the entry form
   addEntry(entry) {
@@ -65,6 +63,8 @@ export default class App extends React.Component {
       view = <CreateEntry setView={this.setView}/>;
     } else if (this.state.view.name === 'eventDetails') {
       view = <EventDetails setView={this.setView}/>;
+    } else if (this.state.view.name === 'Journal') {
+      view = <Journal setView={this.setView} />;
     }
 
     return (

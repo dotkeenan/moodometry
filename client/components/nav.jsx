@@ -18,11 +18,10 @@ function Nav(props) {
           <img src="/images/ui-icons/stats.svg" alt="stats" />
         </div>
 
-
-      <div onClick={handleAddClick} className="add-entry-button">
-        <div className="button-icon">
-          <img src="/images/ui-icons/add.svg" alt="add" />
-
+        <div onClick={handleAddClick} className="add-entry-button">
+          <div className="button-icon">
+            <img src="/images/ui-icons/add.svg" alt="add" />
+          </div>
         </div>
 
         <div>
