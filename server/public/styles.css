@@ -196,6 +196,7 @@ p {
 
 .laugh  {
   color: #FFB800;
+  fill: green;
 }
 
 .smile  {
@@ -204,6 +205,7 @@ p {
 
 .meh  {
   color: #414141;
+
 }
 
 .frown {
