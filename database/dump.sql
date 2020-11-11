@@ -16,27 +16,31 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-ALTER TABLE IF EXISTS ONLY public."entryCategories" DROP CONSTRAINT IF EXISTS "entryCategories_fk1";
-ALTER TABLE IF EXISTS ONLY public."entryCategories" DROP CONSTRAINT IF EXISTS "entryCategories_fk0";
+
+ALTER TABLE IF EXISTS ONLY public.events DROP CONSTRAINT IF EXISTS events_fk0;
+
 ALTER TABLE IF EXISTS ONLY public.entries DROP CONSTRAINT IF EXISTS entries_fk1;
 ALTER TABLE IF EXISTS ONLY public.entries DROP CONSTRAINT IF EXISTS entries_fk0;
 ALTER TABLE IF EXISTS ONLY public.moods DROP CONSTRAINT IF EXISTS moods_pk;
 ALTER TABLE IF EXISTS ONLY public.events DROP CONSTRAINT IF EXISTS events_pk;
+
+ALTER TABLE IF EXISTS ONLY public."eventTypes" DROP CONSTRAINT IF EXISTS "eventTypes_pk";
 ALTER TABLE IF EXISTS ONLY public.entries DROP CONSTRAINT IF EXISTS entries_pk;
-ALTER TABLE IF EXISTS ONLY public.categories DROP CONSTRAINT IF EXISTS categories_pk;
 ALTER TABLE IF EXISTS public.moods ALTER COLUMN "moodId" DROP DEFAULT;
 ALTER TABLE IF EXISTS public.events ALTER COLUMN "eventsId" DROP DEFAULT;
+ALTER TABLE IF EXISTS public."eventTypes" ALTER COLUMN "eventTypeId" DROP DEFAULT;
 ALTER TABLE IF EXISTS public.entries ALTER COLUMN "entryId" DROP DEFAULT;
-ALTER TABLE IF EXISTS public.categories ALTER COLUMN "categoryId" DROP DEFAULT;
+
 DROP SEQUENCE IF EXISTS public."moods_moodId_seq";
 DROP TABLE IF EXISTS public.moods;
 DROP SEQUENCE IF EXISTS public."events_eventsId_seq";
 DROP TABLE IF EXISTS public.events;
-DROP TABLE IF EXISTS public."entryCategories";
+
+DROP SEQUENCE IF EXISTS public."eventTypes_eventTypeId_seq";
+DROP TABLE IF EXISTS public."eventTypes";
 DROP SEQUENCE IF EXISTS public."entries_entryId_seq";
 DROP TABLE IF EXISTS public.entries;
-DROP SEQUENCE IF EXISTS public."categories_categoryId_seq";
-DROP TABLE IF EXISTS public.categories;
+
 DROP EXTENSION IF EXISTS plpgsql;
 DROP SCHEMA IF EXISTS public;
 --
@@ -72,36 +76,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: categories; Type: TABLE; Schema: public; Owner: -
---
 
-CREATE TABLE public.categories (
-    "categoryId" integer NOT NULL,
-    label text NOT NULL
-);
-
-
---
--- Name: categories_categoryId_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public."categories_categoryId_seq"
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: categories_categoryId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public."categories_categoryId_seq" OWNED BY public.categories."categoryId";
-
-
---
 -- Name: entries; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -112,14 +87,17 @@ CREATE TABLE public.entries (
     note text NOT NULL,
     participants text NOT NULL,
     "time" timestamp with time zone NOT NULL
+
 );
 
 
 --
+
 -- Name: entries_entryId_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public."entries_entryId_seq"
+
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -129,6 +107,7 @@ CREATE SEQUENCE public."entries_entryId_seq"
 
 
 --
+
 -- Name: entries_entryId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
@@ -136,13 +115,43 @@ ALTER SEQUENCE public."entries_entryId_seq" OWNED BY public.entries."entryId";
 
 
 --
--- Name: entryCategories; Type: TABLE; Schema: public; Owner: -
+-- Name: eventTypes; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public."entryCategories" (
-    "entryId" integer NOT NULL,
-    "categoryId" integer NOT NULL
+CREATE TABLE public."eventTypes" (
+    "eventTypeId" integer NOT NULL,
+    label text NOT NULL
+
 );
+
+
+--
+
+-- Name: eventTypes_eventTypeId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."eventTypes_eventTypeId_seq"
+
+-- Name: entries_entryId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."entries_entryId_seq"
+
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+
+-- Name: eventTypes_eventTypeId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."eventTypes_eventTypeId_seq" OWNED BY public."eventTypes"."eventTypeId";
+
 
 
 --
@@ -152,7 +161,10 @@ CREATE TABLE public."entryCategories" (
 CREATE TABLE public.events (
     "eventsId" integer NOT NULL,
     label text NOT NULL,
-    "imageUrl" text NOT NULL
+
+    "imageUrl" text NOT NULL,
+    "eventTypeId" integer NOT NULL
+
 );
 
 
@@ -208,17 +220,19 @@ ALTER SEQUENCE public."moods_moodId_seq" OWNED BY public.moods."moodId";
 
 
 --
--- Name: categories categoryId; Type: DEFAULT; Schema: public; Owner: -
---
 
-ALTER TABLE ONLY public.categories ALTER COLUMN "categoryId" SET DEFAULT nextval('public."categories_categoryId_seq"'::regclass);
-
-
---
 -- Name: entries entryId; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.entries ALTER COLUMN "entryId" SET DEFAULT nextval('public."entries_entryId_seq"'::regclass);
+
+
+--
+-- Name: eventTypes eventTypeId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."eventTypes" ALTER COLUMN "eventTypeId" SET DEFAULT nextval('public."eventTypes_eventTypeId_seq"'::regclass);
+
 
 
 --
@@ -236,26 +250,27 @@ ALTER TABLE ONLY public.moods ALTER COLUMN "moodId" SET DEFAULT nextval('public.
 
 
 --
--- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: -
---
-
-COPY public.categories ("categoryId", label) FROM stdin;
-\.
-
-
---
 -- Data for Name: entries; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.entries ("entryId", "moodId", "eventId", note, participants, "time") FROM stdin;
+
+1	3	8	I am coding and stretching and feeling meh	zack	2020-11-10 20:20:37.124398-08
+
 \.
 
 
 --
--- Data for Name: entryCategories; Type: TABLE DATA; Schema: public; Owner: -
+
+-- Data for Name: eventTypes; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public."entryCategories" ("entryId", "categoryId") FROM stdin;
+COPY public."eventTypes" ("eventTypeId", label) FROM stdin;
+1	social
+2	hobbies
+3	productivity
+4	chores
+
 \.
 
 
@@ -263,7 +278,21 @@ COPY public."entryCategories" ("entryId", "categoryId") FROM stdin;
 -- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.events ("eventsId", label, "imageUrl") FROM stdin;
+
+COPY public.events ("eventsId", label, "imageUrl", "eventTypeId") FROM stdin;
+1	drinking coffee	/images/events/coffee-solid.svg	1
+2	partying	/images/events/glass-cheers-solid.svg	1
+3	date	/images/events/heart-solid.svg	1
+4	snowboarding	/images/events/snowboarding-solid.svg	2
+5	gaming	/images/events/gamepad-solid.svg	2
+6	drinking	/images/events/flask-solid.svg	2
+7	studying	/images/events/pencil-alt-solid.svg	3
+8	coding	/images/events/laptop-code-solid.svg	3
+9	making beats	/images/events/drum-solid.svg	3
+10	laundry	/images/events/outline-local-laundry-service.svg	4
+11	cleaning	/images/events/broom-solid.svg	4
+12	trash	/images/events/trash-solid.svg	4
+
 \.
 
 
@@ -272,43 +301,46 @@ COPY public.events ("eventsId", label, "imageUrl") FROM stdin;
 --
 
 COPY public.moods ("moodId", label, "imageUrl") FROM stdin;
+
+1	ecstatic	/images/moods/laugh-beam-regular.svg
+2	happy	/images/moods/smile-regular.svg
+3	meh	/images/moods/meh-regular.svg
+4	bad	/images/moods/frown-regular.svg
+5	terrible	/images/moods/angry-regular.svg
+
 \.
 
 
 --
--- Name: categories_categoryId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
 
-SELECT pg_catalog.setval('public."categories_categoryId_seq"', 1, false);
-
-
---
 -- Name: entries_entryId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."entries_entryId_seq"', 1, false);
+SELECT pg_catalog.setval('public."entries_entryId_seq"', 1, true);
+
+
+--
+-- Name: eventTypes_eventTypeId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."eventTypes_eventTypeId_seq"', 4, true);
+
 
 
 --
 -- Name: events_eventsId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."events_eventsId_seq"', 1, false);
+
+SELECT pg_catalog.setval('public."events_eventsId_seq"', 12, true);
 
 
 --
 -- Name: moods_moodId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."moods_moodId_seq"', 1, false);
 
-
---
--- Name: categories categories_pk; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.categories
-    ADD CONSTRAINT categories_pk PRIMARY KEY ("categoryId");
+SELECT pg_catalog.setval('public."moods_moodId_seq"', 5, true);
 
 
 --
@@ -317,6 +349,15 @@ ALTER TABLE ONLY public.categories
 
 ALTER TABLE ONLY public.entries
     ADD CONSTRAINT entries_pk PRIMARY KEY ("entryId");
+
+
+--
+-- Name: eventTypes eventTypes_pk; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."eventTypes"
+    ADD CONSTRAINT "eventTypes_pk" PRIMARY KEY ("eventTypeId");
+
 
 
 --
@@ -352,19 +393,13 @@ ALTER TABLE ONLY public.entries
 
 
 --
--- Name: entryCategories entryCategories_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
+
+-- Name: events events_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public."entryCategories"
-    ADD CONSTRAINT "entryCategories_fk0" FOREIGN KEY ("entryId") REFERENCES public.entries("entryId");
+ALTER TABLE ONLY public.events
+    ADD CONSTRAINT events_fk0 FOREIGN KEY ("eventTypeId") REFERENCES public."eventTypes"("eventTypeId");
 
-
---
--- Name: entryCategories entryCategories_fk1; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public."entryCategories"
-    ADD CONSTRAINT "entryCategories_fk1" FOREIGN KEY ("categoryId") REFERENCES public.categories("categoryId");
 
 
 --
