@@ -71,7 +71,6 @@ body {
   margin-left: -10px;
 }
 
-
 .note-container {
   width: 75%;
 }
@@ -127,6 +126,49 @@ p {
   border: 2px solid #5FC2C1;
   -webkit-box-shadow: 0px 2px 4px 4px rgba(0,0,0,0.25);
   box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.25);
+}
+
+/*--------*/
+
+/* event journal */
+
+.event-container{
+  margin-top: 30px;
+  background-color: white;
+  border-width: thin;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+ border: solid 1px rgba(105, 105, 105, 0.25);
+    -webkit-box-shadow: 0px 2px 4px 4px rgba(0,0,0,0.25);
+  box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.25);
+}
+
+.svg-icons {
+  width: 20px;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+h6 {
+  margin-left: 10px;
+}
+
+.hobbie-container {
+  padding-top: 10px ;
+  margin-left: 10px;
+}
+
+.social-container {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.check-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding-bottom: 15px;
 }
 
 /*--------*/
