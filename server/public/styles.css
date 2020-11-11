@@ -90,3 +90,31 @@ p {
 }
 
 /*--------*/
+
+/* Bottom nav */
+
+.nav {
+  overflow: hidden;
+  background-color: #ffffff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 55px;
+}
+
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  /* margin: ; */
+}
+
+.add-entry-button {
+  position: relative;
+  top: -10px;
+  z-index: 69;
+}
+
+/*--------*/
