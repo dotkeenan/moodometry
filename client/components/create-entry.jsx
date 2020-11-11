@@ -99,14 +99,15 @@ class CreateEntry extends React.Component {
               <span className="date"></span>
               <img src="/images/ui-icons/down-arrow.svg" alt=""/>
             </div> */}
+
           </div>
 
         </div>
         <div className="">
           <div className="mood-chooser row">
+            <img onClick={this.handleMeh} className="mood-svg smile" src="images/moods/laugh-beam-regular.svg" alt="laugh" />
             <img onClick={this.handleLaugh} className="mood-svg laugh" src="images/moods/smile-regular.svg" alt="smile" />
             <img onClick={this.handleSmile} className="mood-svg meh" src="images/moods/meh-regular.svg" alt="meh" />
-            <img onClick={this.handleMeh} className="mood-svg smile" src="images/moods/laugh-beam-regular.svg" alt="laugh" />
             <img onClick={this.handleFrown} className="mood-svg frown" src="images/moods/frown-regular.svg" alt="frown" />
             <img onClick={this.handleAngry} className="mood-svg angry" src="images/moods/angry-regular.svg" alt="angry" />
           </div>
