@@ -1,6 +1,11 @@
 import React from 'react';
 
-function Nav() {
+// possibly convert into a class since there will be lots of methods
+function Nav(props) {
+  function handleAddClick() {
+    props.setView('createEntry');
+  }
+
   return (
     <div className="nav nav-row">
 
@@ -12,7 +17,7 @@ function Nav() {
         <img src="/images/ui-icons/stats.svg" alt="stats" />
       </div>
 
-      <div className="add-entry-button">
+      <div onClick={handleAddClick} className="add-entry-button">
         <div className="button-icon">
           <img src="/images/ui-icons/add.svg" alt="add" />
         </div>

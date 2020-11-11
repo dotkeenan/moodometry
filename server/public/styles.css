@@ -130,3 +130,87 @@ p {
 }
 
 /*--------*/
+
+/* Entry Form date and mood */
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.date {
+  color: white;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.date-and-mood  {
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.h1-form  {
+  color: white;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.entry-date-container {
+  display: flex;
+  /* align-items: center; */
+}
+
+.date-choice, .time-choice  {
+  display: flex;
+  align-items: center;
+}
+
+.time-choice  {
+  margin-left: 15px;
+}
+
+.mood-chooser {
+  background-color: white;
+  justify-content: space-around;
+  padding: 10px 0;
+  margin: 30px 0px;
+  border-radius: 15px;
+  -webkit-box-shadow: 0px 2px 4px 4px rgba(0,0,0,0.25);
+  box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.25);
+}
+
+.mood-svg {
+  max-height: 55px;
+}
+
+.laugh  {
+  color: #FFB800;
+}
+
+.smile  {
+  color: #24FF00;
+}
+
+.meh  {
+  color: #414141;
+}
+
+.frown {
+  color: #3A89FF;
+}
+
+.angry  {
+  color: #FF0000;
+}
+/*--------*/
