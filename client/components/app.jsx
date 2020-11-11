@@ -13,7 +13,7 @@ export default class App extends React.Component {
     this.state = {
       view: {
 
-        name: 'Journal'
+        name: 'createEntry'
       },
       entries: []
 
@@ -60,9 +60,9 @@ export default class App extends React.Component {
     if (this.state.view.name === 'entries') {
       view = <EntryList />;
     } else if (this.state.view.name === 'createEntry') {
-      view = <CreateEntry setView={this.setView}/>;
+      view = <CreateEntry setView={this.setView} />;
     } else if (this.state.view.name === 'eventDetails') {
-      view = <EventDetails setView={this.setView}/>;
+      view = <EventDetails setView={this.setView} />;
     } else if (this.state.view.name === 'Journal') {
       view = <Journal setView={this.setView} />;
     }
@@ -71,7 +71,7 @@ export default class App extends React.Component {
       <>
         <Header />
         {view}
-        <Nav setView={this.setView}/>
+        <Nav setView={this.setView} />
       </>
 
     );

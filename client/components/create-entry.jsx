@@ -59,18 +59,18 @@ class CreateEntry extends React.Component {
             </div>
 
             <div className="time-choice">
-              <img src="/images/ui-icons/clock.svg" alt="clock"/>
+              <img src="/images/ui-icons/clock.svg" alt="clock" />
               <span className="date">12:00 PM</span>
-              <img src="/images/ui-icons/down-arrow.svg" alt=""/>
+              <img src="/images/ui-icons/down-arrow.svg" alt="" />
             </div>
           </div>
 
         </div>
         <div className="">
           <div className="mood-chooser row">
+            <img onClick={this.handleMeh} className="mood-svg smile" src="images/moods/laugh-beam-regular.svg" alt="laugh" />
             <img onClick={this.handleLaugh} className="mood-svg laugh" src="images/moods/smile-regular.svg" alt="smile" />
             <img onClick={this.handleSmile} className="mood-svg meh" src="images/moods/meh-regular.svg" alt="meh" />
-            <img onClick={this.handleMeh} className="mood-svg smile" src="images/moods/laugh-beam-regular.svg" alt="laugh" />
             <img onClick={this.handleFrown} className="mood-svg frown" src="images/moods/frown-regular.svg" alt="frown" />
             <img onClick={this.handleAngry} className="mood-svg angry" src="images/moods/angry-regular.svg" alt="angry" />
           </div>
