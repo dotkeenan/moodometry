@@ -17,7 +17,14 @@ function Nav() {
       </div>
 
       <div className="add-entry-button">
-        <svg width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div className="button-icon">
+          <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.2988 6.08594H21.7012C21.9147 6.08594 22.0215 6.19271 22.0215 6.40625V34.5938C22.0215 34.8073 21.9147 34.9141 21.7012 34.9141H19.2988C19.0853 34.9141 18.9785 34.8073 18.9785 34.5938V6.40625C18.9785 6.19271 19.0853 6.08594 19.2988 6.08594Z" fill="#67D4D2" />
+            <path d="M7.04688 18.9785H33.9531C34.1667 18.9785 34.2734 19.0853 34.2734 19.2988V21.7012C34.2734 21.9147 34.1667 22.0215 33.9531 22.0215H7.04688C6.83333 22.0215 6.72656 21.9147 6.72656 21.7012V19.2988C6.72656 19.0853 6.83333 18.9785 7.04688 18.9785Z" fill="#67D4D2" />
+          </svg>
+        </div>
+
+        {/* <svg width="73" height="73" viewBox="0 0 73 73" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_d)">
             <rect x="6" y="3" width="61" height="61" rx="30.5" fill="white" />
             <rect x="5" y="2" width="63" height="63" rx="31.5" stroke="#5FC2C1" strokeWidth="2" />
@@ -33,7 +40,7 @@ function Nav() {
               <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
             </filter>
           </defs>
-        </svg>
+        </svg> */}
       </div>
       {/* <div className="add-entry-button" onClick={ }>
         <div className="button-icon">
