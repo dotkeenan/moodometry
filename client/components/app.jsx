@@ -13,7 +13,7 @@ export default class App extends React.Component {
     this.state = {
       view: {
 
-        name: 'createEntry'
+        name: 'Journal'
       },
       entries: []
 
@@ -72,7 +72,7 @@ export default class App extends React.Component {
       <React.Fragment>
         <Header name={this.state.view.name}/>
         {view}
-        <Nav setView={this.setView}/>
+        <Nav setView={this.setView} />
       </React.Fragment>
 
     );

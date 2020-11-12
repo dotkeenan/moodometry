@@ -1,5 +1,6 @@
 import React from 'react';
 import Events from './events';
+import Participants from './participants';
 
 class Journal extends React.Component {
   constructor(props) {
@@ -15,6 +16,9 @@ class Journal extends React.Component {
       <React.Fragment>
         <div>
           <Events />
+        </div>
+        <div>
+          <Participants />
         </div>
       </React.Fragment>
     );
