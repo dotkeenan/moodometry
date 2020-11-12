@@ -11,7 +11,6 @@ const app = express();
 
 app.use(staticMiddleware);
 app.use(sessionMiddleware);
-
 app.use(express.json());
 
 // Get list of all entries in db
@@ -30,6 +29,18 @@ app.get('/api/entries', (req, res, next) => {
   `;
   db.query(sql)
     .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
+app.post('/api/entries', (req, res, next) => {
+  const sql = `
+    insert into "entries" ("moodId", "eventsId", "note", "participants", "time")
+         values ($1, $2, $3, $4, $5)
+    returning *;
+  `;
+  const values = [req.body.moodId, req.body.eventsId, req.body.note, req.body.participants, req.body.time];
+  db.query(sql, values)
+    .then(result => res.status(201).json(result.rows))
     .catch(err => next(err));
 });
 

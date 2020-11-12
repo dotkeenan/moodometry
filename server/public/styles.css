@@ -217,7 +217,35 @@ p {
 }
 
 /* event journal */
-
+.participants-container {
+  padding-top: 1rem;
+  margin-top: 30px;
+  min-height: 150px;
+  background-color: white;
+  border-width: thin;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border: solid 1px rgba(105, 105, 105, 0.25);
+    -webkit-box-shadow: 0px 2px 4px 4px rgba(0,0,0,0.25);
+  box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.25);
+}
+.participants-submit {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+.participants-input {
+  width: 90%;
+  height: 40%;
+  border-radius: 10px;
+  border: 1px solid #B9B9B9;
+  box-shadow: inset 1px 1px 0px 0px #B9B9B9;
+}
 .event-container{
   margin-top: 30px;
   background-color: white;
@@ -225,7 +253,7 @@ p {
   border-radius: 10px;
   margin-left: 20px;
   margin-right: 20px;
- border: solid 1px rgba(105, 105, 105, 0.25);
+  border: solid 1px rgba(105, 105, 105, 0.25);
     -webkit-box-shadow: 0px 2px 4px 4px rgba(0,0,0,0.25);
   box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.25);
 }

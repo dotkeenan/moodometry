@@ -11,7 +11,7 @@ function Nav(props) {
       <div className="nav nav-row">
 
         <div>
-          <img src="/images/ui-icons/home.svg" alt="home"/>
+          <img src="/images/ui-icons/home.svg" alt="home" />
         </div>
 
         <div>
