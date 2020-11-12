@@ -5,7 +5,8 @@ class EntryList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      entries: ['fdjsklfj']
+      isLoading: true,
+      entries: []
     };
     this.getEntries = this.getEntries.bind(this);
     this.createEntries = this.createEntries.bind(this);
@@ -16,11 +17,15 @@ class EntryList extends React.Component {
   }
 
   getEntries() {
-    fetch('api/entries')
+    fetch('/api/entries')
       .then(result => result.json())
       .then(entries => {
-        this.setState({ todos: entries });
-      });
+        this.setState({
+          entries: entries,
+          isLoading: false
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   createEntries() {
@@ -28,7 +33,7 @@ class EntryList extends React.Component {
       return (
         <EntryListItem
           key = {entry.entryId}
-          entry = {this.state.entries}
+          entry = {entry}
         />
       );
     });
@@ -36,9 +41,9 @@ class EntryList extends React.Component {
   }
 
   render() {
-    // var entryItems = this.state.entries;
-    // var listEntry = entryItems.map(entry => <EntryListItem key={entry.entryId} value={this.state.entries} />);
+    if (this.state.isloading) return <h1>Loading</h1>;
     const renderEntries = this.createEntries();
+
     return (
       <div className="entry-list">
         <div className="container entry-container">
@@ -49,6 +54,7 @@ class EntryList extends React.Component {
           </div>
         </div>
       </div>
+
     );
   }
 

@@ -11,7 +11,7 @@ class CreateEntry extends React.Component {
       todaysDate: this.todaysDate(),
       entry: {
         mood: '',
-        time: this.todaysDate()
+        time: new Date().toJSON()
       }
     };
     setInterval(() => {

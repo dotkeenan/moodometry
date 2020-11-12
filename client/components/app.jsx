@@ -12,8 +12,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-
-        name: 'createEntry'
+        name: 'entries'
       },
       entries: []
 
@@ -52,7 +51,7 @@ export default class App extends React.Component {
 
   setView(name) {
     this.setState({
-      view: name
+      view: { name: name }
     });
   }
 
