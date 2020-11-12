@@ -12,7 +12,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'createEntry'
+        name: 'entries'
       },
       entries: []
 
@@ -69,7 +69,7 @@ export default class App extends React.Component {
 
     return (
       <React.Fragment>
-        <Header name={this.state.view.name}/>
+        <Header name={this.state.view.name} />
         {view}
         <Nav setView={this.setView} />
       </React.Fragment>

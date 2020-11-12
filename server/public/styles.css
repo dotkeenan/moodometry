@@ -73,11 +73,24 @@ body {
   padding-bottom: 5%;
 }
 
+.button-styling-remove {
+  background: transparent;
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+}
+.dropdown {
+  width: 20px;
+  height: 20px;
+  margin: 1rem, 5px;
+}
 .menu-container {
   display: flex;
   flex-direction: row-reverse;
-  margin-right: 10px;
+  justify-content: start;
+  margin-right: 20px;
   margin-top: 5px;
+  height: 30px;
 }
 
 .info-container{
