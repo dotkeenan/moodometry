@@ -33,6 +33,18 @@ app.get('/api/entries', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/entries', (req, res, next) => {
+  const sql = `
+    insert into "entries" ("moodId", "eventsId", "note", "participants", "time")
+         values ($1, $2, $3, $4, $5)
+    returning *;
+  `;
+  const values = [req.body.moodId, req.body.eventsId, req.body.note, req.body.participants, req.body.time];
+  db.query(sql, values)
+    .then(result => res.status(201).json(result.rows))
+    .catch(err => next(err));
+});
+
 app.get('/api/health-check', (req, res, next) => {
   db.query('select \'successfully connected\' as "message"')
     .then(result => res.json(result.rows[0]))
