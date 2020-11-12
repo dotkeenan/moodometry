@@ -22,6 +22,7 @@ export default class App extends React.Component {
       // createdEntry: {};
     };
     this.addEntry = this.addEntry.bind(this);
+    this.setView = this.setView.bind(this);
   }
 
   componentDidMount() {
@@ -69,12 +70,10 @@ export default class App extends React.Component {
 
     return (
       <React.Fragment>
-        <Header />
+        <Header name={this.state.view.name}/>
         {view}
         <Nav setView={this.setView}/>
       </React.Fragment>
-
-
 
     );
   }
