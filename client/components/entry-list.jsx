@@ -32,8 +32,8 @@ class EntryList extends React.Component {
     const entryList = this.state.entries.map(entry => {
       return (
         <EntryListItem
-          key = {entry.entryId}
-          entry = {entry}
+          key={entry.entryId}
+          entry={entry}
         />
       );
     });
@@ -47,10 +47,8 @@ class EntryList extends React.Component {
     return (
       <div className="entry-list">
         <div className="container entry-container">
-          <div className="row entry-row">
-            <div>
-              {renderEntries}
-            </div>
+          <div>
+            {renderEntries}
           </div>
         </div>
       </div>
