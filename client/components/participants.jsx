@@ -18,8 +18,9 @@ function Participants(props) {
       <div className="participants-container">
         <div className="container d-flex flex-column align-items-center justify-contents-around">
           <h4>Add Participants</h4>
-          <input className="participants-input" type="text" cols="40"
-            rows="5" style={{ width: '90%', height: '90px' }} placeholder="Austin, Keenan, Zack" />
+          <textarea className="participants-input" name="participants" cols="40" rows="2" style={{ width: '90%', height: '60px' }} placeholder="Austin, Keenan, Zack"></textarea>
+          {/* <input className="participants-input" type="text" cols="40"
+            rows="5" style={{ width: '90%', height: '90px' }} placeholder="Austin, Keenan, Zack" /> */}
           <button className="check-container participants-submit">
             <svg className="check-button" width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M21.5 41.6562C32.632 41.6562 41.6562 32.632 41.6562 21.5C41.6562 10.368 32.632 1.34375 21.5 1.34375C10.368 1.34375 1.34375 10.368 1.34375 21.5C1.34375 32.632 10.368 41.6562 21.5 41.6562Z" fill="#67D4D2" />
