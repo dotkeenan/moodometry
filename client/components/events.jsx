@@ -1,6 +1,13 @@
 import React from 'react';
 
 function Events(props) {
+  // this is unfinished. possibly change to a class to store the info about which icons were clicked
+  function handleIconClick(e) {
+    fetch(`/api/events/${null}`)
+      .then(result => result.json())
+      .catch(err => console.error(err));
+  }
+
   return (
     <React.Fragment>
 
@@ -8,19 +15,19 @@ function Events(props) {
         <div className="hobbie-container">
           <h6>Hobbies</h6>
           <div className="hobbie-icon">
-            <img className="svg-icons" src="images/events/drum-solid.svg" alt="drum-solid"></img>
-            <img className="svg-icons" src="images/events/gamepad-solid.svg" alt="gamepad-solid"></img>
-            <img className="svg-icons" src="images/events/snowboarding-solid.svg" alt="snowboarding-solid"></img>
-            <img className="svg-icons" src="images/events/laptop-code-solid.svg" alt="laptop-code-solid"></img>
+            <img onClick={handleIconClick} className="svg-icons" src="images/events/drum-solid.svg" alt="drum-solid"></img>
+            <img onClick={handleIconClick} className="svg-icons" src="images/events/gamepad-solid.svg" alt="gamepad-solid"></img>
+            <img onClick={handleIconClick} className="svg-icons" src="images/events/snowboarding-solid.svg" alt="snowboarding-solid"></img>
+            <img onClick={handleIconClick} className="svg-icons" src="images/events/laptop-code-solid.svg" alt="laptop-code-solid"></img>
           </div>
         </div>
         <div className="social-container">
           <h6>Social</h6>
           <div className="social-icon">
-            <img className="svg-icons" src="images/events/coffee-solid.svg" alt="coffee-solid"></img>
-            <img className="svg-icons" src="images/events/flask-solid.svg" alt="flask-solid"></img>
-            <img className="svg-icons" src="images/events/glass-cheers-solid.svg" alt="glass-cheers-solid"></img>
-            <img className="svg-icons" src="images/events/pencil-alt-solid.svg" alt="pencil-alt-solid"></img>
+            <img onClick={handleIconClick} className="svg-icons" src="images/events/coffee-solid.svg" alt="coffee-solid"></img>
+            <img onClick={handleIconClick} className="svg-icons" src="images/events/flask-solid.svg" alt="flask-solid"></img>
+            <img onClick={handleIconClick} className="svg-icons" src="images/events/glass-cheers-solid.svg" alt="glass-cheers-solid"></img>
+            <img onClick={handleIconClick} className="svg-icons" src="images/events/pencil-alt-solid.svg" alt="pencil-alt-solid"></img>
           </div>
         </div>
         <div className="check-container">
