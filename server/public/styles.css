@@ -33,6 +33,15 @@ body {
   color: #67D4D2;
 }
 
+
+/*--------*/
+
+
+/* Entry List aka Home feed */
+.entry-list-time  {
+  font-size: 1.3rem;
+}
+
 /*--------*/
 
 .card-container{
