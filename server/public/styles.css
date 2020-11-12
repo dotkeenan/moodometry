@@ -170,11 +170,11 @@ p {
 }
 
 .add-field-container  {
-  margin-left: 20px;
+  margin-left: auto;
 }
 
 .add-field  {
-  width: 100%;
+  width: 100vw;
   align-items: center;
   margin-bottom: 20px;
 }
@@ -248,6 +248,7 @@ p {
 
 /* event journal */
 .participants-container {
+  width: 100%;
   padding-top: 1rem;
   margin-top: 30px;
   min-height: 150px;
@@ -277,6 +278,7 @@ p {
   box-shadow: inset 1px 1px 0px 0px #B9B9B9;
 }
 .notes-container {
+  width: 100%;
   padding-top: 1rem;
   margin-top: 30px;
   min-height: 150px;
@@ -306,8 +308,8 @@ p {
   box-shadow: inset 1px 1px 0px 0px #B9B9B9;
 }
 .event-container{
-  width: auto;
-  margin-top: 30px;
+  width: 100%;
+  /* margin-top: 30px; */
   background-color: white;
   border-width: thin;
   border-radius: 10px;

@@ -1,6 +1,7 @@
 import React from 'react';
 import Events from './events';
-// import AddEvent from './add-event';
+import Participants from './participants';
+import Notes from './notes';
 
 class CreateEntry extends React.Component {
   constructor(props) {
@@ -163,8 +164,8 @@ class CreateEntry extends React.Component {
                 <span className="add-field-text">Add an event</span>
               </div>
               <div className="row add-field">
-                {/* <AddEvent /> */}
-                <h1>Placeholder for add participants</h1>
+                <Participants />
+                {/* <h1>Placeholder for add participants</h1> */}
               </div>
               <div className="row add-field">
                 <img onClick={this.handleAddNote} src="/images/ui-icons/add-detail.svg" alt="add detail" />
@@ -190,8 +191,8 @@ class CreateEntry extends React.Component {
                 <span className="add-field-text">Add Participants</span>
               </div>
               <div className="row add-field">
-                {/* <AddNote /> */}
-                <h1>Placeholder for add note</h1>
+                <Notes />
+                {/* <h1>Placeholder for add note</h1> */}
               </div>
             </div>
           </div>
