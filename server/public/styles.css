@@ -5,7 +5,7 @@
 }
 
 body {
-  /* width: 667px */
+  height: 100vh;
   background-color:#67D4D2 ;
 }
 
@@ -49,6 +49,10 @@ body {
 
 
 /* Card Item  */
+
+.entry-list-item-mood {
+  width:  40px;
+}
 
 .card-container {
   padding-bottom: 5%;
