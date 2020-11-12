@@ -51,11 +51,12 @@ app.get('/api/entries/dow/:dowId', (req, res, next) => {
 app.get('/api/entries', (req, res, next) => {
   const sql = `
     select "m"."label" as "mood",
-          "time",
-          "ev"."label" as "event",
-          "participants",
-          "note",
-          "entryId"
+           "time",
+           "ev"."label" as "event",
+           "participants",
+           "note",
+           "entryId",
+           "m"."imageUrl" as "imageUrl"
       from "entries"
       join "moods" as "m" using ("moodId")
       join "events" as "ev" using ("eventsId");
