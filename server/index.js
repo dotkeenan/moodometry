@@ -67,6 +67,74 @@ app.get('/api/entries', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// endpoint to get all social icons
+app.get('/api/events/social', (req, res, next) => {
+  const sql = `
+    select "events"."label",
+           "imageUrl",
+           "eventTypeId",
+           "eventsId",
+           "et"."label" as "eventTypeLabel"
+      from "events"
+      join "eventTypes" as "et" using ("eventTypeId")
+     where "et"."label" = 'social';
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
+// endpoint to get all hobby icons
+app.get('/api/events/hobbies', (req, res, next) => {
+  const sql = `
+    select "events"."label",
+           "imageUrl",
+           "eventTypeId",
+           "eventsId",
+           "et"."label" as "eventTypeLabel"
+      from "events"
+      join "eventTypes" as "et" using ("eventTypeId")
+     where "et"."label" = 'hobbies';
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
+// endpoint to get all hobby icons
+app.get('/api/events/productivity', (req, res, next) => {
+  const sql = `
+    select "events"."label",
+           "imageUrl",
+           "eventTypeId",
+           "eventsId",
+           "et"."label" as "eventTypeLabel"
+      from "events"
+      join "eventTypes" as "et" using ("eventTypeId")
+     where "et"."label" = 'productivity';
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
+// endpoint to get all hobby icons
+app.get('/api/events/chores', (req, res, next) => {
+  const sql = `
+    select "events"."label",
+           "imageUrl",
+           "eventTypeId",
+           "eventsId",
+           "et"."label" as "eventTypeLabel"
+      from "events"
+      join "eventTypes" as "et" using ("eventTypeId")
+     where "et"."label" = 'chores';
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
 // Get eventId when an event icon is clicked
 // needs work.  Might actually want to get the eventsId instead...
 app.get('/api/events/:eventsId', (req, res, next) => {
