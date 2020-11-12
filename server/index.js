@@ -45,8 +45,20 @@ app.get('/api/entries/dow/:dowId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// Get list of all entries in db
-// possibly limit the entries to a certain amount.
+app.delete('/api/entries/:entryId', (req, res, next) => {
+  const sql =
+    `delete from "entries"
+    where "entryId" = ${req.params.entryId};
+    `;
+  db.query(sql)
+    .then(result => {
+      res.status(204).json({
+        // status: `deleted entryId #${req.params.entryId}`
+      });
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/entries', (req, res, next) => {
   const sql = `
     select "m"."label" as "mood",

@@ -10,6 +10,11 @@ body {
 }
 
 /* Nav bar  */
+.header{
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
 .nav-container {
   background-color: white;
   display: flex;
@@ -115,7 +120,6 @@ p {
   height: 55px;
   border-top: 2px solid #5FC2C1;
 }
-
 .nav-row {
   display: flex;
   justify-content: space-between;
