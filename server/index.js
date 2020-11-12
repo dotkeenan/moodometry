@@ -22,7 +22,8 @@ app.get('/api/entries', (req, res, next) => {
            "ev"."label" as "event",
            "participants",
            "note",
-           "entryId"
+           "entryId",
+           "m"."imageUrl" as "imageUrl"
       from "entries"
       join "moods" as "m" using ("moodId")
       join "events" as "ev" using ("eventsId");

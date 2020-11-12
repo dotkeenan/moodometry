@@ -12,7 +12,10 @@ function EntryListItem(props) {
         <div className="info-container">
           <div className="image-container">
             <div className="image-icon">
-              <img src="images/ui-icons/laugh-beam-regular.svg" alt="laugh beam regular"/>
+              <img
+                className="entry-list-item-mood"
+                src={props.entry.imageUrl}
+                alt="laugh"/>
             </div>
           </div>
           <div className="note-container">
