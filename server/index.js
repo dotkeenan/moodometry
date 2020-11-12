@@ -56,7 +56,9 @@ app.get('/api/entries', (req, res, next) => {
            "participants",
            "note",
            "entryId",
-           "m"."imageUrl" as "imageUrl"
+           "m"."imageUrl" as "imageUrl",
+           To_Char("time", 'Dy, DD Mon | ') as "date",
+           To_Char("time",  'HH12:MIpm') as "hour"
       from "entries"
       join "moods" as "m" using ("moodId")
       join "events" as "ev" using ("eventsId");

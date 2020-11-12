@@ -19,7 +19,10 @@ function EntryListItem(props) {
             </div>
           </div>
           <div className="note-container">
-            <h3>{props.entry.time}<span>2:15pm</span></h3>
+            <h3 className="entry-list-time">
+              {props.entry.date}
+              <span>{props.entry.hour}</span>
+            </h3>
             <p className="event-with">{props.entry.event}</p>
             <p className="event-with">{props.entry.participants}</p>
             <p>{props.entry.note}</p>
