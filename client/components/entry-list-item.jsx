@@ -16,10 +16,10 @@ function EntryListItem(props) {
             </div>
           </div>
           <div className="note-container">
-            <h3>Fri, Nov 6 | <span>2:15pm</span></h3>
-            <p className="event-with">Event: Work + Social</p>
-            <p className="event-with">With: Zach & Keenan @ Facebook HQ</p>
-            <p> Finished working on a huge assignment with Keenan. Zach treated usto lunch for doing a great job.</p>
+            <h3>{props.entry.time}<span>2:15pm</span></h3>
+            <p className="event-with">{props.entry.event}</p>
+            <p className="event-with">{props.entry.participants}</p>
+            <p>{props.entry.note}</p>
 
           </div>
         </div>
