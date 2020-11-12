@@ -15,6 +15,39 @@ app.use(express.json());
 
 // Get list of all entries in db
 // Find a way to limit the entries to 1 week old only. (list will get too long otherwise).
+
+app.get('/api/entries/mood/:moodId', (req, res, next) => {
+  const values = [req.params.moodId];
+  const sql =
+    'select * from "entries" where "moodId" = $1';
+  db.query(sql, values)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
+app.get('/api/entries/event/:eventsId', (req, res, next) => {
+  const values = [req.params.eventsId];
+  const sql =
+    'select * from "entries" where "eventsId" = $1';
+  db.query(sql, values)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+app.get('/api/entries/dow/:dowId', (req, res, next) => {
+  const sql =
+    'select * from "entries"';
+  db.query(sql)
+    .then(result => {
+      // Iterate thru the results
+      const filteredResult = result.rows.filter(row => {
+        const rowDate = row.time;
+        return rowDate.getDay().toString() === req.params.dowId;
+      });
+      res.status(200).json(filteredResult);
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/entries', (req, res, next) => {
   const sql = `
     select "m"."label" as "mood",
@@ -36,7 +69,7 @@ app.get('/api/entries', (req, res, next) => {
 app.post('/api/entries', (req, res, next) => {
   const sql = `
     insert into "entries" ("moodId", "eventsId", "note", "participants", "time")
-         values ($1, $2, $3, $4, $5)
+        values ($1, $2, $3, $4, $5)
     returning *;
   `;
   const values = [req.body.moodId, req.body.eventsId, req.body.note, req.body.participants, req.body.time];
