@@ -79,6 +79,8 @@ export default class App extends React.Component {
 
   setFilterOptions(filterOptions) {
     console.log(filterOptions);
+    // let newFilterOptions = {...this.state.filterOptions};
+
     this.setState({
       filterOptions: filterOptions,
       filterModal: false

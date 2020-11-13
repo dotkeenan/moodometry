@@ -13,43 +13,13 @@ class FilterEntry extends React.Component {
 
     };
     // bind
-    this.handleClick1 = this.handleClick1.bind(this);
-    this.handleClick2 = this.handleClick2.bind(this);
-    this.handleClick3 = this.handleClick3.bind(this);
-    this.handleClick4 = this.handleClick4.bind(this);
-    this.handleClick5 = this.handleClick5.bind(this);
-
     this.setFilterOptions = this.setFilterOptions.bind(this);
   }
 
-  handleClick1() {
-    this.setState({
-      filterOptions: { moodId: '1' }
-    });
-  }
-
-  handleClick2() {
-    this.setState({
-      filterOptions: { moodId: '2' }
-    });
-  }
-
-  handleClick3() {
-    this.setState({
-      filterOptions: { moodId: '3' }
-    });
-  }
-
-  handleClick4() {
-    this.setState({
-      filterOptions: { moodId: '4' }
-    });
-  }
-
-  handleClick5() {
-    this.setState({
-      filterOptions: { moodId: '5' }
-    });
+  handleClickMood(e, mood) {
+    const newFilterOptions = { ...this.state.filterOptions };
+    newFilterOptions.moodId = (this.state.filterOptions.moodId === mood) ? '' : mood;
+    this.setState({ filterOptions: newFilterOptions });
   }
 
   setFilterOptions() {
@@ -68,11 +38,11 @@ class FilterEntry extends React.Component {
                 <h4 className="modal-title">Filter Options</h4>
               </div>
               <div className="modal-body">
-                <img onClick={this.handleClick1} className="mood-modal" src="images/moods/laugh-beam-regular.svg" alt="laugh" />
-                <img onClick={this.handleClick2} className="mood-modal" src="images/moods/smile-regular.svg" alt="smile" />
-                <img onClick={this.handleClick3} className="mood-modal" src="images/moods/meh-regular.svg" alt="meh" />
-                <img onClick={this.handleClick4} className="mood-modal" src="images/moods/frown-regular.svg" alt="frown" />
-                <img onClick={this.handleClick5} className="mood-modal" src="images/moods/angry-regular.svg" alt="angry" />
+                <img onClick={e => this.handleClickMood(e, 1)} className="mood-modal" src="images/moods/laugh-beam-regular.svg" alt="laugh" />
+                <img onClick={e => this.handleClickMood(e, 2)} className="mood-modal" src="images/moods/smile-regular.svg" alt="smile" />
+                <img onClick={e => this.handleClickMood(e, 3)} className="mood-modal" src="images/moods/meh-regular.svg" alt="meh" />
+                <img onClick={e => this.handleClickMood(e, 4)} className="mood-modal" src="images/moods/frown-regular.svg" alt="frown" />
+                <img onClick={e => this.handleClickMood(e, 5)} className="mood-modal" src="images/moods/angry-regular.svg" alt="angry" />
               </div>
               <div className="modal-body">
                 <h6>sun</h6>
