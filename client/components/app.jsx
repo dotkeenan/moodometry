@@ -10,7 +10,8 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'entries'
+        name: 'entries',
+        phase: 'timeAndMood'
       },
       entries: []
 
@@ -20,6 +21,7 @@ export default class App extends React.Component {
     };
     this.addEntry = this.addEntry.bind(this);
     this.setView = this.setView.bind(this);
+    // this.setPhase = this.setPhase.bind(this);
   }
 
   componentDidMount() {
@@ -53,6 +55,14 @@ export default class App extends React.Component {
     });
   }
 
+  // setPhase(name) {
+  //   const newView = Object.assign({}, this.state.view);
+  //   newView.phase = name;
+  //   this.setState({
+  //     phase: newView
+  //   });
+  // }
+
   render() {
     let view = null;
     if (this.state.view.name === 'entries') {
@@ -67,7 +77,8 @@ export default class App extends React.Component {
       <React.Fragment>
         <Header name={this.state.view.name} />
         {view}
-        <Nav setView={this.setView} />
+        <Nav setView={this.setView}/>
+        {/* <Nav setView={this.setView} setPhase={this.setPhase}/> */}
       </React.Fragment>
 
     );
