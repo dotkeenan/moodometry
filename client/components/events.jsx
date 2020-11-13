@@ -8,7 +8,8 @@ class Events extends React.Component {
       hobbies: [],
       productivity: [],
       chores: [],
-      eventsId: []
+      eventsId: [],
+      eventsUrls: []
     };
     // find out which ones to delete later.  Don't need to bind if not passing to another component
     this.handleIconClick = this.handleIconClick.bind(this);
@@ -25,30 +26,38 @@ class Events extends React.Component {
 
   handleIconClick(event) {
     const eventId = parseInt(event.target.getAttribute('eventid'), 10);
-    // const category = event.target.getAttribute('category');
+    const eventUrl = (event.target.src);
 
-    // if eventId already exists, remove it from this.state.eventsId
-    if (this.state.eventsId.includes(eventId)) {
+    if (this.state.eventsId.includes(eventId) && this.state.eventsUrls.includes(eventUrl)) {
       const newEventsId = this.state.eventsId.slice('');
       const index = newEventsId.indexOf(eventId);
       newEventsId.splice(index, 1);
+
+      const newEventsUrls = this.state.eventsUrls.slice('');
+      const eventUrlsIndex = newEventsUrls.indexOf(eventUrl);
+      newEventsUrls.splice(eventUrlsIndex, 1);
       this.setState({
-        eventsId: newEventsId
+        eventsId: newEventsId,
+        eventsUrls: newEventsUrls
       });
     } else {
       const newEventsId = this.state.eventsId.slice('');
       newEventsId.push(eventId);
+
+      const newEventsUrls = this.state.eventsUrls.slice('');
+      newEventsUrls.push(eventUrl);
       this.setState({
-        eventsId: newEventsId
+        eventsId: newEventsId,
+        eventsUrls: newEventsUrls
       });
     }
-    // add way for icon to change color when clicked on, also add hover
     event.target.classList.toggle('invert-event');
   }
 
   handleEventSubmit(event) {
     // find a way to transfer this.state.eventsId to create-entry.jsx
     this.props.setEventState(this.state.eventsId);
+    this.props.setEventsUrls(this.state.eventsUrls);
     // find a way to close the card then show the icons that were clicked
     // console.log('submitted');
     event.preventDefault();

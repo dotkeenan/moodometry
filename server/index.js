@@ -231,20 +231,6 @@ app.get('/api/moods', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// Get eventId when an event icon is clicked
-// needs work.  Might actually want to get the eventsId instead...
-// app.get('/api/events/:eventsId', (req, res, next) => {
-//   const sql = `
-//     select "label"
-//       from "events"
-//      where "eventsId" = $1;
-//   `;
-//   const params = [req.params.eventsId];
-//   db.query(sql, params)
-//     .then(result => res.status(200).json(result.rows))
-//     .catch(err => next(err));
-// });
-
 app.post('/api/entries', (req, res, next) => {
   const sql = `
     insert into "entries" ("moodId", "eventsId", "note", "participants", "time")
