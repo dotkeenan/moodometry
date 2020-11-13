@@ -34,6 +34,8 @@ class EntryList extends React.Component {
         <EntryListItem
           key={entry.entryId}
           entry={entry}
+          getEntries={this.getEntries}
+          createEntries={this.createEntries}
         />
       );
     });
