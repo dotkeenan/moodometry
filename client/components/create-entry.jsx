@@ -76,7 +76,8 @@ class CreateEntry extends React.Component {
           note: '',
           time: new Date()
         }
-      }));
+      }))
+      .catch(err => console.error(err));
   }
 
   handleAddEvent() {

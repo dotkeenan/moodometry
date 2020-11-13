@@ -165,7 +165,7 @@ app.post('/api/entries', (req, res, next) => {
         values ($1, $2, $3, $4, $5)
     returning *;
   `;
-  const values = [req.body.moodId, req.body.eventsId, req.body.note, req.body.participants, req.body.time];
+  const values = [req.body.moodId, req.body.eventId, req.body.note, req.body.participants, req.body.time];
   db.query(sql, values)
     .then(result => res.status(201).json(result.rows))
     .catch(err => next(err));
