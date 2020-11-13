@@ -30,6 +30,7 @@ app.get('/api/entries/event/:eventsId', (req, res, next) => {
     .then(result => res.status(200).json(result.rows))
     .catch(err => next(err));
 });
+
 app.get('/api/entries/dow/:dowId', (req, res, next) => {
   const sql =
     'select * from "entries"';
@@ -41,6 +42,78 @@ app.get('/api/entries/dow/:dowId', (req, res, next) => {
         return rowDate.getDay().toString() === req.params.dowId;
       });
       res.status(200).json(filteredResult);
+    })
+    .catch(err => next(err));
+});
+
+app.put('/api/entries/moodId/:entryId', (req, res, next) => {
+  const values = [req.body.moodId, req.params.entryId];
+  const sql =
+    `update "entries"
+      set "moodId"  = $1
+      where "entryId" = $2;
+    `;
+  db.query(sql, values)
+    .then(result => {
+      res.status(200).json({});
+    })
+    .catch(err => next(err));
+});
+
+app.put('/api/entries/eventsId/:entryId', (req, res, next) => {
+  const values = [req.body.eventsId, req.params.entryId];
+  const sql =
+    `update "entries"
+      set "eventsId"  = $1
+      where "entryId" = $2;
+    `;
+  db.query(sql, values)
+    .then(result => {
+      res.status(200).json({});
+    })
+    .catch(err => next(err));
+});
+
+app.put('/api/entries/participants/:entryId', (req, res, next) => {
+  const values = [req.body.participants, req.params.entryId];
+  const sql =
+    `update "entries"
+      set "participants"  = $1
+      where "entryId" = $2;
+    `;
+  db.query(sql, values)
+    .then(result => {
+      res.status(200).json({});
+    })
+    .catch(err => next(err));
+});
+
+app.put('/api/entries/notes/:entryId', (req, res, next) => {
+  const values = [req.body.notes, req.params.entryId];
+  const sql =
+    `update "entries"
+      set "notes"  = $1
+      where "entryId" = $2;
+    `;
+  db.query(sql, values)
+    .then(result => {
+      res.status(200).json({});
+    })
+    .catch(err => next(err));
+});
+
+app.put('/api/entries/:entryId', (req, res, next) => {
+  const values = [req.body.eventsId, req.body.participants, req.body.notes, req.params.entryId];
+  const sql =
+    `update "entries"
+      set "eventsId"  = $1,
+      "participants"  = $2,
+      "note"  = $3
+      where "entryId" = $4;
+    `;
+  db.query(sql, values)
+    .then(result => {
+      res.status(200).json({});
     })
     .catch(err => next(err));
 });

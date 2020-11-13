@@ -13,30 +13,33 @@ function Nav(props) {
   }
   return (
     <React.Fragment>
-      <div className="nav nav-row">
+      <div className="footer">
+        <div className="nav nav-row">
+
 
         <div>
           <img onClick={handleHomeClick} src="/images/ui-icons/home.svg" alt="home" />
         </div>
 
-        <div>
-          <img src="/images/ui-icons/stats.svg" alt="stats" />
-        </div>
-
-        <div onClick={handleAddClick} className="add-entry-button">
-          <div className="button-icon">
-            <img src="/images/ui-icons/add.svg" alt="add" />
+          <div>
+            <img src="/images/ui-icons/stats.svg" alt="stats" />
           </div>
-        </div>
 
-        <div>
-          <img src="/images/ui-icons/calendar.svg" alt="calendar" />
-        </div>
+          <div onClick={handleAddClick} className="add-entry-button">
+            <div className="button-icon">
+              <img src="/images/ui-icons/add.svg" alt="add" />
+            </div>
+          </div>
 
-        <div>
-          <img src="/images/ui-icons/logout.svg" alt="logout" />
-        </div>
+          <div>
+            <img src="/images/ui-icons/calendar.svg" alt="calendar" />
+          </div>
 
+          <div>
+            <img src="/images/ui-icons/logout.svg" alt="logout" />
+          </div>
+
+        </div>
       </div>
     </React.Fragment>
   );
