@@ -46,9 +46,12 @@ class Events extends React.Component {
     event.target.classList.toggle('invert-event');
   }
 
-  handleEventSubmit() {
+  handleEventSubmit(event) {
     // find a way to transfer this.state.eventsId to create-entry.jsx
+    this.props.setEventState(this.state.eventsId);
+    // find a way to close the card then show the icons that were clicked
     // console.log('submitted');
+    event.preventDefault();
   }
 
   getSocialIcons() {
@@ -172,7 +175,6 @@ class Events extends React.Component {
     this.getHobbiesIcons();
     this.getProductivityIcons();
     this.getChoresIcons();
-
   }
 
   render() {
