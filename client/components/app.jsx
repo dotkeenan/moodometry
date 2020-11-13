@@ -16,8 +16,13 @@ export default class App extends React.Component {
         name: 'entries'
       },
       entries: [],
-      filterModal: false
-
+      filterModal: false,
+      filterOptions: {
+        moodId: '',
+        eventId: '',
+        dowId: '',
+        sort: 'DESC'
+      }
       // message: null,
       // isLoading: true
       // createdEntry: {};
@@ -25,9 +30,17 @@ export default class App extends React.Component {
     this.addEntry = this.addEntry.bind(this);
     this.setView = this.setView.bind(this);
     this.displayModal = this.displayModal.bind(this);
+    this.setFilterOptions = this.setFilterOptions.bind(this);
+
   }
 
   componentDidMount() {
+
+    // fetch(`/api/entries/?moodId=:${this.state.moodId}&eventId=:${this.state.eventId}&dowId=:${this.dowId}&sort=:${this.state.sort}`)
+    //   .then(result => result.json())
+    //   .then(result => {
+    //     this.setState({ data: result.rows });
+    //   });
     // fetch('/api/health-check')
     //   .then(res => res.json())
     //   .then(data => this.setState({ message: data.message || data.error }))
@@ -64,25 +77,31 @@ export default class App extends React.Component {
     });
   }
 
+  setFilterOptions(filterOptions) {
+    console.log(filterOptions);
+    this.setState({
+      filterOptions: filterOptions,
+      filterModal: false
+    });
+  }
+
   render() {
     let view = null;
     if (this.state.view.name === 'entries') {
-      view = <EntryList />;
+      view = <EntryList filterOptions={this.state.filterOptions} />;
     } else if (this.state.view.name === 'createEntry') {
       view = <CreateEntry setView={this.setView} />;
     } else if (this.state.view.name === 'eventDetails') {
       view = <EventDetails setView={this.setView} />;
     } else if (this.state.view.name === 'Journal') {
       view = <Journal setView={this.setView} />;
-    } else if (this.state.view.name === 'filterEntry') {
-      view = <FilterEntry setView={this.setView} />;
     }
 
     return (
       <React.Fragment>
         <Header displayModal={this.displayModal} name={this.state.view.name}/>
         {view}
-        <FilterEntry showModal={this.state.filterModal}/>
+        <FilterEntry showModal={this.state.filterModal} setFilterOptions={this.setFilterOptions}/>
         <Nav setView={this.setView} />
       </React.Fragment>
 

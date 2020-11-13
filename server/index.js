@@ -54,26 +54,45 @@ app.get('/api/entries/search', (req, res, next) => {
   const values = [];
   let parameterPosition = 1;
 
-  let sql = 'select * from "entries" where ';
-  if (req.query.moodId) {
-    sql += '"moodId" = $' + parameterPosition++;
-    values.push(req.query.moodId);
-  }
-
-  if (req.query.eventsId) {
-    sql += ' and "eventsId" = $' + parameterPosition++;
-    values.push(req.query.eventsId);
-  }
-
-  if (req.query.sort) {
-    sql += ' order by "time" ' + req.query.sort;
+  const sqlBase = `
+    select "m"."label" as "mood",
+          "time",
+          "ev"."label" as "event",
+          "participants",
+          "note",
+          "entryId",
+          "m"."imageUrl" as "imageUrl",
+          To_Char("time", 'Dy, DD Mon | ') as "date",
+          To_Char("time",  'HH12:MIpm') as "hour"
+      from "entries"
+      join "moods" as "m" using ("moodId")
+      join "events" as "ev" using ("eventsId")
+  `;
+  let sql = '';
+  if (!req.query.moodId && !req.query.eventsId && !req.query.dowId) {
+    sql = sqlBase + 'order by "time" ' + req.query.sort;
   } else {
-    sql += ' order by "time" DESC';
+    sql = sqlBase + ' where ';
+    if (req.query.moodId) {
+      sql += '"moodId" = $' + parameterPosition++;
+      values.push(req.query.moodId);
+    }
+
+    if (req.query.eventsId) {
+      sql += ' and "eventsId" = $' + parameterPosition++;
+      values.push(req.query.eventsId);
+    }
+
+    if (req.query.sort) {
+      sql += ' order by "time" ' + req.query.sort;
+    } else {
+      sql += ' order by "time" DESC';
+    }
   }
 
-  // console.log(parameterPosition);
-  // console.log(sql);
-  // console.log(values);
+  console.log(parameterPosition);
+  console.log(sql);
+  console.log(values);
 
   db.query(sql, values)
     .then(result => {

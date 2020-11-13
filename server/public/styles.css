@@ -422,6 +422,10 @@ h6:hover {
   left: 5%;
   top: 25%;
   z-index: 1;
+  -moz-border-radius: 6px 6px 6px 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px 6px 6px 6px;
+
 }
 
 .select-modal  {
