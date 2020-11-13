@@ -1,28 +1,81 @@
 import React from 'react';
 import Notes from './notes';
 
-function AddNoteRender(props) {
-  return (
-    <div className="container">
-      <div className="row date-and-mood">
-        <h1 className="h1-form">With who?</h1>
+class AddNoteRender extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSubmitted: true
+    };
+    this.setSubmitState = this.setSubmitState.bind(this);
+    this.handleEntrySubmit = this.handleEntrySubmit.bind(this);
+  }
 
-        <div className="container add-field-container">
-          <div className="row add-field">
-            <img onClick={props.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
-            <span className="add-field-text">Add an event</span>
-          </div>
-          <div className="row add-field">
-            <img onClick={props.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
-            <span className="add-field-text">Add Participants</span>
-          </div>
-          <div className="row add-field">
-            <Notes setNoteState={props.setNoteState} />
+  setSubmitState(value) {
+    this.setState({
+      isSubmitted: value
+    });
+  }
+
+  handleEntrySubmit() {
+    this.props.submitEntry();
+  }
+
+  render() {
+    if (!this.state.isSubmitted) {
+      return (
+        <div className="container">
+          <div className="row date-and-mood">
+            <h1 className="h1-form">With who?</h1>
+
+            <div className="container add-field-container">
+              <div className="row add-field">
+                <img onClick={this.props.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
+                <span className="add-field-text">Add an event</span>
+              </div>
+              <div className="row add-field">
+                <img onClick={this.props.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
+                <span className="add-field-text">Add Participants</span>
+              </div>
+              <div className="row add-field">
+                <Notes setNoteState={this.props.setNoteState} setSubmitState={this.setSubmitState} />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
+      );
+    } else {
+      return (
+        <div className="container">
+          <div className="row date-and-mood">
+            <h1 className="h1-form">With who?</h1>
+
+            <div className="container add-field-container">
+              <div className="row add-field">
+                <img onClick={this.props.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
+                <span className="add-field-text">Add an event</span>
+              </div>
+              <div className="row add-field">
+                <img onClick={this.props.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
+                <span className="add-field-text">Add Participants</span>
+              </div>
+              <div className="row add-field">
+                <Notes setNoteState={this.props.setNoteState} setSubmitState={this.setSubmitState} />
+              </div>
+            </div>
+
+            <button
+              className="btn btn-primary submit-entry"
+              onClick={this.handleEntrySubmit}>
+                Submit Entry
+            </button>
+
+          </div>
+        </div>
+      );
+    }
+
+  }
 }
 
 export default AddNoteRender;

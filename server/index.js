@@ -158,6 +158,7 @@ app.get('/api/moods', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// removed 's' from eventsId and req.body.eventsId
 app.post('/api/entries', (req, res, next) => {
   const sql = `
     insert into "entries" ("moodId", "eventsId", "note", "participants", "time")
