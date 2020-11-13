@@ -2,32 +2,49 @@ import React from 'react';
 import Events from './events';
 import Participants from './participants';
 import Notes from './notes';
+import TimeConverter from './time-converter';
 
 class CreateEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // possibly delete
       phase: 'timeAndMood',
-      todaysDate: this.todaysDate(),
+      moods: [],
       entry: {
-        mood: '',
-        time: new Date().toJSON()
+        moodId: null,
+        time: new Date(), // possible issue of not being a JSON?
+        eventId: '',
+        participants: '',
+        note: ''
       }
     };
-    setInterval(() => {
-      this.setState({ todaysDate: this.todaysDate() });
-    }, 1000);
     this.handleClick = this.handleClick.bind(this);
     this.handleAddEvent = this.handleAddEvent.bind(this);
     this.handleAddParticipants = this.handleAddParticipants.bind(this);
     this.handleAddNote = this.handleAddNote.bind(this);
+    this.getMoods = this.getMoods.bind(this);
+    this.setEventState = this.setEventState.bind(this);
+    this.setParticipantState = this.setParticipantState.bind(this);
+    this.setNoteState = this.setNoteState.bind(this);
   }
 
   handleClick() {
-    this.setState({ phase: 'eventDetails' });
+    const moodId = parseInt(event.target.getAttribute('moodid'), 10);
+    // console.log('moodId:', moodId);
+    const newEntryObject = Object.assign({}, this.state.entry);
+    newEntryObject.moodId = moodId;
+    this.setState({
+      phase: 'eventDetails',
+      entry: newEntryObject
+    });
+    // this.setState({
+    //   phase: 'eventDetails',
+    //   entry: {
+    //     moodId: moodId,
+    //     time: new Date() // possible issue of not being a JSON?
+    //   }
+    // });
   }
-  // this probably is not the right way to do this. seems repetitive
 
   handleAddEvent() {
     this.setState({ phase: 'addEvent' });
@@ -41,34 +58,52 @@ class CreateEntry extends React.Component {
     this.setState({ phase: 'addNote' });
   }
 
-  todaysDate() {
-    var d = new Date();
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var day = days[d.getDay()];
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var month = months[d.getMonth()];
-    var date = d.getDate();
-    var suf = ['th', 'st', 'nd', 'rd'];
-    var v = date % 100;
-    date = date + (suf[(v - 20) % 10] || suf[v] || suf[0]);
-    var hours = d.getHours();
-    var minutes = d.getMinutes();
-    var noon = '';
+  getMoods() {
+    fetch('/api/moods')
+      .then(result => result.json(result.rows))
+      .then(moods => {
+        this.setState({
+          moods: moods
+        });
+      })
+      .catch(err => console.error(err));
+  }
 
-    if (hours === 12) {
-      noon = 'pm';
-    } else if (hours > 12) {
-      hours = hours - 12;
-      noon = 'pm';
-    } else {
-      noon = 'am';
-    }
+  createMoods() {
+    const moodIconGenerator = this.state.moods.map(mood => {
+      return (
+        <img
+          onClick={this.handleClick}
+          className="mood-svg laugh"
+          src={mood.imageUrl}
+          alt={mood.label}
+          key={mood.moodId}
+          moodid={mood.moodId} />
+      );
+    });
+    return moodIconGenerator;
+  }
 
-    if (minutes < 10) {
-      minutes = '0' + minutes;
-    }
-    const currentTime = day + ' ' + month + ' ' + date + ', ' + hours + ':' + minutes + ' ' + noon;
-    return currentTime;
+  setEventState(eventIdValue) {
+    const newEntryObject = Object.assign({}, this.state.entry);
+    newEntryObject.eventId = eventIdValue;
+    this.setState({ entry: newEntryObject });
+  }
+
+  setParticipantState(participants) {
+    const newEntryObject = Object.assign({}, this.state.entry);
+    newEntryObject.participants = participants;
+    this.setState({ entry: newEntryObject });
+  }
+
+  setNoteState(note) {
+    const newEntryObject = Object.assign({}, this.state.entry);
+    newEntryObject.note = note;
+    this.setState({ entry: newEntryObject });
+  }
+
+  componentDidMount() {
+    this.getMoods();
   }
 
   render() {
@@ -82,7 +117,7 @@ class CreateEntry extends React.Component {
             <div className="entry-date-container">
               <div className="date-choice">
                 <img src="/images/ui-icons/date-chooser.svg" alt="calendar" />
-                <span className="date">{this.state.todaysDate}</span>
+                <span className="date">{TimeConverter(this.state.entry.time)}</span>
                 {/* <img src="/images/ui-icons/down-arrow.svg" alt="" /> */}
               </div>
               {/*
@@ -97,11 +132,13 @@ class CreateEntry extends React.Component {
           </div>
           <div className="">
             <div className="mood-chooser row">
-              <img onClick={this.handleClick} className="mood-svg laugh" src="images/moods/laugh-beam-regular.svg" alt="laugh" />
+              {this.createMoods()}
+              {/* old hard-coded moods */}
+              {/* <img onClick={this.handleClick} className="mood-svg laugh" src="images/moods/laugh-beam-regular.svg" alt="laugh" />
               <img onClick={this.handleClick} className="mood-svg smile" src="images/moods/smile-regular.svg" alt="smile" />
               <img onClick={this.handleClick} className="mood-svg meh" src="images/moods/meh-regular.svg" alt="meh" />
               <img onClick={this.handleClick} className="mood-svg frown" src="images/moods/frown-regular.svg" alt="frown" />
-              <img onClick={this.handleClick} className="mood-svg angry" src="images/moods/angry-regular.svg" alt="angry" />
+              <img onClick={this.handleClick} className="mood-svg angry" src="images/moods/angry-regular.svg" alt="angry" /> */}
             </div>
           </div>
         </div>
@@ -137,8 +174,7 @@ class CreateEntry extends React.Component {
 
             <div className="container add-field-container">
               <div className="row add-field">
-                <Events />
-                {/* <h1>placeholder for add events</h1> */}
+                <Events setEventState={this.setEventState}/>
               </div>
               <div className="row add-field">
                 <img onClick={this.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
@@ -164,8 +200,7 @@ class CreateEntry extends React.Component {
                 <span className="add-field-text">Add an event</span>
               </div>
               <div className="row add-field">
-                <Participants />
-                {/* <h1>Placeholder for add participants</h1> */}
+                <Participants setParticipantState={this.setParticipantState}/>
               </div>
               <div className="row add-field">
                 <img onClick={this.handleAddNote} src="/images/ui-icons/add-detail.svg" alt="add detail" />
@@ -191,8 +226,7 @@ class CreateEntry extends React.Component {
                 <span className="add-field-text">Add Participants</span>
               </div>
               <div className="row add-field">
-                <Notes />
-                {/* <h1>Placeholder for add note</h1> */}
+                <Notes setNoteState={this.setNoteState}/>
               </div>
             </div>
           </div>
@@ -249,4 +283,62 @@ export default CreateEntry;
         </div>
       </div>
     );
+*/
+
+/*
+austins date code
+
+class CreateEntry extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // possibly delete
+      phase: 'timeAndMood',
+      moods: [],
+      // todaysDate: this.todaysDate(),
+      entry: {
+        mood: '',
+        time: TimeConverter(new Date())
+        // time: new Date() object not allowed as react child (in render)
+      }
+    };
+    // setInterval(() => {
+    //   this.setState({ todaysDate: this.todaysDate() });
+    // }, 1000);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleAddEvent = this.handleAddEvent.bind(this);
+    this.handleAddParticipants = this.handleAddParticipants.bind(this);
+    this.handleAddNote = this.handleAddNote.bind(this);
+    this.getMoods = this.getMoods.bind(this);
+  }
+
+    // todaysDate() {
+  //   var d = new Date();
+  //   var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  //   var day = days[d.getDay()];
+  //   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  //   var month = months[d.getMonth()];
+  //   var date = d.getDate();
+  //   var suf = ['th', 'st', 'nd', 'rd'];
+  //   var v = date % 100;
+  //   date = date + (suf[(v - 20) % 10] || suf[v] || suf[0]);
+  //   var hours = d.getHours();
+  //   var minutes = d.getMinutes();
+  //   var noon = '';
+
+  //   if (hours === 12) {
+  //     noon = 'pm';
+  //   } else if (hours > 12) {
+  //     hours = hours - 12;
+  //     noon = 'pm';
+  //   } else {
+  //     noon = 'am';
+  //   }
+
+  //   if (minutes < 10) {
+  //     minutes = '0' + minutes;
+  //   }
+  //   const currentTime = day + ' ' + month + ' ' + date + ', ' + hours + ':' + minutes + ' ' + noon;
+  //   return currentTime;
+  // }
 */
