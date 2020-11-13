@@ -47,7 +47,7 @@ class EntryList extends React.Component {
     const renderEntries = this.createEntries();
 
     return (
-      <div className="entry-list">
+      <div className="entry-list cutoff-fix">
         <div className="container entry-container">
           <div>
             {renderEntries}

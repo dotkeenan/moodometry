@@ -3,7 +3,8 @@ import React from 'react';
 // import Events from './events';
 // not needed here after refactor
 // import Participants from './participants';
-import Notes from './notes';
+// not needed after refactor
+// import Notes from './notes';
 // not needed here after refactor??
 // import TimeConverter from './time-converter';
 import TimeAndMood from './time-and-mood';
@@ -120,30 +121,6 @@ class CreateEntry extends React.Component {
     this.getMoods();
   }
 
-  addNote() {
-    return (
-      <div className="container">
-        <div className="row date-and-mood">
-          <h1 className="h1-form">With who?</h1>
-
-          <div className="container add-field-container">
-            <div className="row add-field">
-              <img onClick={this.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
-              <span className="add-field-text">Add an event</span>
-            </div>
-            <div className="row add-field">
-              <img onClick={this.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
-              <span className="add-field-text">Add Participants</span>
-            </div>
-            <div className="row add-field">
-              <Notes setNoteState={this.setNoteState} />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   render() {
     const phase = this.state.phase;
     let renderedPhase = null;
@@ -181,7 +158,7 @@ class CreateEntry extends React.Component {
     }
 
     return (
-      <div className="container">
+      <div className="container cutoff-fix">
         <div className="row date-and-mood">
           {renderedPhase}
         </div>
