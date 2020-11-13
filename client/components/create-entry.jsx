@@ -22,10 +22,10 @@ class CreateEntry extends React.Component {
       eventsUrls: [],
       entry: {
         moodId: null,
-        time: new Date(), // possible issue of not being a JSON?
         eventId: '',
         participants: '',
-        note: ''
+        note: '',
+        time: new Date() // possible issue of not being a JSON?
       }
     };
     this.handleClick = this.handleClick.bind(this);
@@ -38,6 +38,7 @@ class CreateEntry extends React.Component {
     this.setNoteState = this.setNoteState.bind(this);
     this.createMoods = this.createMoods.bind(this);
     this.setEventsUrls = this.setEventsUrls.bind(this);
+    this.submitEntry = this.submitEntry.bind(this);
   }
 
   handleClick() {
@@ -55,6 +56,30 @@ class CreateEntry extends React.Component {
     //     time: new Date() // possible issue of not being a JSON?
     //   }
     // });
+  }
+
+  submitEntry() {
+    this.setState({
+      phase: 'timeAndMood',
+      entry: {
+        moodId: null,
+        eventId: '',
+        participants: '',
+        note: '',
+        time: new Date()
+      }
+    });
+    // eslint-disable-next-line
+    console.log(this.state.entry);
+    const reqOptions = {
+      method: 'POST',
+      body: JSON.stringify(this.state.entry),
+      headers: { 'Content-Type': 'application/json' }
+    };
+    fetch('api/entries', reqOptions)
+
+      .then(() => this.props.setView('entries'))
+      .catch(err => console.error(err));
   }
 
   handleAddEvent() {
@@ -152,7 +177,10 @@ class CreateEntry extends React.Component {
         renderedPhase = <AddNoteRender
           handleAddEvent={this.handleAddEvent}
           handleAddParticipants={this.handleAddParticipants}
-          setNoteState={this.setNoteState} />;
+          setNoteState={this.setNoteState}
+          submitEntry={this.submitEntry}
+          // setView={this.props.setView}
+        />;
         break;
 
     }

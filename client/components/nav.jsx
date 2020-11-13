@@ -4,7 +4,7 @@ import React from 'react';
 function Nav(props) {
   function handleAddClick(e) {
     props.setView('createEntry');
-    props.setPhase('');
+    // props.setPhase('');
   }
 
   function handleHomeClick(e) {
