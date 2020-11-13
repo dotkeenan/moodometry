@@ -387,7 +387,7 @@ h6:hover {
     border: 1px solid #d0cccc;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
     transition: all .8s;
-    width:90%;
+    width:50vh;
     margin-bottom: 20px;
     border-radius: 10px;
 }
@@ -418,6 +418,10 @@ h6:hover {
   margin-top: 20px;
   display: flex;
   justify-content: center;
+  position: absolute;
+  left: 5%;
+  top: 25%;
+  z-index: 1;
 }
 
 .select-modal  {

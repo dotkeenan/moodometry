@@ -13,9 +13,10 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'filterEntry'
+        name: 'entries'
       },
-      entries: []
+      entries: [],
+      filterModal: false
 
       // message: null,
       // isLoading: true
@@ -23,6 +24,7 @@ export default class App extends React.Component {
     };
     this.addEntry = this.addEntry.bind(this);
     this.setView = this.setView.bind(this);
+    this.displayModal = this.displayModal.bind(this);
   }
 
   componentDidMount() {
@@ -56,6 +58,12 @@ export default class App extends React.Component {
     });
   }
 
+  displayModal() {
+    this.setState({
+      filterModal: !this.state.filterModal
+    });
+  }
+
   render() {
     let view = null;
     if (this.state.view.name === 'entries') {
@@ -72,8 +80,9 @@ export default class App extends React.Component {
 
     return (
       <React.Fragment>
-        <Header name={this.state.view.name}/>
+        <Header displayModal={this.displayModal} name={this.state.view.name}/>
         {view}
+        <FilterEntry showModal={this.state.filterModal}/>
         <Nav setView={this.setView} />
       </React.Fragment>
 
