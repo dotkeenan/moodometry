@@ -7,6 +7,8 @@ class EntryListItem extends React.Component {
       editDropdown: false
     };
     this.handleClick = this.handleClick.bind(this);
+    this.editEntry = this.editEntry.bind(this);
+    this.deleteEntry = this.deleteEntry.bind(this);
   }
 
   handleClick() {
@@ -20,7 +22,16 @@ class EntryListItem extends React.Component {
   }
 
   deleteEntry() {
-
+    var entryId = this.props.entry.entryId;
+    fetch('/api/entries/' + entryId, {
+      method: 'delete'
+    })
+      .then(result => {
+        this.setState({ editDropdown: false });
+        this.props.getEntries();
+        this.props.createEntries();
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
