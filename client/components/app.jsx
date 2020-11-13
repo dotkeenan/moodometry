@@ -6,13 +6,14 @@ import Nav from './nav';
 import CreateEntry from './create-entry';
 import EventDetails from './event-details';
 import Journal from './journal';
+import FilterEntry from './filter-entry';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'createEntry'
+        name: 'filterEntry'
       },
       entries: []
 
@@ -65,6 +66,8 @@ export default class App extends React.Component {
       view = <EventDetails setView={this.setView} />;
     } else if (this.state.view.name === 'Journal') {
       view = <Journal setView={this.setView} />;
+    } else if (this.state.view.name === 'filterEntry') {
+      view = <FilterEntry setView={this.setView} />;
     }
 
     return (
