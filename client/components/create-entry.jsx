@@ -59,6 +59,16 @@ class CreateEntry extends React.Component {
   }
 
   submitEntry() {
+    this.setState({
+      phase: 'timeAndMood',
+      entry: {
+        moodId: null,
+        eventId: '',
+        participants: '',
+        note: '',
+        time: new Date()
+      }
+    });
     // eslint-disable-next-line
     console.log(this.state.entry);
     const reqOptions = {
@@ -67,16 +77,8 @@ class CreateEntry extends React.Component {
       headers: { 'Content-Type': 'application/json' }
     };
     fetch('api/entries', reqOptions)
-      .then(() => this.setState({
-        phase: 'moodAndTime',
-        entry: {
-          moodId: null,
-          eventId: '',
-          participants: '',
-          note: '',
-          time: new Date()
-        }
-      }))
+
+      .then(() => this.props.setView('entries'))
       .catch(err => console.error(err));
   }
 
@@ -176,7 +178,9 @@ class CreateEntry extends React.Component {
           handleAddEvent={this.handleAddEvent}
           handleAddParticipants={this.handleAddParticipants}
           setNoteState={this.setNoteState}
-          submitEntry={this.submitEntry}/>;
+          submitEntry={this.submitEntry}
+          // setView={this.props.setView}
+        />;
         break;
 
     }

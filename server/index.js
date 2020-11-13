@@ -72,7 +72,8 @@ app.get('/api/entries', (req, res, next) => {
            To_Char("time",  'HH12:MIpm') as "hour"
       from "entries"
       join "moods" as "m" using ("moodId")
-      join "events" as "ev" using ("eventsId");
+      join "events" as "ev" using ("eventsId")
+     order by "time" desc
   `;
   db.query(sql)
     .then(result => res.status(200).json(result.rows))

@@ -5,7 +5,7 @@ class AddNoteRender extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isSubmitted: true
+      isSubmitted: false
     };
     this.setSubmitState = this.setSubmitState.bind(this);
     this.handleEntrySubmit = this.handleEntrySubmit.bind(this);
@@ -19,6 +19,7 @@ class AddNoteRender extends React.Component {
 
   handleEntrySubmit() {
     this.props.submitEntry();
+    // this.props.setView();
   }
 
   render() {

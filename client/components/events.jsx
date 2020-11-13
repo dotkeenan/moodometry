@@ -8,8 +8,8 @@ class Events extends React.Component {
       hobbies: [],
       productivity: [],
       chores: [],
-      eventsId: [],
-      eventsUrls: []
+      eventsId: '',
+      eventsUrls: ''
     };
     // find out which ones to delete later.  Don't need to bind if not passing to another component
     this.handleIconClick = this.handleIconClick.bind(this);
@@ -28,31 +28,68 @@ class Events extends React.Component {
     const eventId = parseInt(event.target.getAttribute('eventid'), 10);
     const eventUrl = (event.target.src);
 
-    if (this.state.eventsId.includes(eventId) && this.state.eventsUrls.includes(eventUrl)) {
-      const newEventsId = this.state.eventsId.slice('');
-      const index = newEventsId.indexOf(eventId);
-      newEventsId.splice(index, 1);
-
-      const newEventsUrls = this.state.eventsUrls.slice('');
-      const eventUrlsIndex = newEventsUrls.indexOf(eventUrl);
-      newEventsUrls.splice(eventUrlsIndex, 1);
+    if (this.state.eventsId === eventId && this.state.eventsUrls === eventUrl) {
       this.setState({
-        eventsId: newEventsId,
-        eventsUrls: newEventsUrls
+        eventsId: '',
+        eventsUrls: ''
       });
     } else {
-      const newEventsId = this.state.eventsId.slice('');
-      newEventsId.push(eventId);
-
-      const newEventsUrls = this.state.eventsUrls.slice('');
-      newEventsUrls.push(eventUrl);
       this.setState({
-        eventsId: newEventsId,
-        eventsUrls: newEventsUrls
+        eventsId: eventId,
+        eventsUrls: eventUrl
       });
     }
+    // document.querySelectorAll('.invert-event').classList.remove('invert-event');
     event.target.classList.toggle('invert-event');
   }
+  // handleIconClick(event) {
+  //   const eventId = parseInt(event.target.getAttribute('eventid'), 10);
+  //   const eventUrl = (event.target.src);
+
+  //   if (this.state.eventsId === eventId && this.state.eventsUrls === eventUrl) {
+  //     this.setState({
+  //       eventsId: '',
+  //       eventsUrls: ''
+  //     });
+  //   } else {
+  //     this.setState({
+  //       eventsId: eventId,
+  //       eventsUrls: eventUrl
+  //     });
+  //   }
+  //   event.target.classList.toggle('invert-event');
+  // }
+
+  // original
+  // handleIconClick(event) {
+  //   const eventId = parseInt(event.target.getAttribute('eventid'), 10);
+  //   const eventUrl = (event.target.src);
+
+  //   if (this.state.eventsId.includes(eventId) && this.state.eventsUrls.includes(eventUrl)) {
+  //     const newEventsId = this.state.eventsId.slice('');
+  //     const index = newEventsId.indexOf(eventId);
+  //     newEventsId.splice(index, 1);
+
+  //     const newEventsUrls = this.state.eventsUrls.slice('');
+  //     const eventUrlsIndex = newEventsUrls.indexOf(eventUrl);
+  //     newEventsUrls.splice(eventUrlsIndex, 1);
+  //     this.setState({
+  //       eventsId: newEventsId,
+  //       eventsUrls: newEventsUrls
+  //     });
+  //   } else {
+  //     const newEventsId = this.state.eventsId.slice('');
+  //     newEventsId.push(eventId);
+
+  //     const newEventsUrls = this.state.eventsUrls.slice('');
+  //     newEventsUrls.push(eventUrl);
+  //     this.setState({
+  //       eventsId: newEventsId,
+  //       eventsUrls: newEventsUrls
+  //     });
+  //   }
+  //   event.target.classList.toggle('invert-event');
+  // }
 
   handleEventSubmit(event) {
     // find a way to transfer this.state.eventsId to create-entry.jsx
