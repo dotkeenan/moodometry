@@ -69,18 +69,20 @@ app.get('/api/entries/search', (req, res, next) => {
       join "events" as "ev" using ("eventsId")
   `;
   let sql = '';
-  if (!req.query.moodId && !req.query.eventsId && !req.query.dowId) {
+  if (!req.query.moodId && !req.query.eventId) {
     sql = sqlBase + 'order by "time" ' + req.query.sort;
   } else {
+    let isAddAnd = false;
     sql = sqlBase + ' where ';
     if (req.query.moodId) {
+      isAddAnd = true;
       sql += '"moodId" = $' + parameterPosition++;
       values.push(req.query.moodId);
     }
 
-    if (req.query.eventsId) {
-      sql += ' and "eventsId" = $' + parameterPosition++;
-      values.push(req.query.eventsId);
+    if (req.query.eventId) {
+      sql += (isAddAnd ? ' and' : ' ') + '"eventsId" = $' + parameterPosition++;
+      values.push(req.query.eventId);
     }
 
     if (req.query.sort) {
@@ -108,7 +110,18 @@ app.get('/api/entries/search', (req, res, next) => {
       res.status(200).json(filteredResult);
     })
     .catch(err => next(err));
+});
 
+app.get('/api/events', (req, res, next) => {
+  const sql = `
+    select
+    "eventsId",
+    "label"
+    from "events"
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
 });
 
 app.get('/api/entries', (req, res, next) => {

@@ -9,7 +9,8 @@ class FilterEntry extends React.Component {
         eventId: '',
         dowId: '',
         sort: 'DESC'
-      }
+      },
+      filterEvents: []
 
     };
     // bind
@@ -22,12 +23,43 @@ class FilterEntry extends React.Component {
     this.setState({ filterOptions: newFilterOptions });
   }
 
+  handleClickDow(e, dow) {
+    const newFilterOptions = { ...this.state.filterOptions };
+    newFilterOptions.dowId = (this.state.filterOptions.dowId === dow) ? '' : dow;
+    this.setState({ filterOptions: newFilterOptions });
+  }
+
+  handleClickEvent(e) {
+    console.log(e.target.value);
+
+    var selectedEvent = this.state.filterEvents.filter(item => item.label === e.target.value);
+    console.log(selectedEvent);
+    const newFilterOptions = { ...this.state.filterOptions };
+    newFilterOptions.eventId = (this.state.filterOptions.eventId === selectedEvent[0].eventsId ? '' : (selectedEvent[0].eventsId));
+    this.setState({ filterOptions: newFilterOptions });
+  }
+
   setFilterOptions() {
     this.props.setFilterOptions(this.state.filterOptions);
+  }
 
+  componentDidMount() {
+    fetch('/api/events')
+      .then(result => result.json())
+      .then(events => {
+        console.log(events);
+        this.setState({
+          filterEvents: events
+        });
+      });
   }
 
   render() {
+
+    const drop = this.state.filterEvents;
+    const optionItems = drop.map(drop =>
+      <option value={drop.label} key={drop.eventsId} data-id={drop.eventsId}>{drop.label}</option>
+    );
 
     if (this.props.showModal) {
       return (
@@ -45,21 +77,19 @@ class FilterEntry extends React.Component {
                 <img onClick={e => this.handleClickMood(e, 5)} className="mood-modal" src="images/moods/angry-regular.svg" alt="angry" />
               </div>
               <div className="modal-body">
-                <h6>sun</h6>
-                <h6>mon</h6>
-                <h6>tue</h6>
-                <h6>wed</h6>
-                <h6>thu</h6>
-                <h6>fri</h6>
-                <h6>sat</h6>
+                <h6 onClick={e => this.handleClickDow(e, 0)}>sun</h6>
+                <h6 onClick={e => this.handleClickDow(e, 1)}>mon</h6>
+                <h6 onClick={e => this.handleClickDow(e, 2)}>tue</h6>
+                <h6 onClick={e => this.handleClickDow(e, 3)}>wed</h6>
+                <h6 onClick={e => this.handleClickDow(e, 4)}>thu</h6>
+                <h6 onClick={e => this.handleClickDow(e, 5)}>fri</h6>
+                <h6 onClick={e => this.handleClickDow(e, 6)}>sat</h6>
               </div>
               <h4 className="drop-title">Events</h4>
               <div className="modal-body">
                 <form>
-                  <select className="select-modal" name = "dropdown">
-                    <option value = "" ></option>
-                    <option value = "">Java</option>
-                    <option value = ""></option>
+                  <select onChange={e => this.handleClickEvent(e)} className="select-modal" name = "dropdown">
+                    {optionItems}
                   </select>
                 </form>
               </div>
