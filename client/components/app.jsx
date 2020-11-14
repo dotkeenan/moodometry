@@ -1,10 +1,13 @@
 import React from 'react';
+
 import Header from './header';
 import EntryList from './entry-list';
 import Nav from './nav';
 import CreateEntry from './create-entry';
 import Journal from './journal';
+import Stats from './stats';
 import FilterEntry from './filter-entry';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,6 +15,9 @@ export default class App extends React.Component {
     this.state = {
       view: {
         name: 'entries'
+      },
+      entries: []
+
 
       },
       entries: [],
@@ -71,6 +77,7 @@ export default class App extends React.Component {
     });
   }
 
+
   displayModal() {
     this.setState({
       filterModal: !this.state.filterModal
@@ -95,6 +102,8 @@ export default class App extends React.Component {
       view = <CreateEntry setView={this.setView} />;
     } else if (this.state.view.name === 'Journal') {
       view = <Journal setView={this.setView} />;
+    } else if (this.state.view.name === 'stats') {
+      view = <Stats setView={this.setView} />;
     }
 
     return (
@@ -102,8 +111,10 @@ export default class App extends React.Component {
 
         <Header displayModal={this.displayModal} name={this.state.view.name}/>
         {view}
+
         <FilterEntry showModal={this.state.filterModal} setFilterOptions={this.setFilterOptions}/>
         <Nav setView={this.setView} />
+
 
       </React.Fragment>
 

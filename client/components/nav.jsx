@@ -11,18 +11,21 @@ function Nav(props) {
     // possibly reset everything in the state when home is clicked.
     props.setView('entries');
   }
+
+  function handleStatsClick() {
+    props.setView('stats');
+  }
   return (
     <React.Fragment>
       <div className="footer">
         <div className="nav nav-row">
 
-
-        <div>
-          <img onClick={handleHomeClick} src="/images/ui-icons/home.svg" alt="home" />
-        </div>
+          <div>
+            <img onClick={handleHomeClick} src="/images/ui-icons/home.svg" alt="home" />
+          </div>
 
           <div>
-            <img src="/images/ui-icons/stats.svg" alt="stats" />
+            <img onClick={handleStatsClick} src="/images/ui-icons/stats.svg" alt="stats" />
           </div>
 
           <div onClick={handleAddClick} className="add-entry-button">
