@@ -13,7 +13,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'createEntry'
+        name: 'entries'
       },
       entries: [],
       filterModal: false,
@@ -102,10 +102,10 @@ export default class App extends React.Component {
     return (
       <React.Fragment>
 
-        <Header displayModal={this.displayModal} name={this.state.view.name}/>
+        <Header displayModal={this.displayModal} name={this.state.view.name} />
         {view}
 
-        <FilterEntry showModal={this.state.filterModal} setFilterOptions={this.setFilterOptions}/>
+        <FilterEntry showModal={this.state.filterModal} setFilterOptions={this.setFilterOptions} />
         <Nav setView={this.setView} />
 
       </React.Fragment>
