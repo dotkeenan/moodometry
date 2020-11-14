@@ -46,7 +46,6 @@ app.get('/api/entries/dow/:dowId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-
 app.get('/api/entries/search', (req, res, next) => {
 // using query parameters to filter out the entries by specfic filters on the modal
   const values = [];
@@ -90,11 +89,23 @@ app.get('/api/entries/search', (req, res, next) => {
     }
   }
 
-  console.log(parameterPosition);
-  console.log(sql);
-  console.log(values);
+  // console.log(parameterPosition);
+  // console.log(sql);
+  // console.log(values);
 
   db.query(sql, values)
+    .then(result => {
+      let filteredResult = result.rows;
+      if (req.query.dowId) {
+        filteredResult = result.rows.filter(row => {
+          const rowDate = row.time;
+          return rowDate.getDay().toString() === req.query.dowId;
+        });
+      }
+      res.status(200).json(filteredResult);
+    })
+    .catch(err => next(err));
+});
 
 app.put('/api/entries/moodId/:entryId', (req, res, next) => {
   const values = [req.body.moodId, req.params.entryId];
@@ -301,7 +312,6 @@ app.get('/api/moods', (req, res, next) => {
     .then(result => res.status(200).json(result.rows))
     .catch(err => next(err));
 });
-
 
 app.delete('/api/entries/:entryId', (req, res, next) => {
   const sql =

@@ -87,7 +87,6 @@ export default class App extends React.Component {
     });
   }
 
-
   render() {
     let view = null;
     if (this.state.view.name === 'entries') {
