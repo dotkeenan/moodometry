@@ -1,17 +1,18 @@
 import React from 'react';
+
 import Header from './header';
 import EntryList from './entry-list';
 import Nav from './nav';
 import CreateEntry from './create-entry';
 import Journal from './journal';
+import Stats from './stats';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'entries',
-        phase: 'timeAndMood'
+        name: 'entries'
       },
       entries: []
 
@@ -21,7 +22,6 @@ export default class App extends React.Component {
     };
     this.addEntry = this.addEntry.bind(this);
     this.setView = this.setView.bind(this);
-    // this.setPhase = this.setPhase.bind(this);
   }
 
   componentDidMount() {
@@ -55,14 +55,6 @@ export default class App extends React.Component {
     });
   }
 
-  // setPhase(name) {
-  //   const newView = Object.assign({}, this.state.view);
-  //   newView.phase = name;
-  //   this.setState({
-  //     phase: newView
-  //   });
-  // }
-
   render() {
     let view = null;
     if (this.state.view.name === 'entries') {
@@ -71,14 +63,15 @@ export default class App extends React.Component {
       view = <CreateEntry setView={this.setView} />;
     } else if (this.state.view.name === 'Journal') {
       view = <Journal setView={this.setView} />;
+    } else if (this.state.view.name === 'stats') {
+      view = <Stats setView={this.setView} />;
     }
 
     return (
       <React.Fragment>
         <Header name={this.state.view.name} />
         {view}
-        <Nav setView={this.setView}/>
-        {/* <Nav setView={this.setView} setPhase={this.setPhase}/> */}
+        <Nav setView={this.setView} />
       </React.Fragment>
 
     );
