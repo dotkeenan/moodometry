@@ -17,7 +17,7 @@ class CreateEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      phase: 'addNote',
+      phase: 'timeAndMood',
       moods: [],
       // experimental turned into empty string rather than array
       eventsUrls: '',
@@ -83,7 +83,6 @@ class CreateEntry extends React.Component {
       headers: { 'Content-Type': 'application/json' }
     };
     fetch('api/entries', reqOptions)
-
       .then(() => this.props.setView('entries'))
       .catch(err => console.error(err));
   }

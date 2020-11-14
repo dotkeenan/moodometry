@@ -1,5 +1,5 @@
 import React from 'react';
-import { HorizontalBar, Doughnut } from 'react-chartjs-2';
+// import { HorizontalBar, Doughnut } from 'react-chartjs-2';
 
 class Stats extends React.Component {
   constructor(props) {
