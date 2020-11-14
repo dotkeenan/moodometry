@@ -13,9 +13,6 @@ app.use(staticMiddleware);
 app.use(sessionMiddleware);
 app.use(express.json());
 
-// Get list of all entries in db
-// Find a way to limit the entries to 1 week old only. (list will get too long otherwise).
-
 app.get('/api/entries/mood/:moodId', (req, res, next) => {
   const values = [req.params.moodId];
   const sql =
@@ -48,6 +45,7 @@ app.get('/api/entries/dow/:dowId', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
 
 app.get('/api/entries/search', (req, res, next) => {
 // using query parameters to filter out the entries by specfic filters on the modal
@@ -97,6 +95,86 @@ app.get('/api/entries/search', (req, res, next) => {
   console.log(values);
 
   db.query(sql, values)
+
+app.put('/api/entries/moodId/:entryId', (req, res, next) => {
+  const values = [req.body.moodId, req.params.entryId];
+  const sql =
+    `update "entries"
+      set "moodId"  = $1
+      where "entryId" = $2;
+    `;
+  db.query(sql, values)
+    .then(result => {
+      res.status(200).json({});
+    })
+    .catch(err => next(err));
+});
+
+app.put('/api/entries/eventsId/:entryId', (req, res, next) => {
+  const values = [req.body.eventsId, req.params.entryId];
+  const sql =
+    `update "entries"
+      set "eventsId"  = $1
+      where "entryId" = $2;
+    `;
+  db.query(sql, values)
+    .then(result => {
+      res.status(200).json({});
+    })
+    .catch(err => next(err));
+});
+
+app.put('/api/entries/participants/:entryId', (req, res, next) => {
+  const values = [req.body.participants, req.params.entryId];
+  const sql =
+    `update "entries"
+      set "participants"  = $1
+      where "entryId" = $2;
+    `;
+  db.query(sql, values)
+    .then(result => {
+      res.status(200).json({});
+    })
+    .catch(err => next(err));
+});
+
+app.put('/api/entries/notes/:entryId', (req, res, next) => {
+  const values = [req.body.notes, req.params.entryId];
+  const sql =
+    `update "entries"
+      set "notes"  = $1
+      where "entryId" = $2;
+    `;
+  db.query(sql, values)
+    .then(result => {
+      res.status(200).json({});
+    })
+    .catch(err => next(err));
+});
+
+app.put('/api/entries/:entryId', (req, res, next) => {
+  const values = [req.body.eventsId, req.body.participants, req.body.notes, req.params.entryId];
+  const sql =
+    `update "entries"
+      set "eventsId"  = $1,
+      "participants"  = $2,
+      "note"  = $3
+      where "entryId" = $4;
+    `;
+  db.query(sql, values)
+    .then(result => {
+      res.status(200).json({});
+    })
+    .catch(err => next(err));
+});
+
+app.delete('/api/entries/:entryId', (req, res, next) => {
+  const sql =
+    `delete from "entries"
+    where "entryId" = ${req.params.entryId};
+    `;
+  db.query(sql)
+
     .then(result => {
 
       let filteredResult = result.rows;
@@ -137,12 +215,93 @@ app.get('/api/entries', (req, res, next) => {
           To_Char("time",  'HH12:MIpm') as "hour"
       from "entries"
       join "moods" as "m" using ("moodId")
-      join "events" as "ev" using ("eventsId");
+      join "events" as "ev" using ("eventsId")
+     order by "time" desc
   `;
   db.query(sql)
     .then(result => res.status(200).json(result.rows))
     .catch(err => next(err));
 });
+
+// endpoint to get all social icons
+app.get('/api/events/social', (req, res, next) => {
+  const sql = `
+    select "events"."label",
+           "imageUrl",
+           "eventTypeId",
+           "eventsId",
+           "et"."label" as "eventTypeLabel"
+      from "events"
+      join "eventTypes" as "et" using ("eventTypeId")
+     where "et"."label" = 'social';
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
+// endpoint to get all hobby icons
+app.get('/api/events/hobbies', (req, res, next) => {
+  const sql = `
+    select "events"."label",
+           "imageUrl",
+           "eventTypeId",
+           "eventsId",
+           "et"."label" as "eventTypeLabel"
+      from "events"
+      join "eventTypes" as "et" using ("eventTypeId")
+     where "et"."label" = 'hobbies';
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
+// endpoint to get all hobby icons
+app.get('/api/events/productivity', (req, res, next) => {
+  const sql = `
+    select "events"."label",
+           "imageUrl",
+           "eventTypeId",
+           "eventsId",
+           "et"."label" as "eventTypeLabel"
+      from "events"
+      join "eventTypes" as "et" using ("eventTypeId")
+     where "et"."label" = 'productivity';
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
+// endpoint to get all hobby icons
+app.get('/api/events/chores', (req, res, next) => {
+  const sql = `
+    select "events"."label",
+           "imageUrl",
+           "eventTypeId",
+           "eventsId",
+           "et"."label" as "eventTypeLabel"
+      from "events"
+      join "eventTypes" as "et" using ("eventTypeId")
+     where "et"."label" = 'chores';
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
+// endpoint to get all moods
+app.get('/api/moods', (req, res, next) => {
+  const sql = `
+    select *
+      from "moods"
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
 
 app.delete('/api/entries/:entryId', (req, res, next) => {
   const sql =
@@ -164,7 +323,7 @@ app.post('/api/entries', (req, res, next) => {
         values ($1, $2, $3, $4, $5)
     returning *;
   `;
-  const values = [req.body.moodId, req.body.eventsId, req.body.note, req.body.participants, req.body.time];
+  const values = [req.body.moodId, req.body.eventId, req.body.note, req.body.participants, req.body.time];
   db.query(sql, values)
     .then(result => res.status(201).json(result.rows))
     .catch(err => next(err));

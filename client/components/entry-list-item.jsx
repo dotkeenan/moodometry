@@ -1,37 +1,107 @@
 import React from 'react';
 
-function EntryListItem(props) {
-  return (
-    <React.Fragment>
-      <div className="card-container">
-        <div className="menu-container">
-          <div className="menu-icon">
-            <img src="images/ui-icons/menu-icon.svg" alt="menu"/>
+class EntryListItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editDropdown: false
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.editEntry = this.editEntry.bind(this);
+    this.deleteEntry = this.deleteEntry.bind(this);
+  }
+
+  handleClick() {
+    this.setState({
+      editDropdown: !this.state.editDropdown
+    });
+  }
+
+  editEntry() {
+
+  }
+
+  deleteEntry() {
+    var entryId = this.props.entry.entryId;
+    fetch('/api/entries/' + entryId, {
+      method: 'delete'
+    })
+      .then(result => {
+        this.setState({ editDropdown: false });
+        this.props.getEntries();
+        this.props.createEntries();
+      })
+      .catch(err => console.error(err));
+  }
+
+  render() {
+    if (this.state.editDropdown) {
+      return (
+        <div className="card-container">
+          <div className="container d-flex justify-content-end">
+            <button onClick={this.editEntry} className="button-styling-remove">
+              <div className="dropdown mt-2 mb-2">
+                <img src="images/ui-icons/edit-regular.svg" alt="menu" />
+              </div>
+            </button>
+            <button onClick={this.deleteEntry} className="button-styling-remove">
+              <div className="dropdown mt-2 mb-2">
+                <img src="images/ui-icons/trash-alt-regular.svg" alt="menu" />
+              </div>
+            </button>
           </div>
-        </div>
-        <div className="info-container">
-          <div className="image-container">
-            <div className="image-icon">
-              <img
-                className="entry-list-item-mood"
-                src={props.entry.imageUrl}
-                alt="laugh"/>
+          <div className="info-container">
+            <div className="image-container">
+              <div className="image-icon">
+                <img
+                  className="entry-list-item-mood"
+                  src={this.props.entry.imageUrl}
+                  alt="laugh" />
+              </div>
+            </div>
+            <div className="note-container">
+              <h3 className="entry-list-time">
+                {this.props.entry.date}
+                <span>{this.props.entry.hour}</span>
+              </h3>
+              <p className="event-with">{this.props.entry.event}</p>
+              <p className="event-with">{this.props.entry.participants}</p>
+              <p>{this.props.entry.note}</p>
             </div>
           </div>
-          <div className="note-container">
-            <h3 className="entry-list-time">
-              {props.entry.date}
-              <span>{props.entry.hour}</span>
-            </h3>
-            <p className="event-with">{props.entry.event}</p>
-            <p className="event-with">{props.entry.participants}</p>
-            <p>{props.entry.note}</p>
-
+        </div>
+      );
+    } else {
+      return (
+        <div className="card-container">
+          <div className="menu-container">
+            <button onClick={this.handleClick} className="button-styling-remove">
+              <img src="images/ui-icons/menu-icon.svg" alt="menu" />
+            </button>
+          </div>
+          <div className="info-container">
+            <div className="image-container">
+              <div className="image-icon">
+                <img
+                  className="entry-list-item-mood"
+                  src={this.props.entry.imageUrl}
+                  alt="laugh" />
+              </div>
+            </div>
+            <div className="note-container">
+              <h3 className="entry-list-time">
+                {this.props.entry.date}
+                <span>{this.props.entry.hour}</span>
+              </h3>
+              <p className="event-with">{this.props.entry.event}</p>
+              <p className="event-with">{this.props.entry.participants}</p>
+              <p>{this.props.entry.note}</p>
+            </div>
           </div>
         </div>
-      </div>
-    </React.Fragment>
-  );
+      );
+    }
+  }
 }
 
 export default EntryListItem;
