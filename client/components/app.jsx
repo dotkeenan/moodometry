@@ -6,6 +6,8 @@ import Nav from './nav';
 import CreateEntry from './create-entry';
 import Journal from './journal';
 import Stats from './stats';
+import FilterEntry from './filter-entry';
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -16,15 +18,35 @@ export default class App extends React.Component {
       },
       entries: []
 
+
+      },
+      entries: [],
+      filterModal: false,
+      filterOptions: {
+        moodId: '',
+        eventId: '',
+        dowId: '',
+        sort: 'DESC'
+      }
       // message: null,
       // isLoading: true
       // createdEntry: {};
     };
     this.addEntry = this.addEntry.bind(this);
     this.setView = this.setView.bind(this);
+
+    this.displayModal = this.displayModal.bind(this);
+    this.setFilterOptions = this.setFilterOptions.bind(this);
+
   }
 
   componentDidMount() {
+
+    // fetch(`/api/entries/?moodId=:${this.state.moodId}&eventId=:${this.state.eventId}&dowId=:${this.dowId}&sort=:${this.state.sort}`)
+    //   .then(result => result.json())
+    //   .then(result => {
+    //     this.setState({ data: result.rows });
+    //   });
     // fetch('/api/health-check')
     //   .then(res => res.json())
     //   .then(data => this.setState({ message: data.message || data.error }))
@@ -55,10 +77,27 @@ export default class App extends React.Component {
     });
   }
 
+
+  displayModal() {
+    this.setState({
+      filterModal: !this.state.filterModal
+    });
+  }
+
+  setFilterOptions(filterOptions) {
+    console.log(filterOptions);
+    // let newFilterOptions = {...this.state.filterOptions};
+
+    this.setState({
+      filterOptions: filterOptions,
+      filterModal: false
+    });
+  }
+
   render() {
     let view = null;
     if (this.state.view.name === 'entries') {
-      view = <EntryList />;
+      view = <EntryList filterOptions={this.state.filterOptions} />;
     } else if (this.state.view.name === 'createEntry') {
       view = <CreateEntry setView={this.setView} />;
     } else if (this.state.view.name === 'Journal') {
@@ -69,9 +108,14 @@ export default class App extends React.Component {
 
     return (
       <React.Fragment>
-        <Header name={this.state.view.name} />
+
+        <Header displayModal={this.displayModal} name={this.state.view.name}/>
         {view}
+
+        <FilterEntry showModal={this.state.filterModal} setFilterOptions={this.setFilterOptions}/>
         <Nav setView={this.setView} />
+
+
       </React.Fragment>
 
     );
