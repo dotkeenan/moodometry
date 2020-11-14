@@ -8,16 +8,12 @@ import Journal from './journal';
 import Stats from './stats';
 import FilterEntry from './filter-entry';
 
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
         name: 'entries'
-      },
-      entries: []
-
 
       },
       entries: [],
@@ -77,7 +73,6 @@ export default class App extends React.Component {
     });
   }
 
-
   displayModal() {
     this.setState({
       filterModal: !this.state.filterModal
@@ -85,7 +80,6 @@ export default class App extends React.Component {
   }
 
   setFilterOptions(filterOptions) {
-    console.log(filterOptions);
     // let newFilterOptions = {...this.state.filterOptions};
 
     this.setState({
@@ -109,12 +103,11 @@ export default class App extends React.Component {
     return (
       <React.Fragment>
 
-        <Header displayModal={this.displayModal} name={this.state.view.name}/>
+        <Header displayModal={this.displayModal} name={this.state.view.name} />
         {view}
 
-        <FilterEntry showModal={this.state.filterModal} setFilterOptions={this.setFilterOptions}/>
+        <FilterEntry showModal={this.state.filterModal} setFilterOptions={this.setFilterOptions} />
         <Nav setView={this.setView} />
-
 
       </React.Fragment>
 

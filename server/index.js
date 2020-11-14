@@ -47,7 +47,7 @@ app.get('/api/entries/dow/:dowId', (req, res, next) => {
 });
 
 app.get('/api/entries/search', (req, res, next) => {
-// using query parameters to filter out the entries by specfic filters on the modal
+  // using query parameters to filter out the entries by specfic filters on the modal
   const values = [];
   let parameterPosition = 1;
 
@@ -207,6 +207,28 @@ app.get('/api/events', (req, res, next) => {
     "eventsId",
     "label"
     from "events"
+  `;
+  db.query(sql)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
+});
+
+app.get('/api/stats', (req, res, next) => {
+  const sql = `
+    select "m"."label" as "mood",
+          "time",
+          "m"."moodId",
+          "ev"."label" as "event",
+          "ev"."imageUrl" as "eventUrl",
+          "ev"."eventsId",
+          "m"."imageUrl" as "moodUrl",
+          To_Char("time", 'Dy') as "day",
+          To_Char("time", 'Mon') as "month",
+          To_Char("time", 'DD') as "digitDay",
+          To_Char("time",  'HH12:MIpm') as "hour"
+      from "entries"
+      join "moods" as "m" using ("moodId")
+      join "events" as "ev" using ("eventsId")
   `;
   db.query(sql)
     .then(result => res.status(200).json(result.rows))

@@ -17,7 +17,6 @@ class EntryList extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps);
     if (prevProps.filterOptions !== this.props.filterOptions) {
       this.getEntries();
     }
@@ -28,7 +27,6 @@ class EntryList extends React.Component {
       .then(result => result.json())
       .then(entries => {
 
-        console.log(entries);
         this.setState({
           entries: entries,
           isLoading: false

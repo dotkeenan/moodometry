@@ -1,49 +1,161 @@
 import React from 'react';
+import { HorizontalBar, Doughnut } from 'react-chartjs-2';
 
 class Stats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mood: [],
-      time: [],
-      event: []
+
     };
-    this.getEntries = this.getEntries.bind(this);
+    this.getStats = this.getStats.bind(this);
   }
 
   componentDidMount() {
-    this.getEntries();
+    this.getStats();
   }
 
-  getEntries() {
-    fetch('/api/entries')
+  getStats() {
+    fetch('/api/stats')
       .then(result => {
         return result.json();
       })
       .then(entries => {
-        const arr = [...entries];
-        const mood = [];
-        const time = [];
+        const cop = [...entries];
+        const eventsId = [];
+        const digitDay = [];
         const event = [];
-        for (var i = 0; i < arr.length; i++) {
-          mood.push(arr[i].mood);
-          time.push(arr[i].time);
-          event.push(arr[i].event);
+        const moodUrl = [];
+        const eventUrl = [];
+        const month = [];
+        const mood = [];
+        const moodId = [];
+        const moodIdCount = [];
+        const eventIdCount = [];
+
+        for (var z = 0; z < cop.length; z++) {
+          eventsId.push(cop[z].eventsId);
+          digitDay.push(cop[z].digitDay);
+          event.push(cop[z].event);
+          moodUrl.push(cop[z].moodUrl);
+          eventUrl.push(cop[z].eventUrl);
+          month.push(cop[z].month);
+          mood.push(cop[z].mood);
+          moodId.push(cop[z].moodId);
         }
+
+        const uniqueMood = [...new Set(mood)];
+        const uniqueMoodId = [...new Set(moodId)];
+        const uniqueEvent = [...new Set(event)];
+        const uniqueEventId = [...new Set(eventsId)];
+
+        const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+
+        for (var j = 0; j < uniqueMoodId.length; j++) {
+          const val = uniqueMoodId[j];
+          var countM = countOccurrences(moodId, val);
+          moodIdCount.push(countM);
+        }
+        for (var L = 0; L < uniqueEventId.length; L++) {
+          const val = uniqueEventId[L];
+          var count = countOccurrences(eventsId, val);
+          eventIdCount.push(count);
+        }
+
         this.setState({
-          mood: mood,
-          time: time,
-          event: event
+          moodId,
+          mood,
+          uniqueMoodId,
+          moodIdCount,
+          uniqueMood,
+          event,
+          eventsId,
+          uniqueEventId,
+          eventIdCount,
+          uniqueEvent,
+          digitDay,
+          month
         });
-      })
-      .catch(err => console.error(err));
+
+      });
   }
 
   render() {
+    var moodGRAFz = {
+      labels: this.state.uniqueMood,
+      datasets: [
+        {
+          label: 'Mood Count',
+          backgroundColor: [
+            '#FFB800',
+            '#24FF00',
+            '#414141',
+            '#3A89FF',
+            '#FF0000'
+          ],
+          hoverBackgroundColor: [
+            '#B28100',
+            '#0F6900',
+            '#0F0F0F',
+            '#1C4F9A',
+            '#AF0000'
+          ],
+          data: this.state.moodIdCount
+        }
+      ]
+    };
+    var eventGRAFz = {
+      labels: this.state.uniqueEvent,
+      datasets: [
+        {
+          type: 'horizontalBar',
+          backgroundColor: [
+            '#FFB800',
+            '#24FF00',
+            '#414141',
+            '#3A89FF',
+            '#FF0000'
+          ],
+          hoverBackgroundColor: [
+            '#B28100',
+            '#0F6900',
+            '#0F0F0F',
+            '#1C4F9A',
+            '#AF0000'
+          ],
+          data: this.state.eventIdCount
+        }
+      ]
+    };
     return (
-      <React.Fragment>
-
-      </React.Fragment>
+      <div div className="stats-container container d-flex flex-column justify-content-around" >
+        <Doughnut
+          data={moodGRAFz}
+          options={{
+            title: {
+              display: true,
+              text: 'Mood Count',
+              fontSize: 32
+            },
+            legend: {
+              display: true,
+              position: 'right'
+            }
+          }}
+        />
+        <HorizontalBar
+          data={eventGRAFz}
+          options={{
+            title: {
+              display: true,
+              text: 'Event Count',
+              fontSize: 32
+            },
+            legend: {
+              display: false
+            }
+          }}
+        />
+      </div >
     );
   }
 }
