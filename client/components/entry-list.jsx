@@ -16,10 +16,19 @@ class EntryList extends React.Component {
     this.getEntries();
   }
 
+  componentDidUpdate(prevProps) {
+    console.log(prevProps);
+    if (prevProps.filterOptions !== this.props.filterOptions) {
+      this.getEntries();
+    }
+  }
+
   getEntries() {
-    fetch('/api/entries')
+    fetch(`/api/entries/search?moodId=${this.props.filterOptions.moodId}&eventId=${this.props.filterOptions.eventId}&dowId=${this.props.filterOptions.dowId}&sort=${this.props.filterOptions.sort}`)
       .then(result => result.json())
       .then(entries => {
+
+        console.log(entries);
         this.setState({
           entries: entries,
           isLoading: false

@@ -247,6 +247,7 @@ p {
 
 .mood-svg {
   max-height: 55px;
+  /* margin-left: 10px; */
 }
 
 .laugh  {
@@ -397,6 +398,93 @@ p {
   padding-bottom: 15px;
 }
 
+
+
+/* Modal styling */
+
+.modal-header{
+  display: flex;
+  justify-content: center;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: center;
+  margin-right: 15px;
+  padding: 0%;
+  margin-top: 10px;
+}
+
+h6 {
+  margin-left: 15px;
+}
+
+h6:hover {
+  background-color: #67d4d2 ;
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.modal-title {
+  color: #67D4D2 ;
+}
+
+.modal-wrapper {
+    background: white;
+    border: 1px solid #d0cccc;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
+    transition: all .8s;
+    width:50vh;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.modal-footer {
+  justify-content: center;
+}
+
+.drop-title {
+  text-align: center;
+  margin-right: 10px ;
+    color: #67D4D2 ;
+    margin-top: 10px;
+}
+
+.mood-modal {
+  max-height: 35px;
+  margin-left: 20px;
+}
+
+.mood-modal:hover {
+  background-color: #67d4d2 ;
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.modal-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 5%;
+  top: 25%;
+  z-index: 1;
+  -moz-border-radius: 6px 6px 6px 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px 6px 6px 6px;
+
+}
+
+.select-modal  {
+  width: 200px;
+  margin-left: 10px;
+  border-radius: 20px;
+  background-color: white;
+  outline: none;
+}
+
+/* -------- */
+
 .invert-event {
   border: 2px solid #67D4D2 ;
   border-radius: 15px;
@@ -426,3 +514,4 @@ p {
   color: black;
   border: 2px solid white;
 }
+
