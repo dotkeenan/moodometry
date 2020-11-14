@@ -214,6 +214,11 @@ p {
 .add-field-text {
   color: white;
   font-size: 1.25rem;
+  margin-left: 20px;
+}
+
+.hover-pointer:hover{
+  cursor: pointer;
 }
 
 .date-and-mood  {
@@ -289,8 +294,8 @@ p {
   background-color: white;
   border-width: thin;
   border-radius: 10px;
-  margin-left: 20px;
-  margin-right: 20px;
+  /* margin-left: 20px;
+  margin-right: 20px; */
   border: solid 1px rgba(105, 105, 105, 0.25);
     -webkit-box-shadow: 0px 2px 4px 4px rgba(0,0,0,0.25);
   box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.25);
@@ -319,8 +324,6 @@ p {
   background-color: white;
   border-width: thin;
   border-radius: 10px;
-  margin-left: 20px;
-  margin-right: 20px;
   border: solid 1px rgba(105, 105, 105, 0.25);
     -webkit-box-shadow: 0px 2px 4px 4px rgba(0,0,0,0.25);
   box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.25);
@@ -347,8 +350,8 @@ p {
   background-color: white;
   border-width: thin;
   border-radius: 10px;
-  margin-right: 20px;
-  margin-left: 20px;
+  /* margin-right: 20px;
+  margin-left: 20px; */
   border: solid 1px rgba(105, 105, 105, 0.25);
     -webkit-box-shadow: 0px 2px 4px 4px rgba(0,0,0,0.25);
   box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.25);
@@ -427,11 +430,13 @@ h6 {
   margin-left: 15px;
 }
 
-h6:hover {
+/* this kind of has a weird interaction.  not sure if h6 is used anywhere
+other than the events choices */
+/* h6:hover {
   background-color: #67d4d2 ;
   border-radius: 10px;
   padding: 3px;
-}
+} */
 
 .modal-title {
   color: #67D4D2 ;

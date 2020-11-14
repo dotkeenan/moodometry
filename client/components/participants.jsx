@@ -29,7 +29,7 @@ class Participants extends React.Component {
       <React.Fragment>
         <div className="participants-container">
           <div className="container d-flex flex-column align-items-center justify-contents-around">
-            <h4>Add Participants</h4>
+            <h4>Add participants</h4>
             <textarea
               value={this.state.participants}
               onChange={this.handleChange}

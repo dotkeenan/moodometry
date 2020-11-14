@@ -3,11 +3,15 @@ import Participants from './participants';
 
 function AddParticipantsRender(props) {
   function createEventIcons() {
-    return (
-      <span className="selected-event-span">
-        <img className="selected-event" src={props.eventsUrls} alt={props.eventsLabel}/>
-      </span>
-    );
+    if (!props.eventsUrls) {
+      return <span className="selected-participants hover-pointer" onClick={props.handleAddEvent}>Add an Event</span>;
+    } else {
+      return (
+        <span className="selected-event-span">
+          <img className="selected-event hover-pointer" src={props.eventsUrls} alt={props.eventsLabel}/>
+        </span>
+      );
+    }
   }
 
   return (
@@ -16,16 +20,17 @@ function AddParticipantsRender(props) {
         <h1 className="h1-form">What&apos;s up?</h1>
 
         <div className="container add-field-container">
-          <div className="row add-field">
-            <img onClick={props.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
+          <div className="add-field">
+            <img className="hover-pointer" onClick={props.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
             {createEventIcons()}
           </div>
-          <div className="row add-field">
+          <div className="add-field">
             <Participants setParticipantState={props.setParticipantState} handleAddNote={props.handleAddNote}/>
           </div>
-          <div className="row add-field">
-            <img onClick={props.handleAddNote} src="/images/ui-icons/add-detail.svg" alt="add detail" />
-            <span className="add-field-text">Add a note</span>
+          <div className="add-field">
+            <img className="hover-pointer" onClick={props.handleAddNote} src="/images/ui-icons/add-detail.svg" alt="add detail" />
+            {/* <span className="selected-participants">Add a note</span> */}
+            <span className="selected-participants hover-pointer" onClick={props.handleAddNote}>{props.entryState.note}</span>
           </div>
         </div>
       </div>

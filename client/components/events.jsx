@@ -216,7 +216,7 @@ class Events extends React.Component {
           <div className="check-container">
             <svg
               onClick={this.handleEventSubmit}
-              className="check-button"
+              className="check-button hover-pointer"
               width="43" height="43"
               viewBox="0 0 43 43"
               fill="none"

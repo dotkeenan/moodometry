@@ -12,6 +12,8 @@ class AddNoteRender extends React.Component {
     // console.log('props.entryState', props.entryState);
     this.createEventIcons = this.createEventIcons.bind(this);
     this.createParticipantsText = this.createParticipantsText.bind(this);
+    this.handleNoteEdit = this.handleNoteEdit.bind(this);
+    this.createNoteText = this.createNoteText.bind(this);
   }
 
   setSubmitState(value) {
@@ -26,16 +28,20 @@ class AddNoteRender extends React.Component {
   }
 
   createEventIcons() {
-    return (
-      <span className="selected-event-span">
-        <img className="selected-event" src={this.props.eventsUrls} alt={this.props.eventsLabel} />
-      </span>
-    );
+    if (!this.props.eventsUrls) {
+      return <span className="selected-participants hover-pointer" onClick={this.props.handleAddEvent}>Add an Event</span>;
+    } else {
+      return (
+        <span className="selected-event-span">
+          <img className="selected-event hover-pointer" src={this.props.eventsUrls} alt={this.props.eventsLabel} />
+        </span>
+      );
+    }
   }
 
   createParticipantsText() {
     return (
-      <span className="selected-participants">
+      <span className="selected-participants hover-pointer" onClick={this.props.handleAddParticipants}>
         {this.props.entryState.participants}
       </span>
     );
@@ -43,10 +49,15 @@ class AddNoteRender extends React.Component {
 
   createNoteText() {
     return (
-      <span className="selected-note">
+      <span className="selected-note hover-pointer" onClick={this.handleNoteEdit}>
         {this.props.entryState.note}
       </span>
     );
+  }
+
+  handleNoteEdit() {
+    this.props.handleAddNote();
+    this.setState({ isSubmitted: false });
   }
 
   render() {
@@ -57,16 +68,21 @@ class AddNoteRender extends React.Component {
             <h1 className="h1-form">With who?</h1>
 
             <div className="container add-field-container">
-              <div className="row add-field">
-                <img onClick={this.props.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
+              <div className="add-field">
+                <img className="hover-pointer" onClick={this.props.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createEventIcons()}
               </div>
-              <div className="row add-field">
-                <img onClick={this.props.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
+              <div className="add-field">
+                <img className="hover-pointer" onClick={this.props.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createParticipantsText()}
               </div>
-              <div className="row add-field">
-                <Notes setNoteState={this.props.setNoteState} setSubmitState={this.setSubmitState} eventsUrls={this.props.eventsUrls} eventLabel={this.props.eventLabel}/>
+              <div className="add-field">
+                <Notes
+                  setNoteState={this.props.setNoteState}
+                  setSubmitState={this.setSubmitState}
+                  eventsUrls={this.props.eventsUrls}
+                  eventLabel={this.props.eventLabel}
+                  entryState={this.props.entryState}/>
               </div>
             </div>
           </div>
@@ -79,16 +95,16 @@ class AddNoteRender extends React.Component {
             <h1 className="h1-form">With who?</h1>
 
             <div className="container add-field-container">
-              <div className="row add-field">
-                <img onClick={this.props.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
+              <div className="add-field">
+                <img className="hover-pointer" onClick={this.props.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createEventIcons()}
               </div>
-              <div className="row add-field">
-                <img onClick={this.props.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
+              <div className="add-field">
+                <img className="hover-pointer" onClick={this.props.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createParticipantsText()}
               </div>
-              <div className="row add-field">
-                <img onClick={this.props.handleAddNote} src="/images/ui-icons/add-detail.svg" alt="add detail" />
+              <div className="add-field">
+                <img className="hover-pointer" onClick={this.handleNoteEdit} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createNoteText()}
               </div>
             </div>

@@ -17,7 +17,7 @@ class CreateEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      phase: 'timeAndMood',
+      phase: 'addNote',
       moods: [],
       // experimental turned into empty string rather than array
       eventsUrls: '',
@@ -26,8 +26,8 @@ class CreateEntry extends React.Component {
       entry: {
         moodId: null,
         eventId: '',
-        participants: '',
-        note: '',
+        participants: 'Add Participants',
+        note: 'Add a note',
         time: new Date() // possible issue of not being a JSON?
         // experimental. need image url
       }
@@ -116,7 +116,7 @@ class CreateEntry extends React.Component {
       return (
         <img
           onClick={this.handleClick}
-          className="mood-svg laugh"
+          className="mood-svg hover-pointer"
           src={mood.imageUrl}
           alt={mood.label}
           key={mood.moodId}
@@ -200,6 +200,7 @@ class CreateEntry extends React.Component {
         renderedPhase = <AddNoteRender
           handleAddEvent={this.handleAddEvent}
           handleAddParticipants={this.handleAddParticipants}
+          handleAddNote={this.handleAddNote}
           setNoteState={this.setNoteState}
           submitEntry={this.submitEntry}
           entryState={this.state.entry}
