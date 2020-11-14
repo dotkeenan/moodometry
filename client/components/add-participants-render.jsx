@@ -21,7 +21,7 @@ function AddParticipantsRender(props) {
             {createEventIcons()}
           </div>
           <div className="row add-field">
-            <Participants setParticipantState={props.setParticipantState} />
+            <Participants setParticipantState={props.setParticipantState} handleAddNote={props.handleAddNote}/>
           </div>
           <div className="row add-field">
             <img onClick={props.handleAddNote} src="/images/ui-icons/add-detail.svg" alt="add detail" />

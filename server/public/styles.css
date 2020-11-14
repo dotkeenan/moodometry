@@ -121,7 +121,7 @@ body {
   border-bottom: 1px dashed rgb(202, 202, 202);
 }
 
-span {
+.entry-hour {
   color: #67D4D2 ;
 }
 
@@ -206,7 +206,7 @@ p {
 }
 
 .add-field  {
-  width: 100vw;
+  width: 100%;
   align-items: center;
   margin-bottom: 20px;
 }
@@ -504,11 +504,18 @@ h6:hover {
 
 /* add event css */
 .selected-event {
-  width: 50px
+  width: 50px;
+  filter: invert(1);
 }
 
-.selected-event-span  {
+.selected-event-span, .selected-participants{
  margin-left: 20px
+}
+
+.selected-participants  {
+  max-width: 70%;
+  color: white;
+  font-size: 1.5rem
 }
 
 /* Event Details page with submitted entries*/

@@ -22,7 +22,7 @@ class CreateEntry extends React.Component {
       // experimental turned into empty string rather than array
       eventsUrls: '',
       // need to pass eventLabel to
-      eventLabel: '',
+      eventsLabel: '',
       entry: {
         moodId: null,
         eventId: '',
@@ -202,6 +202,9 @@ class CreateEntry extends React.Component {
           setNoteState={this.setNoteState}
           submitEntry={this.submitEntry}
           entryState={this.state.entry}
+          eventsLabel={this.state.eventsLabel}
+          eventsUrls={this.state.eventsUrls}
+
           // setView={this.props.setView}
         />;
         break;

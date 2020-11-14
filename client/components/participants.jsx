@@ -19,6 +19,7 @@ class Participants extends React.Component {
     // alert('A name was submitted: ' + this.state.participants);
     // find a way to submit this to the entry.
     this.props.setParticipantState(this.state.participants);
+    this.props.handleAddNote();
     // find a way to close the card and display the participants
     event.preventDefault();
   }

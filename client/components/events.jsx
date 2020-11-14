@@ -52,6 +52,7 @@ class Events extends React.Component {
     this.props.setEventState(this.state.eventsId);
     // this.props.setEventsUrls(this.state.eventsUrls);
     this.props.setEventUrlAndLabel(this.state.eventsUrls, this.state.eventsLabel);
+    this.props.handleAddParticipants();
 
     event.preventDefault();
   }
