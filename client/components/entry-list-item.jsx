@@ -62,10 +62,12 @@ class EntryListItem extends React.Component {
             <div className="note-container">
               <h3 className="entry-list-time">
                 {this.props.entry.date}
-                <span>{this.props.entry.hour}</span>
+                <span className="entry-hour">{this.props.entry.hour}</span>
               </h3>
-              <p className="event-with">{this.props.entry.event}</p>
-              <p className="event-with">{this.props.entry.participants}</p>
+              <div className="event-partic-container">
+                <p className="event-with">{this.props.entry.event}</p>
+                <p className="event-with">{this.props.entry.participants}</p>
+              </div>
               <p>{this.props.entry.note}</p>
             </div>
           </div>
@@ -91,10 +93,12 @@ class EntryListItem extends React.Component {
             <div className="note-container">
               <h3 className="entry-list-time">
                 {this.props.entry.date}
-                <span>{this.props.entry.hour}</span>
+                <span className="entry-hour">{this.props.entry.hour}</span>
               </h3>
-              <p className="event-with">{this.props.entry.event}</p>
-              <p className="event-with">{this.props.entry.participants}</p>
+              <div className="event-partic-container">
+                <p className="event-with">{this.props.entry.event}</p>
+                <p className="event-with">{this.props.entry.participants}</p>
+              </div>
               <p>{this.props.entry.note}</p>
             </div>
           </div>

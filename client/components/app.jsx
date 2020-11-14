@@ -14,7 +14,6 @@ export default class App extends React.Component {
     this.state = {
       view: {
         name: 'entries'
-
       },
       entries: [],
       filterModal: false,
