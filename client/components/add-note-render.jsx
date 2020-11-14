@@ -9,6 +9,7 @@ class AddNoteRender extends React.Component {
     };
     this.setSubmitState = this.setSubmitState.bind(this);
     this.handleEntrySubmit = this.handleEntrySubmit.bind(this);
+    // console.log('props.entryState', props.entryState);
   }
 
   setSubmitState(value) {

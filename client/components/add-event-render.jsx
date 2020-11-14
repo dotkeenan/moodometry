@@ -9,7 +9,7 @@ function AddEventRender(props) {
 
         <div className="container add-field-container">
           <div className="row add-field">
-            <Events setEventState={props.setEventState} setEventsUrls={props.setEventsUrls}/>
+            <Events setEventState={props.setEventState} setEventsUrls={props.setEventsUrls} setEventUrlAndLabel={props.setEventUrlAndLabel}/>
           </div>
           <div className="row add-field">
             <img onClick={props.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />

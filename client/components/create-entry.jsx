@@ -19,13 +19,17 @@ class CreateEntry extends React.Component {
     this.state = {
       phase: 'timeAndMood',
       moods: [],
-      eventsUrls: [],
+      // experimental turned into empty string rather than array
+      eventsUrls: '',
+      // need to pass eventLabel to
+      eventLabel: '',
       entry: {
         moodId: null,
         eventId: '',
         participants: '',
         note: '',
         time: new Date() // possible issue of not being a JSON?
+        // experimental. need image url
       }
     };
     this.handleClick = this.handleClick.bind(this);
@@ -37,8 +41,9 @@ class CreateEntry extends React.Component {
     this.setParticipantState = this.setParticipantState.bind(this);
     this.setNoteState = this.setNoteState.bind(this);
     this.createMoods = this.createMoods.bind(this);
-    this.setEventsUrls = this.setEventsUrls.bind(this);
+    // this.setEventsUrls = this.setEventsUrls.bind(this);
     this.submitEntry = this.submitEntry.bind(this);
+    this.setEventUrlAndLabel = this.setEventUrlAndLabel.bind(this);
   }
 
   handleClick() {
@@ -138,8 +143,20 @@ class CreateEntry extends React.Component {
     this.setState({ entry: newEntryObject });
   }
 
-  setEventsUrls(eventUrls) {
-    this.setState({ eventsUrls: eventUrls });
+  // possibly combine setEventsUrls and setEventsLabel
+  // setEventsUrls(eventUrls) {
+  //   this.setState({ eventsUrls: eventUrls });
+  // }
+
+  // setEventsLabel(eventLabel) {
+  //   this.setState({ eventsLabel: eventLabel });
+  // }
+
+  setEventUrlAndLabel(url, label) {
+    this.setState({
+      eventsUrls: url,
+      eventsLabel: label
+    });
   }
 
   componentDidMount() {
@@ -164,14 +181,19 @@ class CreateEntry extends React.Component {
           setEventState={this.setEventState}
           handleAddParticipants={this.handleAddParticipants}
           handleAddNote={this.handleAddNote}
-          setEventsUrls={this.setEventsUrls}
+          // setEventsUrls={this.setEventsUrls}
+          // setEventsLabel={this.setEventsLabel}
+          setEventUrlAndLabel={this.setEventUrlAndLabel}
+          entryState={this.state.entry}
         />;
         break;
       case 'addParticipants':
         renderedPhase = <AddParticipantsRender
           handleAddEvent={this.handleAddEvent}
           setParticipantState={this.setParticipantState}
-          handleAddNote={this.handleAddNote} />;
+          handleAddNote={this.handleAddNote}
+          entryState={this.state.entry}
+          eventsUrls={this.state.eventsUrls}/>;
         break;
       case 'addNote':
         renderedPhase = <AddNoteRender
@@ -179,6 +201,7 @@ class CreateEntry extends React.Component {
           handleAddParticipants={this.handleAddParticipants}
           setNoteState={this.setNoteState}
           submitEntry={this.submitEntry}
+          entryState={this.state.entry}
           // setView={this.props.setView}
         />;
         break;

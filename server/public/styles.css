@@ -109,8 +109,16 @@ body {
 }
 
 .event-with {
-  font-size: 12px;
+  font-size: 14px;
   color: #7B7B7B;
+}
+
+.event-partic-container {
+  margin-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top: 1px dashed rgb(202, 202, 202);
+  border-bottom: 1px dashed rgb(202, 202, 202);
 }
 
 span {
@@ -118,8 +126,8 @@ span {
 }
 
 p {
-  margin-top: 5px;
-  margin-bottom: 5%;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /*--------*/
@@ -494,6 +502,14 @@ h6:hover {
   border: 2px solid black; */
 }
 
+/* add event css */
+.selected-event {
+  width: 50px
+}
+
+.selected-event-span  {
+ margin-left: 20px
+}
 
 /* Event Details page with submitted entries*/
 .submitted-events {}
@@ -514,4 +530,3 @@ h6:hover {
   color: black;
   border: 2px solid white;
 }
-
