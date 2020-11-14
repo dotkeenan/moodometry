@@ -81,6 +81,14 @@ class FilterEntry extends React.Component {
     }
   }
 
+  getSortCss(sort) {
+    if (this.state.filterOptions.sort === sort) {
+      return 'selected-filter';
+    } else {
+      return '';
+    }
+  }
+
   render() {
 
     const drop = this.state.filterEvents;
@@ -122,8 +130,8 @@ class FilterEntry extends React.Component {
               </div>
               <h4 className="drop-title">Sort by</h4>
               <div className="modal-body">
-                <h6>Date Des</h6>
-                <h6>Date Asc</h6>
+                <h6 className={this.getSortCss(1)}>Date Des</h6>
+                <h6 className={this.getSortCss(2)}>Date Asc</h6>
               </div>
               <div className="modal-footer">
 

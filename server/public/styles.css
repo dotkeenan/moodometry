@@ -427,10 +427,6 @@ p {
   margin-right: 15px;
   padding: 0%;
   margin-top: 10px;
-    -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.5s
 }
 
 @-webkit-keyframes animatetop {
@@ -507,6 +503,20 @@ h6:hover {
   border-radius: 6px 6px 6px 6px;
   overflow: hidden;
   position:fixed;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.8s
+}
+
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {bottom:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {bottom:0; opacity:1}
 }
 
 .select-modal  {
