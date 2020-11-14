@@ -19,6 +19,7 @@ class Participants extends React.Component {
     // alert('A name was submitted: ' + this.state.participants);
     // find a way to submit this to the entry.
     this.props.setParticipantState(this.state.participants);
+    this.props.handleAddNote();
     // find a way to close the card and display the participants
     event.preventDefault();
   }
@@ -28,7 +29,7 @@ class Participants extends React.Component {
       <React.Fragment>
         <div className="participants-container">
           <div className="container d-flex flex-column align-items-center justify-contents-around">
-            <h4>Add Participants</h4>
+            <h4>Add participants</h4>
             <textarea
               value={this.state.participants}
               onChange={this.handleChange}

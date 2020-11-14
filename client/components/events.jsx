@@ -9,7 +9,9 @@ class Events extends React.Component {
       productivity: [],
       chores: [],
       eventsId: '',
-      eventsUrls: ''
+      eventsUrls: '',
+      // need eventsLabel
+      eventsLabel: ''
     };
     // find out which ones to delete later.  Don't need to bind if not passing to another component
     this.handleIconClick = this.handleIconClick.bind(this);
@@ -27,76 +29,31 @@ class Events extends React.Component {
   handleIconClick(event) {
     const eventId = parseInt(event.target.getAttribute('eventid'), 10);
     const eventUrl = (event.target.src);
-
+    const eventLabel = event.target.alt;
     if (this.state.eventsId === eventId && this.state.eventsUrls === eventUrl) {
       this.setState({
         eventsId: '',
-        eventsUrls: ''
+        eventsUrls: '',
+        eventsLabel: ''
       });
     } else {
       this.setState({
         eventsId: eventId,
-        eventsUrls: eventUrl
+        eventsUrls: eventUrl,
+        eventsLabel: eventLabel
       });
     }
+    // find a way to untoggle selected event if clicking different one
     // document.querySelectorAll('.invert-event').classList.remove('invert-event');
     event.target.classList.toggle('invert-event');
   }
-  // handleIconClick(event) {
-  //   const eventId = parseInt(event.target.getAttribute('eventid'), 10);
-  //   const eventUrl = (event.target.src);
-
-  //   if (this.state.eventsId === eventId && this.state.eventsUrls === eventUrl) {
-  //     this.setState({
-  //       eventsId: '',
-  //       eventsUrls: ''
-  //     });
-  //   } else {
-  //     this.setState({
-  //       eventsId: eventId,
-  //       eventsUrls: eventUrl
-  //     });
-  //   }
-  //   event.target.classList.toggle('invert-event');
-  // }
-
-  // original
-  // handleIconClick(event) {
-  //   const eventId = parseInt(event.target.getAttribute('eventid'), 10);
-  //   const eventUrl = (event.target.src);
-
-  //   if (this.state.eventsId.includes(eventId) && this.state.eventsUrls.includes(eventUrl)) {
-  //     const newEventsId = this.state.eventsId.slice('');
-  //     const index = newEventsId.indexOf(eventId);
-  //     newEventsId.splice(index, 1);
-
-  //     const newEventsUrls = this.state.eventsUrls.slice('');
-  //     const eventUrlsIndex = newEventsUrls.indexOf(eventUrl);
-  //     newEventsUrls.splice(eventUrlsIndex, 1);
-  //     this.setState({
-  //       eventsId: newEventsId,
-  //       eventsUrls: newEventsUrls
-  //     });
-  //   } else {
-  //     const newEventsId = this.state.eventsId.slice('');
-  //     newEventsId.push(eventId);
-
-  //     const newEventsUrls = this.state.eventsUrls.slice('');
-  //     newEventsUrls.push(eventUrl);
-  //     this.setState({
-  //       eventsId: newEventsId,
-  //       eventsUrls: newEventsUrls
-  //     });
-  //   }
-  //   event.target.classList.toggle('invert-event');
-  // }
 
   handleEventSubmit(event) {
-    // find a way to transfer this.state.eventsId to create-entry.jsx
     this.props.setEventState(this.state.eventsId);
-    this.props.setEventsUrls(this.state.eventsUrls);
-    // find a way to close the card then show the icons that were clicked
-    // console.log('submitted');
+    // this.props.setEventsUrls(this.state.eventsUrls);
+    this.props.setEventUrlAndLabel(this.state.eventsUrls, this.state.eventsLabel);
+    this.props.handleAddParticipants();
+
     event.preventDefault();
   }
 
@@ -259,7 +216,7 @@ class Events extends React.Component {
           <div className="check-container">
             <svg
               onClick={this.handleEventSubmit}
-              className="check-button"
+              className="check-button hover-pointer"
               width="43" height="43"
               viewBox="0 0 43 43"
               fill="none"
