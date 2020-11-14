@@ -64,16 +64,17 @@ class CreateEntry extends React.Component {
   }
 
   submitEntry() {
-    this.setState({
-      phase: 'timeAndMood',
-      entry: {
-        moodId: null,
-        eventId: '',
-        participants: '',
-        note: '',
-        time: new Date()
-      }
-    });
+    // test this off to see if state automatically resets after a submit
+    // this.setState({
+    //   phase: 'timeAndMood',
+    //   entry: {
+    //     moodId: null,
+    //     eventId: '',
+    //     participants: '',
+    //     note: '',
+    //     time: new Date()
+    //   }
+    // });
     // eslint-disable-next-line
     console.log(this.state.entry);
     const reqOptions = {

@@ -13,7 +13,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'createEntry'
+        name: 'entries'
       },
       entries: [],
       filterModal: false,

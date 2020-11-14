@@ -43,7 +43,7 @@ class AddNoteRender extends React.Component {
 
   createNoteText() {
     return (
-      <span className="selected-participants">
+      <span className="selected-note">
         {this.props.entryState.note}
       </span>
     );
