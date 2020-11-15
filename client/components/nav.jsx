@@ -13,6 +13,11 @@ function Nav(props) {
   function handleStatsClick() {
     props.setView('stats');
   }
+
+  function handleChangeUserClick() {
+    props.setView('homepage');
+  }
+
   return (
     <React.Fragment>
       <div className="footer">
@@ -37,7 +42,7 @@ function Nav(props) {
           </div>
 
           <div>
-            <img src="/images/ui-icons/logout.svg" alt="logout" />
+            <img onClick={handleChangeUserClick}src="/images/ui-icons/logout.svg" alt="logout" />
           </div>
 
         </div>

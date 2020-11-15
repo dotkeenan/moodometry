@@ -7,13 +7,14 @@ import CreateEntry from './create-entry';
 import Journal from './journal';
 import Stats from './stats';
 import FilterEntry from './filter-entry';
+import HomePage from './homepage';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'entries'
+        name: 'homepage'
       },
       entries: [],
       filterModal: false,
@@ -89,6 +90,13 @@ export default class App extends React.Component {
 
   render() {
     let view = null;
+
+    if (this.state.view.name === 'homepage') {
+      return (
+        <HomePage setView={this.setView}/>
+      );
+    }
+
     if (this.state.view.name === 'entries') {
       view = <EntryList filterOptions={this.state.filterOptions} />;
     } else if (this.state.view.name === 'createEntry') {
@@ -113,3 +121,9 @@ export default class App extends React.Component {
     );
   }
 }
+
+/*
+if (this.state.view.name === 'homepage') {
+      view = <HomePage />;
+    } else
+*/
