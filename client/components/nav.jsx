@@ -24,25 +24,40 @@ function Nav(props) {
         <div className="nav nav-row">
 
           <div>
-            <img onClick={handleHomeClick} src="/images/ui-icons/home.svg" alt="home" />
+            <img
+              onClick={handleHomeClick}
+              className="menu-hover"
+              src="/images/ui-icons/home.svg"
+              alt="home" />
           </div>
 
           <div>
-            <img onClick={handleStatsClick} src="/images/ui-icons/stats.svg" alt="stats" />
+            <img
+              onClick={handleStatsClick}
+              className="menu-hover"
+              src="/images/ui-icons/stats.svg"
+              alt="stats" />
           </div>
 
-          <div onClick={handleAddClick} className="add-entry-button">
+          <div onClick={handleAddClick} className="add-entry-button menu-hover">
             <div className="button-icon">
               <img src="/images/ui-icons/add.svg" alt="add" />
             </div>
           </div>
 
           <div>
-            <img src="/images/ui-icons/calendar.svg" alt="calendar" />
+            <img
+              className="menu-hover"
+              src="/images/ui-icons/calendar.svg"
+              alt="calendar" />
           </div>
 
           <div>
-            <img onClick={handleChangeUserClick}src="/images/ui-icons/logout.svg" alt="logout" />
+            <img
+              onClick={handleChangeUserClick}
+              className="menu-hover"
+              src="/images/ui-icons/logout.svg"
+              alt="logout" />
           </div>
 
         </div>
