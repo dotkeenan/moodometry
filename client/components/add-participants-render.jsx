@@ -11,7 +11,7 @@ function AddParticipantsRender(props) {
 
   function createEventIcons() {
     if (!props.eventsUrls) {
-      return <span className="selected-participants hover-pointer" onClick={handleAddEvent}>Add an Event</span>;
+      return <span className="selected-participants hover-pointer selected-event-span" onClick={handleAddEvent}>Add an Event</span>;
     } else {
       return (
         <span className="selected-event-span">
@@ -35,10 +35,10 @@ function AddParticipantsRender(props) {
           <div className="add-field">
             <Participants setParticipantState={props.setParticipantState} setPhase={props.setPhase}/>
           </div>
-          <div className="add-field">
+          <div className="add-field row align-items-start form-margin-fix">
             <img className="hover-pointer" onClick={handleAddNote} src="/images/ui-icons/add-detail.svg" alt="add detail" />
             {/* <span className="selected-participants">Add a note</span> */}
-            <span className="selected-participants hover-pointer" onClick={handleAddNote}>{props.entryState.note}</span>
+            <span className="selected-participants hover-pointer margin-left-10" onClick={handleAddNote}>{props.entryState.note}</span>
           </div>
         </div>
       </div>

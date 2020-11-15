@@ -224,6 +224,10 @@ p {
   margin-left: 20px;
 }
 
+.form-margin-fix  {
+  margin-left: 0px;
+}
+
 .hover-pointer:hover{
   cursor: pointer;
 }
@@ -548,8 +552,14 @@ other than the events choices */
   font-size: 1.5rem;
 }
 
-.selected-event-span, .selected-participants, .selected-note{
- margin-left: 20px
+.selected-event-span, .margin-left-10{
+ margin-left: 10px
+}
+
+.submitted-block {
+  max-width: 75%;
+  display: inline-block;
+  margin-left: 10px;
 }
 
 

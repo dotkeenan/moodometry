@@ -31,7 +31,7 @@ class AddNoteRender extends React.Component {
 
   createEventIcons() {
     if (!this.props.eventsUrls) {
-      return <span className="selected-participants hover-pointer" onClick={this.handleAddEvent}>Add an Event</span>;
+      return <span className="selected-participants hover-pointer selected-event-span" onClick={this.handleAddEvent}>Add an Event</span>;
     } else {
       return (
         <span className="selected-event-span">
@@ -44,17 +44,21 @@ class AddNoteRender extends React.Component {
 
   createParticipantsText() {
     return (
-      <span className="selected-participants hover-pointer" onClick={this.handleAddParticipants}>
-        {this.props.entryState.participants}
-      </span>
+      <div className="submitted-block">
+        <span className="selected-participants hover-pointer" onClick={this.handleAddParticipants}>
+          {this.props.entryState.participants}
+        </span>
+      </div>
     );
   }
 
   createNoteText() {
     return (
-      <span className="selected-note hover-pointer" onClick={this.handleNoteEdit}>
-        {this.props.entryState.note}
-      </span>
+      <div className="submitted-block">
+        <span className="selected-note hover-pointer" onClick={this.handleNoteEdit}>
+          {this.props.entryState.note}
+        </span>
+      </div>
     );
   }
 
@@ -83,7 +87,7 @@ class AddNoteRender extends React.Component {
                 <img className="hover-pointer" onClick={this.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createEventIcons()}
               </div>
-              <div className="add-field">
+              <div className="add-field row align-items-start form-margin-fix">
                 <img className="hover-pointer" onClick={this.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createParticipantsText()}
               </div>
@@ -110,11 +114,11 @@ class AddNoteRender extends React.Component {
                 <img className="hover-pointer" onClick={this.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createEventIcons()}
               </div>
-              <div className="add-field">
+              <div className="add-field row align-items-start form-margin-fix">
                 <img className="hover-pointer" onClick={this.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createParticipantsText()}
               </div>
-              <div className="add-field">
+              <div className="add-field row align-items-start form-margin-fix">
                 <img className="hover-pointer" onClick={this.handleNoteEdit} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createNoteText()}
               </div>
