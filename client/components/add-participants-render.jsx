@@ -9,6 +9,7 @@ function AddParticipantsRender(props) {
       return (
         <span className="selected-event-span">
           <img className="selected-event hover-pointer" src={props.eventsUrls} alt={props.eventsLabel}/>
+          <span className="selected-event-text">{props.eventsLabel}</span>
         </span>
       );
     }

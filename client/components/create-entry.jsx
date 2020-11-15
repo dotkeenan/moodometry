@@ -193,7 +193,8 @@ class CreateEntry extends React.Component {
           setParticipantState={this.setParticipantState}
           handleAddNote={this.handleAddNote}
           entryState={this.state.entry}
-          eventsUrls={this.state.eventsUrls}/>;
+          eventsUrls={this.state.eventsUrls}
+          eventsLabel={this.state.eventsLabel} />;
         break;
       case 'addNote':
         renderedPhase = <AddNoteRender

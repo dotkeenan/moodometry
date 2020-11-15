@@ -34,6 +34,7 @@ class AddNoteRender extends React.Component {
       return (
         <span className="selected-event-span">
           <img className="selected-event hover-pointer" src={this.props.eventsUrls} alt={this.props.eventsLabel} />
+          <span className="selected-event-text">{this.props.eventsLabel}</span>
         </span>
       );
     }

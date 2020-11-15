@@ -538,9 +538,16 @@ other than the events choices */
   filter: invert(1);
 }
 
+.selected-event-text  {
+  margin-left: 20px;
+  color: white;
+  font-size: 1.25rem;
+}
+
 .selected-event-span, .selected-participants, .selected-note{
  margin-left: 20px
 }
+
 
 .selected-participants, .selected-note  {
   max-width: 70%;

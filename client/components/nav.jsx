@@ -2,11 +2,11 @@ import React from 'react';
 
 // possibly convert into a class since there will be lots of methods
 function Nav(props) {
-  function handleAddClick(e) {
+  function handleAddClick() {
     props.setView('createEntry');
   }
 
-  function handleHomeClick(e) {
+  function handleHomeClick() {
     props.setView('entries');
   }
 

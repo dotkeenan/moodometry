@@ -17,6 +17,7 @@ class EntryListItem extends React.Component {
     });
   }
 
+  // didnt get to edit.
   editEntry() {
 
   }
