@@ -1,12 +1,4 @@
 import React from 'react';
-// not needed here after refactor
-// import Events from './events';
-// not needed here after refactor
-// import Participants from './participants';
-// not needed after refactor
-// import Notes from './notes';
-// not needed here after refactor??
-// import TimeConverter from './time-converter';
 import TimeAndMood from './time-and-mood';
 import EventDetailsRender from './event-details.render';
 import AddEventRender from './add-event-render';
@@ -19,30 +11,22 @@ class CreateEntry extends React.Component {
     this.state = {
       phase: 'timeAndMood',
       moods: [],
-      // experimental turned into empty string rather than array
       eventsUrls: '',
-      // need to pass eventLabel to
       eventsLabel: '',
       entry: {
         moodId: null,
         eventId: '',
         participants: 'Add Participants',
         note: 'Add a note',
-        time: new Date() // possible issue of not being a JSON?
-        // experimental. need image url
+        time: new Date()
       }
     };
     this.handleClick = this.handleClick.bind(this);
-    // possibly useless now that I have setPhase
-    // this.handleAddEvent = this.handleAddEvent.bind(this);
-    // this.handleAddParticipants = this.handleAddParticipants.bind(this);
-    // this.handleAddNote = this.handleAddNote.bind(this);
     this.getMoods = this.getMoods.bind(this);
     this.setEventState = this.setEventState.bind(this);
     this.setParticipantState = this.setParticipantState.bind(this);
     this.setNoteState = this.setNoteState.bind(this);
     this.createMoods = this.createMoods.bind(this);
-    // this.setEventsUrls = this.setEventsUrls.bind(this);
     this.submitEntry = this.submitEntry.bind(this);
     this.setEventUrlAndLabel = this.setEventUrlAndLabel.bind(this);
     this.setPhase = this.setPhase.bind(this);
@@ -56,29 +40,9 @@ class CreateEntry extends React.Component {
       phase: 'eventDetails',
       entry: newEntryObject
     });
-    // this.setState({
-    //   phase: 'eventDetails',
-    //   entry: {
-    //     moodId: moodId,
-    //     time: new Date() // possible issue of not being a JSON?
-    //   }
-    // });
   }
 
   submitEntry() {
-    // test this off to see if state automatically resets after a submit
-    // this.setState({
-    //   phase: 'timeAndMood',
-    //   entry: {
-    //     moodId: null,
-    //     eventId: '',
-    //     participants: '',
-    //     note: '',
-    //     time: new Date()
-    //   }
-    // });
-    // eslint-disable-next-line
-    console.log(this.state.entry);
     const reqOptions = {
       method: 'POST',
       body: JSON.stringify(this.state.entry),
@@ -92,18 +56,6 @@ class CreateEntry extends React.Component {
   setPhase(phase) {
     this.setState({ phase: phase });
   }
-
-  // handleAddEvent() {
-  //   this.setState({ phase: 'addEvent' });
-  // }
-
-  // handleAddParticipants() {
-  //   this.setState({ phase: 'addParticipants' });
-  // }
-
-  // handleAddNote() {
-  //   this.setState({ phase: 'addNote' });
-  // }
 
   getMoods() {
     fetch('/api/moods')
@@ -149,15 +101,6 @@ class CreateEntry extends React.Component {
     this.setState({ entry: newEntryObject });
   }
 
-  // possibly combine setEventsUrls and setEventsLabel
-  // setEventsUrls(eventUrls) {
-  //   this.setState({ eventsUrls: eventUrls });
-  // }
-
-  // setEventsLabel(eventLabel) {
-  //   this.setState({ eventsLabel: eventLabel });
-  // }
-
   setEventUrlAndLabel(url, label) {
     this.setState({
       eventsUrls: url,
@@ -178,27 +121,18 @@ class CreateEntry extends React.Component {
         break;
       case 'eventDetails':
         renderedPhase = <EventDetailsRender
-          // handleAddEvent={this.handleAddEvent}
-          // handleAddParticipants={this.handleAddParticipants}
-          // handleAddNote={this.handleAddNote}
           setPhase={this.setPhase}/>;
         break;
       case 'addEvent':
         renderedPhase = <AddEventRender
           setEventState={this.setEventState}
-          // handleAddParticipants={this.handleAddParticipants}
-          // handleAddNote={this.handleAddNote}
           setPhase={this.setPhase}
-          // setEventsUrls={this.setEventsUrls}
-          // setEventsLabel={this.setEventsLabel}
           setEventUrlAndLabel={this.setEventUrlAndLabel}
           entryState={this.state.entry}
         />;
         break;
       case 'addParticipants':
         renderedPhase = <AddParticipantsRender
-          // handleAddEvent={this.handleAddEvent}
-          // handleAddNote={this.handleAddNote}
           setPhase={this.setPhase}
           setParticipantState={this.setParticipantState}
           entryState={this.state.entry}
@@ -207,17 +141,12 @@ class CreateEntry extends React.Component {
         break;
       case 'addNote':
         renderedPhase = <AddNoteRender
-          // handleAddEvent={this.handleAddEvent}
-          // handleAddParticipants={this.handleAddParticipants}
-          // handleAddNote={this.handleAddNote}
           setPhase={this.setPhase}
           setNoteState={this.setNoteState}
           submitEntry={this.submitEntry}
           entryState={this.state.entry}
           eventsLabel={this.state.eventsLabel}
           eventsUrls={this.state.eventsUrls}
-
-          // setView={this.props.setView}
         />;
         break;
 
@@ -234,29 +163,3 @@ class CreateEntry extends React.Component {
 }
 
 export default CreateEntry;
-
-/* alternative working version of render()
- if (phase === 'timeAndMood') {
-      renderedPhase = <TimeAndMood createMoods={this.createMoods} entry={this.state.entry}/>;
-    } else if (phase === 'eventDetails') {
-      renderedPhase = <EventDetailsRender
-        handleAddEvent={this.handleAddEvent}
-        handleAddParticipants={this.handleAddParticipants}
-        handleAddNote={this.handleAddNote}/>;
-    } else if (phase === 'addEvent') {
-      renderedPhase = <AddEventRender
-        setEventState={this.setEventState}
-        handleAddParticipants={this.handleAddParticipants}
-        handleAddNote={this.handleAddNote}/>;
-    } else if (phase === 'addParticipants') {
-      renderedPhase = <AddParticipantsRender
-        handleAddEvent={this.handleAddEvent}
-        setParticipantState={this.setParticipantState}
-        handleAddNote={this.handleAddNote}/>;
-    } else if (phase === 'addNote') {
-      renderedPhase = <AddNoteRender
-        handleAddEvent={this.handleAddEvent}
-        handleAddParticipants={this.handleAddParticipants}
-        setNoteState={this.setNoteState}/>;
-    }
-*/
