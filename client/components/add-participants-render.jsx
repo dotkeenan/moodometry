@@ -2,13 +2,21 @@ import React from 'react';
 import Participants from './participants';
 
 function AddParticipantsRender(props) {
+  function handleAddEvent() {
+    props.setPhase('addEvent');
+  }
+  function handleAddNote() {
+    props.setPhase('addNote');
+  }
+
   function createEventIcons() {
     if (!props.eventsUrls) {
-      return <span className="selected-participants hover-pointer" onClick={props.handleAddEvent}>Add an Event</span>;
+      return <span className="selected-participants hover-pointer" onClick={handleAddEvent}>Add an Event</span>;
     } else {
       return (
         <span className="selected-event-span">
-          <img className="selected-event hover-pointer" src={props.eventsUrls} alt={props.eventsLabel}/>
+          <img className="selected-event hover-pointer" onClick={handleAddEvent} src={props.eventsUrls} alt={props.eventsLabel}/>
+          <span className="selected-event-text" onClick={handleAddEvent}>{props.eventsLabel}</span>
         </span>
       );
     }
@@ -21,16 +29,16 @@ function AddParticipantsRender(props) {
 
         <div className="container add-field-container">
           <div className="add-field">
-            <img className="hover-pointer" onClick={props.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
+            <img className="hover-pointer" onClick={handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
             {createEventIcons()}
           </div>
           <div className="add-field">
-            <Participants setParticipantState={props.setParticipantState} handleAddNote={props.handleAddNote}/>
+            <Participants setParticipantState={props.setParticipantState} setPhase={props.setPhase}/>
           </div>
           <div className="add-field">
-            <img className="hover-pointer" onClick={props.handleAddNote} src="/images/ui-icons/add-detail.svg" alt="add detail" />
+            <img className="hover-pointer" onClick={handleAddNote} src="/images/ui-icons/add-detail.svg" alt="add detail" />
             {/* <span className="selected-participants">Add a note</span> */}
-            <span className="selected-participants hover-pointer" onClick={props.handleAddNote}>{props.entryState.note}</span>
+            <span className="selected-participants hover-pointer" onClick={handleAddNote}>{props.entryState.note}</span>
           </div>
         </div>
       </div>

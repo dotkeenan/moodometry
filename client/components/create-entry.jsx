@@ -33,9 +33,10 @@ class CreateEntry extends React.Component {
       }
     };
     this.handleClick = this.handleClick.bind(this);
-    this.handleAddEvent = this.handleAddEvent.bind(this);
-    this.handleAddParticipants = this.handleAddParticipants.bind(this);
-    this.handleAddNote = this.handleAddNote.bind(this);
+    // possibly useless now that I have setPhase
+    // this.handleAddEvent = this.handleAddEvent.bind(this);
+    // this.handleAddParticipants = this.handleAddParticipants.bind(this);
+    // this.handleAddNote = this.handleAddNote.bind(this);
     this.getMoods = this.getMoods.bind(this);
     this.setEventState = this.setEventState.bind(this);
     this.setParticipantState = this.setParticipantState.bind(this);
@@ -44,6 +45,7 @@ class CreateEntry extends React.Component {
     // this.setEventsUrls = this.setEventsUrls.bind(this);
     this.submitEntry = this.submitEntry.bind(this);
     this.setEventUrlAndLabel = this.setEventUrlAndLabel.bind(this);
+    this.setPhase = this.setPhase.bind(this);
   }
 
   handleClick() {
@@ -87,17 +89,21 @@ class CreateEntry extends React.Component {
       .catch(err => console.error(err));
   }
 
-  handleAddEvent() {
-    this.setState({ phase: 'addEvent' });
+  setPhase(phase) {
+    this.setState({ phase: phase });
   }
 
-  handleAddParticipants() {
-    this.setState({ phase: 'addParticipants' });
-  }
+  // handleAddEvent() {
+  //   this.setState({ phase: 'addEvent' });
+  // }
 
-  handleAddNote() {
-    this.setState({ phase: 'addNote' });
-  }
+  // handleAddParticipants() {
+  //   this.setState({ phase: 'addParticipants' });
+  // }
+
+  // handleAddNote() {
+  //   this.setState({ phase: 'addNote' });
+  // }
 
   getMoods() {
     fetch('/api/moods')
@@ -172,15 +178,17 @@ class CreateEntry extends React.Component {
         break;
       case 'eventDetails':
         renderedPhase = <EventDetailsRender
-          handleAddEvent={this.handleAddEvent}
-          handleAddParticipants={this.handleAddParticipants}
-          handleAddNote={this.handleAddNote} />;
+          // handleAddEvent={this.handleAddEvent}
+          // handleAddParticipants={this.handleAddParticipants}
+          // handleAddNote={this.handleAddNote}
+          setPhase={this.setPhase}/>;
         break;
       case 'addEvent':
         renderedPhase = <AddEventRender
           setEventState={this.setEventState}
-          handleAddParticipants={this.handleAddParticipants}
-          handleAddNote={this.handleAddNote}
+          // handleAddParticipants={this.handleAddParticipants}
+          // handleAddNote={this.handleAddNote}
+          setPhase={this.setPhase}
           // setEventsUrls={this.setEventsUrls}
           // setEventsLabel={this.setEventsLabel}
           setEventUrlAndLabel={this.setEventUrlAndLabel}
@@ -189,17 +197,20 @@ class CreateEntry extends React.Component {
         break;
       case 'addParticipants':
         renderedPhase = <AddParticipantsRender
-          handleAddEvent={this.handleAddEvent}
+          // handleAddEvent={this.handleAddEvent}
+          // handleAddNote={this.handleAddNote}
+          setPhase={this.setPhase}
           setParticipantState={this.setParticipantState}
-          handleAddNote={this.handleAddNote}
           entryState={this.state.entry}
-          eventsUrls={this.state.eventsUrls}/>;
+          eventsUrls={this.state.eventsUrls}
+          eventsLabel={this.state.eventsLabel} />;
         break;
       case 'addNote':
         renderedPhase = <AddNoteRender
-          handleAddEvent={this.handleAddEvent}
-          handleAddParticipants={this.handleAddParticipants}
-          handleAddNote={this.handleAddNote}
+          // handleAddEvent={this.handleAddEvent}
+          // handleAddParticipants={this.handleAddParticipants}
+          // handleAddNote={this.handleAddNote}
+          setPhase={this.setPhase}
           setNoteState={this.setNoteState}
           submitEntry={this.submitEntry}
           entryState={this.state.entry}

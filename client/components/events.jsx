@@ -43,8 +43,8 @@ class Events extends React.Component {
         eventsLabel: eventLabel
       });
     }
-    // find a way to untoggle selected event if clicking different one
-    // document.querySelectorAll('.invert-event').classList.remove('invert-event');
+    const allSvgs = document.querySelectorAll('.svg-icons');
+    allSvgs.forEach(svg => svg.classList.remove('invert-event'));
     event.target.classList.toggle('invert-event');
   }
 
@@ -52,7 +52,7 @@ class Events extends React.Component {
     this.props.setEventState(this.state.eventsId);
     // this.props.setEventsUrls(this.state.eventsUrls);
     this.props.setEventUrlAndLabel(this.state.eventsUrls, this.state.eventsLabel);
-    this.props.handleAddParticipants();
+    this.props.setPhase('addParticipants');
 
     event.preventDefault();
   }
