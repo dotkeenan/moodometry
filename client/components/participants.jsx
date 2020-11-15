@@ -16,7 +16,7 @@ class Participants extends React.Component {
 
   handleSubmit(event) {
     this.props.setParticipantState(this.state.participants);
-    this.props.handleAddNote();
+    this.props.setPhase('addNote');
     event.preventDefault();
   }
 
