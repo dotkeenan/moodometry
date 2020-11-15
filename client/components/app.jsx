@@ -4,7 +4,6 @@ import Header from './header';
 import EntryList from './entry-list';
 import Nav from './nav';
 import CreateEntry from './create-entry';
-import Journal from './journal';
 import Stats from './stats';
 import FilterEntry from './filter-entry';
 import HomePage from './homepage';
@@ -97,15 +96,27 @@ export default class App extends React.Component {
       );
     }
 
-    if (this.state.view.name === 'entries') {
-      view = <EntryList filterOptions={this.state.filterOptions} />;
-    } else if (this.state.view.name === 'createEntry') {
-      view = <CreateEntry setView={this.setView} />;
-    } else if (this.state.view.name === 'Journal') {
-      view = <Journal setView={this.setView} />;
-    } else if (this.state.view.name === 'stats') {
-      view = <Stats setView={this.setView} />;
+    switch (this.state.view.name) {
+      case 'entries':
+        view = <EntryList filterOptions={this.state.filterOptions} />;
+        break;
+      case 'journal':
+        view = <CreateEntry setView={this.setView} />;
+        break;
+      case 'stats':
+        view = <Stats setView={this.setView} />;
+        break;
     }
+    // convert to the above switch statement.
+    // if (this.state.view.name === 'entries') {
+    //   view = <EntryList filterOptions={this.state.filterOptions} />;
+    // } else if (this.state.view.name === 'createEntry') {
+    //   view = <CreateEntry setView={this.setView} />;
+    // } else if (this.state.view.name === 'Journal') {
+    //   view = <Journal setView={this.setView} />;
+    // } else if (this.state.view.name === 'stats') {
+    //   view = <Stats setView={this.setView} />;
+    // }
 
     return (
       <React.Fragment>

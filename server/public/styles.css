@@ -204,6 +204,10 @@ p {
   margin-right: 5px;
 }
 
+.add-field-container-start  {
+  margin-left: 20px;
+}
+
 .add-field-container  {
   margin-left: auto;
 }
