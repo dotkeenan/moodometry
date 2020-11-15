@@ -429,6 +429,15 @@ p {
   margin-top: 10px;
 }
 
+.modal-body-days {
+  display: flex;
+  justify-content: center;
+  margin-right: 15px;
+  padding: 0%;
+  padding-top: 5%;
+  margin-top: 10px;
+}
+
 @-webkit-keyframes animatetop {
   from {top:-300px; opacity:0}
   to {top:0; opacity:1}
@@ -444,11 +453,6 @@ h6 {
 
 /* this kind of has a weird interaction.  not sure if h6 is used anywhere
 other than the events choices */
-h6:hover {
-  background-color: #67d4d2 ;
-  border-radius: 10px;
-  padding: 3px;
-}
 
 .modal-title {
   color: #67D4D2 ;
@@ -478,12 +482,6 @@ h6:hover {
 .mood-modal {
   max-height: 35px;
   margin-left: 20px;
-}
-
-.mood-modal:hover {
-  background-color: #67d4d2 ;
-  border-radius: 10px;
-  padding: 3px;
 }
 
 .selected-filter {
@@ -528,7 +526,7 @@ h6:hover {
 }
 
 .clear-button {
-   background: none;
+  background: none;
 	color: inherit;
 	border: none;
 	padding: 0;

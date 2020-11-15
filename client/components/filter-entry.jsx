@@ -111,7 +111,7 @@ class FilterEntry extends React.Component {
                 <img onClick={e => this.handleClickMood(e, 4)} className={this.getMoodCss(4)} src="images/moods/frown-regular.svg" alt="frown" />
                 <img onClick={e => this.handleClickMood(e, 5)} className={this.getMoodCss(5)} src="images/moods/angry-regular.svg" alt="angry" />
               </div>
-              <div className="modal-body">
+              <div className="modal-body-days">
                 <h6 onClick={e => this.handleClickDow(e, 0)} className={this.getDowCss(0)}>sun</h6>
                 <h6 onClick={e => this.handleClickDow(e, 1)} className={this.getDowCss(1)}>mon</h6>
                 <h6 onClick={e => this.handleClickDow(e, 2)} className={this.getDowCss(2)}>tue</h6>
