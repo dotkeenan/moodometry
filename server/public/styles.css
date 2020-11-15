@@ -751,3 +751,13 @@ other than the events choices */
     opacity: 1;
   }
 }
+
+.filter-error-container {
+  height: 100vh;
+}
+
+.no-entries {
+  transform: translateY(-25%);
+  font-size: 2rem;
+  color: white;
+}

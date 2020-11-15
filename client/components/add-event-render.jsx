@@ -18,7 +18,6 @@ function AddEventRender(props) {
           <div className="add-field">
             <Events
               setEventState={props.setEventState}
-              setEventsUrls={props.setEventsUrls}
               setEventUrlAndLabel={props.setEventUrlAndLabel}
               // handleAddParticipants={props.handleAddParticipants}
               setPhase={props.setPhase}

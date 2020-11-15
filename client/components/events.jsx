@@ -43,8 +43,8 @@ class Events extends React.Component {
         eventsLabel: eventLabel
       });
     }
-    // find a way to untoggle selected event if clicking different one
-    // document.querySelectorAll('.invert-event').classList.remove('invert-event');
+    const allSvgs = document.querySelectorAll('.svg-icons');
+    allSvgs.forEach(svg => svg.classList.remove('invert-event'));
     event.target.classList.toggle('invert-event');
   }
 
