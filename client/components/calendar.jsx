@@ -16,62 +16,47 @@ class Calendar extends React.Component {
   }
 
   getStats() {
-    const request = async () => {
-      await fetch('/api/stats')
-        .then(result => {
-          return result.json();
-        })
-        .then(entries => {
-          const cop = [...entries];
-          const day = [];
-          const digitDay = [];
-          const moodUrl = [];
-          const month = [];
-          const mood = [];
-          const moodId = [];
+    fetch('/api/stats')
+      .then(result => {
+        return result.json();
+      })
+      .then(entries => {
+        const cop = [...entries];
+        const digitDay = [];
+        const moodUrl = [];
+        const mood = [];
+        for (var Z = 0; Z < cop.length; Z++) {
+          digitDay.push(cop[Z].digitDay);
+          moodUrl.push(cop[Z].moodUrl);
+          mood.push(cop[Z].mood);
+        }
+        const newMood = [];
+        for (var k = 0; k < mood.length; k++) {
+          newMood.push([mood[k]]);
+        }
 
-          for (var z = 0; z < cop.length; z++) {
-            day.push(cop[z].day);
-            digitDay.push(cop[z].digitDay);
-            moodUrl.push(cop[z].moodUrl);
-            month.push(cop[z].month);
-            mood.push(cop[z].mood);
-            moodId.push(cop[z].moodId);
-          }
+        const dayz = [];
+        for (var i = 0; i < digitDay.length; i++) {
+          const peep = parseInt(digitDay[i]);
+          dayz.push(peep);
+        }
 
-          const newMood = [];
+        const uniqueDayz = [...new Set(dayz)];
+        const uniqueMood = [...new Set(mood)];
+        var moodEmojeez = {};
+        dayz.forEach((key, i) => (moodEmojeez[key] = moodUrl[i]));
 
-          for (var k = 0; k < mood.length; k++) {
-            newMood.push([mood[k]]);
-          }
-
-          const dayz = [];
-          for (var i = 0; i < digitDay.length; i++) {
-            const peep = parseInt(digitDay[i]);
-            dayz.push(peep);
-          }
-          const uniqueDayz = [...new Set(dayz)];
-          const uniqueMood = [...new Set(mood)];
-
-          var moodEmojeez = {};
-          dayz.forEach((key, i) => (moodEmojeez[key] = moodUrl[i]));
-
-          this.setState({
-            render: true,
-            moodId,
-            mood,
-            day,
-            digitDay,
-            moodUrl,
-            month,
-            moodEmojeez: moodEmojeez,
-            uniqueDayz,
-            uniqueMood,
-            newMood
-          });
+        this.setState({
+          render: true,
+          mood,
+          digitDay,
+          moodUrl,
+          moodEmojeez: moodEmojeez,
+          uniqueDayz,
+          uniqueMood,
+          newMood
         });
-    };
-    request();
+      });
   }
 
   renderDay(day) {
