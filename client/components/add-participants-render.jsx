@@ -3,10 +3,10 @@ import Participants from './participants';
 
 function AddParticipantsRender(props) {
   function handleAddEvent() {
-    props.setPhase('addEvent');
+    props.setView('addEvent');
   }
   function handleAddNote() {
-    props.setPhase('addNote');
+    props.setView('addNote');
   }
 
   function createEventIcons() {
@@ -33,7 +33,7 @@ function AddParticipantsRender(props) {
             {createEventIcons()}
           </div>
           <div className="add-field">
-            <Participants setParticipantState={props.setParticipantState} setPhase={props.setPhase}/>
+            <Participants setParticipantState={props.setParticipantState} setView={props.setView}/>
           </div>
           <div className="add-field row align-items-start form-margin-fix">
             <img className="hover-pointer" onClick={handleAddNote} src="/images/ui-icons/add-detail.svg" alt="add detail" />

@@ -2,13 +2,13 @@ import React from 'react';
 
 function EventDetailsRender(props) {
   function handleAddEvent() {
-    props.setPhase('addEvent');
+    props.setView('addEvent');
   }
   function handleAddParticipants() {
-    props.setPhase('addParticipants');
+    props.setView('addParticipants');
   }
   function handleAddNote() {
-    props.setPhase('addNote');
+    props.setView('addNote');
   }
   return (
     <div className="container">

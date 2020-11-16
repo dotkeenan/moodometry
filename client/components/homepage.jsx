@@ -15,6 +15,7 @@ class HomePage extends React.Component {
 
   handleStartClick() {
     this.props.setView('entries');
+    this.props.setHeaderLabel('Entries');
   }
 
   render() {

@@ -3,10 +3,10 @@ import Events from './events';
 
 function AddEventRender(props) {
   function handleAddParticipants() {
-    props.setPhase('addParticipants');
+    props.setView('addParticipants');
   }
   function handleAddNote() {
-    props.setPhase('addNote');
+    props.setView('addNote');
   }
 
   return (
@@ -20,7 +20,7 @@ function AddEventRender(props) {
               setEventState={props.setEventState}
               setEventUrlAndLabel={props.setEventUrlAndLabel}
               // handleAddParticipants={props.handleAddParticipants}
-              setPhase={props.setPhase}
+              setView={props.setView}
             />
           </div>
           <div className="add-field row align-items-start form-margin-fix">

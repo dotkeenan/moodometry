@@ -63,16 +63,16 @@ class AddNoteRender extends React.Component {
   }
 
   handleNoteEdit() {
-    this.props.setPhase('addNote');
+    this.props.setView('addNote');
     this.setState({ isSubmitted: false });
   }
 
   handleAddEvent() {
-    this.props.setPhase('addEvent');
+    this.props.setView('addEvent');
   }
 
   handleAddParticipants() {
-    this.props.setPhase('addParticipants');
+    this.props.setView('addParticipants');
   }
 
   render() {
