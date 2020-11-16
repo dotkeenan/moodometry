@@ -51,18 +51,25 @@ class EntryList extends React.Component {
 
   render() {
     if (this.state.isloading) return <h1>Loading</h1>;
-    const renderEntries = this.createEntries();
-
-    return (
-      <div className="entry-list cutoff-fix">
-        <div className="container entry-container">
-          <div>
-            {renderEntries}
+    if (this.state.entries.length === 0) {
+      return (
+        <div>
+          <div className="d-flex justify-content-center align-items-center filter-error-container text-center">
+            <p className="col-10 no-entries">No entries with that filter combination</p>
           </div>
         </div>
-      </div>
-
-    );
+      );
+    } else {
+      return (
+        <div className="entry-list cutoff-fix">
+          <div className="container entry-container">
+            <div>
+              {this.createEntries()}
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 
 }

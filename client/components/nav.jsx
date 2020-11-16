@@ -2,11 +2,11 @@ import React from 'react';
 
 // possibly convert into a class since there will be lots of methods
 function Nav(props) {
-  function handleAddClick(e) {
-    props.setView('createEntry');
+  function handleAddClick() {
+    props.setView('journal');
   }
 
-  function handleHomeClick(e) {
+  function handleHomeClick() {
     props.setView('entries');
   }
 
@@ -14,31 +14,52 @@ function Nav(props) {
     props.setView('stats');
   }
 
+
   function handleCalendarClick() {
     props.setView('calendar');
   }
+  function handleChangeUserClick() {
+    props.setView('homepage');
+  }
+
   return (
     <React.Fragment>
       <div className="footer">
         <div className="nav nav-row">
           <div>
-            <img onClick={handleHomeClick} src="/images/ui-icons/home.svg" alt="home" />
+            <img
+              onClick={handleHomeClick}
+              className="menu-hover"
+              src="/images/ui-icons/home.svg"
+              alt="home" />
           </div>
           <div>
-            <img onClick={handleStatsClick} src="/images/ui-icons/stats.svg" alt="stats" />
+            <img
+              onClick={handleStatsClick}
+              className="menu-hover"
+              src="/images/ui-icons/stats.svg"
+              alt="stats" />
           </div>
-          <div onClick={handleAddClick} className="add-entry-button">
+
+          <div onClick={handleAddClick} className="add-entry-button menu-hover">
+
             <div className="button-icon">
               <img src="/images/ui-icons/add.svg" alt="add" />
             </div>
           </div>
-          <div onClick={handleCalendarClick} >
+
+          <div >
             <div>
-              <img src="/images/ui-icons/calendar.svg" alt="calendar" />
+              <img onClick={handleCalendarClick} className="menu-hover" src="/images/ui-icons/calendar.svg" alt="calendar" />
             </div>
+
           </div>
           <div>
-            <img src="/images/ui-icons/logout.svg" alt="logout" />
+            <img
+              onClick={handleChangeUserClick}
+              className="menu-hover"
+              src="/images/ui-icons/logout.svg"
+              alt="logout" />
           </div>
 
         </div>

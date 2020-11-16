@@ -176,6 +176,10 @@ p {
   box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.25);
 }
 
+.menu-hover {
+  cursor: pointer;
+}
+
 /*--------*/
 
 
@@ -204,6 +208,10 @@ p {
   margin-right: 5px;
 }
 
+.add-field-container-start  {
+  margin-left: 20px;
+}
+
 .add-field-container  {
   margin-left: auto;
 }
@@ -218,6 +226,10 @@ p {
   color: white;
   font-size: 1.25rem;
   margin-left: 20px;
+}
+
+.form-margin-fix  {
+  margin-left: 0px;
 }
 
 .hover-pointer:hover{
@@ -381,14 +393,6 @@ p {
   font-size: .8rem;
 }
 
-/* h6 {
-  margin-left: 10px;
-} */
-
-.first-category-container {
-
-}
-
 .category-container {
   margin-top: 10px;
 }
@@ -401,18 +405,12 @@ p {
   border-bottom: 1px dashed rgb(226, 226, 226);
 }
 
-.category-row {
-  /* margin-left: 10px; */
-}
-
 .check-container {
   display: flex;
   justify-content: center;
   margin-top: 20px;
   padding-bottom: 15px;
 }
-
-
 
 /* Modal styling */
 
@@ -429,17 +427,30 @@ p {
   margin-top: 10px;
 }
 
+.modal-body-days {
+  display: flex;
+  justify-content: center;
+  margin-right: 15px;
+  padding: 0%;
+  padding-top: 5%;
+  margin-top: 10px;
+}
+
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
 h6 {
   margin-left: 15px;
 }
 
 /* this kind of has a weird interaction.  not sure if h6 is used anywhere
 other than the events choices */
-/* h6:hover {
-  background-color: #67d4d2 ;
-  border-radius: 10px;
-  padding: 3px;
-} */
 
 .modal-title {
   color: #67D4D2 ;
@@ -471,24 +482,37 @@ other than the events choices */
   margin-left: 20px;
 }
 
-.mood-modal:hover {
-  background-color: #67d4d2 ;
-  border-radius: 10px;
-  padding: 3px;
+.selected-filter {
+  border: solid 2px #67d4d2;
+  border-radius: 20px;
+  padding: 5px;
 }
 
 .modal-container {
   margin-top: 20px;
-  display: flex;
-  justify-content: center;
   position: absolute;
   left: 5%;
-  top: 25%;
+  top: 5%;
   z-index: 1;
   -moz-border-radius: 6px 6px 6px 6px;
   -webkit-border-radius: 6px;
   border-radius: 6px 6px 6px 6px;
+  overflow: hidden;
+  position:fixed;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.8s
+}
 
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {bottom:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {bottom:0; opacity:1}
 }
 
 .select-modal  {
@@ -497,6 +521,16 @@ other than the events choices */
   border-radius: 20px;
   background-color: white;
   outline: none;
+}
+
+.clear-button {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }
 
 /* -------- */
@@ -516,9 +550,22 @@ other than the events choices */
   filter: invert(1);
 }
 
-.selected-event-span, .selected-participants, .selected-note{
- margin-left: 20px
+.selected-event-text  {
+  margin-left: 20px;
+  color: white;
+  font-size: 1.5rem;
 }
+
+.selected-event-span, .margin-left-10{
+ margin-left: 10px
+}
+
+.submitted-block {
+  max-width: 75%;
+  display: inline-block;
+  margin-left: 10px;
+}
+
 
 .selected-participants, .selected-note  {
   max-width: 70%;
@@ -549,6 +596,183 @@ other than the events choices */
   color: black;
   border: 2px solid white;
 }
-.calendar-body {
+
+
+/*   home page      */
+.homepage-container {
+  height: 100vh;
+  background-image: url('/images/photos/background-image-bw-scaled.jpg');
+  /* filter: grayscale(100%); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.homepage-elements  {
+  height: 100%;
+  opacity: 100%;
+  z-index: 100;
+}
+
+.logo-container {
+  margin-top: 25%;
+}
+.app-name-container {
+  z-index: 100;
+  margin-top: 10%;
+}
+
+.start-button-container {
+  z-index: 100;
+  margin-top: 50%;
+}
+
+.start-button {
+  width: 140px;
+  height: 55px;
+  font-size: 1.25rem;
+  border-radius: 15px;
+}
+
+.start-button:hover {
+  cursor: pointer;
+}
+
+.logo-background {
+  z-index: 100;
+  width: 150px;
+  height: 150px;
+  background-image: url('/images/photos/logo-background.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}
+
+.home-overlay {
+  position:fixed;
+  height: 100%;
+  width: 100%;
+  background-color: #67D4D2;
+  z-index: 0;
+  opacity: 80%;
+}
+
+/* Logo animation */
+.logo {
+  width: 20%;
+  transform: scale(1);
+}
+
+.logo-animate {
+  animation-name: grow;
+  animation-duration: 800ms;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  animation-play-state: running;
+  animation-fill-mode: forwards;
+}
+
+@keyframes grow {
+  0%  {
+    transform: scale(0);
+  }
+  70%  {
+    transform: scale(1.5);
+  }
+  80%  {
+    transform: scale(.75);
+  }
+  90%  {
+    transform: scale(1.15);
+  }
+  100%  {
+    transform: scale(1);
+  }
+}
+
+.heading-content-animation {
+  animation: animationFrames linear 0.8s;
+  animation-iteration-count: 1;
+  animation-delay: 800ms;
+  transform-origin: 50% 50%;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes animationFrames{
+  0% {
+    transform:  translate(0px,-50px);
+    opacity: 0;
+  }
+  15% {
+    transform:  translate(0px,-25px);
+  }
+  30% {
+    transform:  translate(0px,0px);
+  }
+  45% {
+    transform:  translate(0px,-15px);
+    opacity: 1;
+  }
+  60% {
+    transform:  translate(0px,0px);
+    opacity: 1;
+  }
+  75% {
+    transform:  translate(0px,-5px);
+    opacity: 1;
+  }
+  100% {
+    transform:  translate(0px,0px);
+    opacity: 1;
+  }
+}
+
+.button-content-animation {
+  animation: animationFrames linear 0.8s;
+  animation-iteration-count: 1;
+  animation-delay: 1200ms;
+  transform-origin: 50% 50%;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes animationFrames{
+  0% {
+    transform:  translate(0px,-50px);
+    opacity: 0;
+  }
+  15% {
+    transform:  translate(0px,-25px);
+  }
+  30% {
+    transform:  translate(0px,0px);
+  }
+  45% {
+    transform:  translate(0px,-15px);
+    opacity: 1;
+  }
+  60% {
+    transform:  translate(0px,0px);
+    opacity: 1;
+  }
+  75% {
+    transform:  translate(0px,-5px);
+    opacity: 1;
+  }
+  100% {
+    transform:  translate(0px,0px);
+    opacity: 1;
+  }
+}
+
+.filter-error-container {
+  height: 100vh;
+}
+
+.no-entries {
+  transform: translateY(-25%);
+  font-size: 2rem;
+  color: white;
 
 }

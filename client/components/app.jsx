@@ -4,18 +4,19 @@ import Header from './header';
 import EntryList from './entry-list';
 import Nav from './nav';
 import CreateEntry from './create-entry';
-import Journal from './journal';
 import Stats from './stats';
 import Calendar from './calendar';
 import FilterEntry from './filter-entry';
+import HomePage from './homepage';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'entries'
+        name: 'homepage'
       },
+      // useless i think. this was before and goes along with addEntry
       entries: [],
       filterModal: false,
       filterOptions: {
@@ -28,7 +29,8 @@ export default class App extends React.Component {
       // isLoading: true
       // createdEntry: {};
     };
-    this.addEntry = this.addEntry.bind(this);
+    // useless i believe
+    // this.addEntry = this.addEntry.bind(this);
     this.setView = this.setView.bind(this);
 
     this.displayModal = this.displayModal.bind(this);
@@ -50,22 +52,23 @@ export default class App extends React.Component {
     //   .finally(() => this.setState({ isLoading: false }));
   }
 
-  // way to get the data from the the entry form
-  addEntry(entry) {
-    const reqOptions = {
-      method: 'POST',
-      body: JSON.stringify(entry),
-      headers: { 'Content-Type': 'application/json' }
-    };
-    fetch('/api/entries', reqOptions)
-      .then(result => result.json())
-      .then(result => {
-        const updatedEntries = this.state.entries.slice();
-        updatedEntries.push(result);
-        this.setState({ entries: updatedEntries });
-      })
-      .catch(err => console.error(err));
-  }
+  // I believe this is completely useless and I wrote it very early on,
+  // but I actually made another one in entry-list.jsx
+  // addEntry(entry) {
+  //   const reqOptions = {
+  //     method: 'POST',
+  //     body: JSON.stringify(entry),
+  //     headers: { 'Content-Type': 'application/json' }
+  //   };
+  //   fetch('/api/entries', reqOptions)
+  //     .then(result => result.json())
+  //     .then(result => {
+  //       const updatedEntries = this.state.entries.slice();
+  //       updatedEntries.push(result);
+  //       this.setState({ entries: updatedEntries });
+  //     })
+  //     .catch(err => console.error(err));
+  // }
 
   setView(name) {
     this.setState({
@@ -90,24 +93,43 @@ export default class App extends React.Component {
 
   render() {
     let view = null;
-    if (this.state.view.name === 'entries') {
-      view = <EntryList filterOptions={this.state.filterOptions} />;
-    } else if (this.state.view.name === 'createEntry') {
-      view = <CreateEntry setView={this.setView} />;
-    } else if (this.state.view.name === 'Journal') {
-      view = <Journal setView={this.setView} />;
-    } else if (this.state.view.name === 'stats') {
-      view = <Stats setView={this.setView} />;
-    } else if (this.state.view.name === 'calendar') {
-      view = <Calendar setView={this.setView} />;
+
+    if (this.state.view.name === 'homepage') {
+      return (
+        <HomePage setView={this.setView}/>
+      );
     }
+
+    switch (this.state.view.name) {
+      case 'entries':
+        view = <EntryList filterOptions={this.state.filterOptions} />;
+        break;
+      case 'journal':
+        view = <CreateEntry setView={this.setView} />;
+        break;
+      case 'stats':
+        view = <Stats setView={this.setView} />;
+        break;
+       case 'calendar':
+        view = <Calendar setView={this.setView} />;
+       break;
+    }
+    // convert to the above switch statement.
+    // if (this.state.view.name === 'entries') {
+    //   view = <EntryList filterOptions={this.state.filterOptions} />;
+    // } else if (this.state.view.name === 'createEntry') {
+    //   view = <CreateEntry setView={this.setView} />;
+    // } else if (this.state.view.name === 'Journal') {
+    //   view = <Journal setView={this.setView} />;
+    // } else if (this.state.view.name === 'stats') {
+    //   view = <Stats setView={this.setView} />;
+    // }
 
     return (
       <React.Fragment>
 
         <Header displayModal={this.displayModal} name={this.state.view.name} />
         {view}
-
         <FilterEntry showModal={this.state.filterModal} setFilterOptions={this.setFilterOptions} />
         <Nav setView={this.setView} />
 
@@ -116,3 +138,9 @@ export default class App extends React.Component {
     );
   }
 }
+
+/*
+if (this.state.view.name === 'homepage') {
+      view = <HomePage />;
+    } else
+*/
