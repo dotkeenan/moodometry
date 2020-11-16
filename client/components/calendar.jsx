@@ -77,8 +77,7 @@ class Calendar extends React.Component {
   renderDay(day) {
     let moods;
     if (!this.state.moodEmojeez) {
-      moods = {
-      };
+      moods = {};
     } else {
       var dayKey = this.state.uniqueDayz;
       var obj = {};

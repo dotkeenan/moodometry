@@ -63,8 +63,9 @@ body {
 
 .stats-container {
   height: 80vh;
-  width: 100vw;
+  width: 90vw;
 }
+
 /* Card Item  */
 
 .entry-list-item-mood {
