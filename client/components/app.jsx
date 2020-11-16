@@ -1,14 +1,11 @@
 import React from 'react';
-
 import Header from './header';
 import EntryList from './entry-list';
 import Nav from './nav';
-// import CreateEntry from './create-entry';
 import Stats from './stats';
 import Calendar from './calendar';
 import FilterEntry from './filter-entry';
 import HomePage from './homepage';
-// create entry stuff
 import TimeAndMood from './time-and-mood';
 import EventDetailsRender from './event-details.render';
 import AddEventRender from './add-event-render';
@@ -22,9 +19,7 @@ export default class App extends React.Component {
       view: {
         name: 'homepage'
       },
-      // useless i think. this was before and goes along with addEntry
       headerLabel: 'Entries',
-      entries: [],
       filterModal: false,
       filterOptions: {
         moodId: '',
@@ -32,7 +27,6 @@ export default class App extends React.Component {
         dowId: '',
         sort: 'DESC'
       },
-      // create-entry stuff
       moods: [],
       eventsUrls: '',
       eventsLabel: '',
@@ -45,10 +39,8 @@ export default class App extends React.Component {
       }
     };
     this.setView = this.setView.bind(this);
-
     this.displayModal = this.displayModal.bind(this);
     this.setFilterOptions = this.setFilterOptions.bind(this);
-    // create entry stuff
     this.handleClick = this.handleClick.bind(this);
     this.getMoods = this.getMoods.bind(this);
     this.setEventState = this.setEventState.bind(this);
@@ -59,7 +51,6 @@ export default class App extends React.Component {
     this.setEventUrlAndLabel = this.setEventUrlAndLabel.bind(this);
     this.resetForm = this.resetForm.bind(this);
     this.setHeaderLabel = this.setHeaderLabel.bind(this);
-    // this.setPhase = this.setPhase.bind(this);
   }
 
   setHeaderLabel(label) {
@@ -81,8 +72,6 @@ export default class App extends React.Component {
   }
 
   setFilterOptions(filterOptions) {
-    // let newFilterOptions = {...this.state.filterOptions};
-
     this.setState({
       filterOptions: filterOptions,
       filterModal: false
@@ -250,20 +239,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-/*
-if (this.state.view.name === 'homepage') {
-      view = <HomePage />;
-    } else
-*/
-
-// convert to the above switch statement.
-// if (this.state.view.name === 'entries') {
-//   view = <EntryList filterOptions={this.state.filterOptions} />;
-// } else if (this.state.view.name === 'createEntry') {
-//   view = <CreateEntry setView={this.setView} />;
-// } else if (this.state.view.name === 'Journal') {
-//   view = <Journal setView={this.setView} />;
-// } else if (this.state.view.name === 'stats') {
-//   view = <Stats setView={this.setView} />;
-// }

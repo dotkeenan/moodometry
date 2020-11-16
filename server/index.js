@@ -36,7 +36,6 @@ app.get('/api/entries/dow/:dowId', (req, res, next) => {
     'select * from "entries"';
   db.query(sql)
     .then(result => {
-      // Iterate thru the results
       const filteredResult = result.rows.filter(row => {
         const rowDate = row.time;
         return rowDate.getDay().toString() === req.params.dowId;
@@ -47,7 +46,6 @@ app.get('/api/entries/dow/:dowId', (req, res, next) => {
 });
 
 app.get('/api/entries/search', (req, res, next) => {
-  // using query parameters to filter out the entries by specfic filters on the modal
   const values = [];
   let parameterPosition = 1;
 
@@ -88,10 +86,6 @@ app.get('/api/entries/search', (req, res, next) => {
       sql += ' order by "time" DESC';
     }
   }
-
-  // console.log(parameterPosition);
-  // console.log(sql);
-  // console.log(values);
 
   db.query(sql, values)
     .then(result => {
@@ -256,7 +250,6 @@ app.get('/api/entries', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// endpoint to get all social icons
 app.get('/api/events/social', (req, res, next) => {
   const sql = `
     select "events"."label",
@@ -273,7 +266,6 @@ app.get('/api/events/social', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// endpoint to get all hobby icons
 app.get('/api/events/hobbies', (req, res, next) => {
   const sql = `
     select "events"."label",
@@ -290,7 +282,6 @@ app.get('/api/events/hobbies', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// endpoint to get all hobby icons
 app.get('/api/events/productivity', (req, res, next) => {
   const sql = `
     select "events"."label",
@@ -307,7 +298,6 @@ app.get('/api/events/productivity', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// endpoint to get all hobby icons
 app.get('/api/events/chores', (req, res, next) => {
   const sql = `
     select "events"."label",
@@ -324,7 +314,6 @@ app.get('/api/events/chores', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// endpoint to get all moods
 app.get('/api/moods', (req, res, next) => {
   const sql = `
     select *
@@ -343,7 +332,6 @@ app.delete('/api/entries/:entryId', (req, res, next) => {
   db.query(sql)
     .then(result => {
       res.status(204).json({
-        // status: `deleted entryId #${req.params.entryId}`
       });
     })
     .catch(err => next(err));

@@ -50,25 +50,3 @@ class HomePage extends React.Component {
 }
 
 export default HomePage;
-
-// function HomePage() {
-//   return (
-//     <div className="home-body">
-//       <div className="container homepage-container">
-//         <div className="flex-column homepage-elements justify-content-center">
-//           <div className="row justify-content-center">
-//             <div className="logo-background row justify-content-center">
-//               <img src="/images/photos/logo-letter.svg" alt="logo letter" />
-//             </div>
-//           </div>
-//           <div className="col-12 text-center">
-//             <h1 className="text-light">Moodometry</h1>
-//           </div>
-//           <div className="col-12 text-center">
-//             <button className="btn btn-dark">Start</button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
