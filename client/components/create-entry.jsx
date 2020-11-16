@@ -17,7 +17,7 @@ class CreateEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      phase: 'addNote',
+      phase: 'timeAndMood',
       moods: [],
       // experimental turned into empty string rather than array
       eventsUrls: '',
@@ -194,7 +194,7 @@ class CreateEntry extends React.Component {
           setParticipantState={this.setParticipantState}
           handleAddNote={this.handleAddNote}
           entryState={this.state.entry}
-          eventsUrls={this.state.eventsUrls}/>;
+          eventsUrls={this.state.eventsUrls} />;
         break;
       case 'addNote':
         renderedPhase = <AddNoteRender
@@ -207,7 +207,7 @@ class CreateEntry extends React.Component {
           eventsLabel={this.state.eventsLabel}
           eventsUrls={this.state.eventsUrls}
 
-          // setView={this.props.setView}
+        // setView={this.props.setView}
         />;
         break;
 

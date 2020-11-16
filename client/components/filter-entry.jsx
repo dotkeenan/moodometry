@@ -30,10 +30,7 @@ class FilterEntry extends React.Component {
   }
 
   handleClickEvent(e) {
-    console.log(e.target.value);
-
     var selectedEvent = this.state.filterEvents.filter(item => item.label === e.target.value);
-    console.log(selectedEvent);
     const newFilterOptions = { ...this.state.filterOptions };
     newFilterOptions.eventId = (this.state.filterOptions.eventId === selectedEvent[0].eventsId ? '' : (selectedEvent[0].eventsId));
     this.setState({ filterOptions: newFilterOptions });
@@ -47,7 +44,6 @@ class FilterEntry extends React.Component {
     fetch('/api/events')
       .then(result => result.json())
       .then(events => {
-        console.log(events);
         this.setState({
           filterEvents: events
         });
@@ -88,7 +84,7 @@ class FilterEntry extends React.Component {
               <h4 className="drop-title">Events</h4>
               <div className="modal-body">
                 <form>
-                  <select onChange={e => this.handleClickEvent(e)} className="select-modal" name = "dropdown">
+                  <select onChange={e => this.handleClickEvent(e)} className="select-modal" name="dropdown">
                     {optionItems}
                   </select>
                 </form>

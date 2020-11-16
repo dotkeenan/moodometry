@@ -13,29 +13,30 @@ function Nav(props) {
   function handleStatsClick() {
     props.setView('stats');
   }
+
+  function handleCalendarClick() {
+    props.setView('calendar');
+  }
   return (
     <React.Fragment>
       <div className="footer">
         <div className="nav nav-row">
-
           <div>
             <img onClick={handleHomeClick} src="/images/ui-icons/home.svg" alt="home" />
           </div>
-
           <div>
             <img onClick={handleStatsClick} src="/images/ui-icons/stats.svg" alt="stats" />
           </div>
-
           <div onClick={handleAddClick} className="add-entry-button">
             <div className="button-icon">
               <img src="/images/ui-icons/add.svg" alt="add" />
             </div>
           </div>
-
-          <div>
-            <img src="/images/ui-icons/calendar.svg" alt="calendar" />
+          <div onClick={handleCalendarClick} >
+            <div>
+              <img src="/images/ui-icons/calendar.svg" alt="calendar" />
+            </div>
           </div>
-
           <div>
             <img src="/images/ui-icons/logout.svg" alt="logout" />
           </div>

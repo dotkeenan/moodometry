@@ -127,7 +127,7 @@ class Stats extends React.Component {
       ]
     };
     return (
-      <div div className="stats-container container d-flex flex-column justify-content-around" >
+      <div className="stats-container container d-flex flex-column justify-content-around" >
         <Doughnut
           data={moodGRAFz}
           options={{

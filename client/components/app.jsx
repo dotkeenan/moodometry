@@ -6,6 +6,7 @@ import Nav from './nav';
 import CreateEntry from './create-entry';
 import Journal from './journal';
 import Stats from './stats';
+import Calendar from './calendar';
 import FilterEntry from './filter-entry';
 
 export default class App extends React.Component {
@@ -97,6 +98,8 @@ export default class App extends React.Component {
       view = <Journal setView={this.setView} />;
     } else if (this.state.view.name === 'stats') {
       view = <Stats setView={this.setView} />;
+    } else if (this.state.view.name === 'calendar') {
+      view = <Calendar setView={this.setView} />;
     }
 
     return (
