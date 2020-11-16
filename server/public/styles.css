@@ -574,6 +574,39 @@ h6 {
   border: 2px solid white;
 }
 
+/* calendar */
+.ecstatic {
+  background-image: url("/images/moods/laugh-beam-regular.svg");
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 35px;
+
+}
+.happy {
+  background-image: url("/images/moods/smile-regular.svg");
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 35px;
+}
+.meh {
+  background-image: url("/images/moods/meh-regular.svg");
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 35px;
+}
+.bad {
+  background-image: url("/images/moods/frown-regular.svg");
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 35px;
+}
+.terrible {
+  background-image: url("/images/moods/angry-regular.svg");
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 35px;
+}
+
 
 /*   home page      */
 .homepage-container {
