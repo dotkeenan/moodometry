@@ -1,5 +1,5 @@
 import React from 'react';
-import { HorizontalBar, Doughnut } from 'react-chartjs-2';
+import { Bar, Doughnut } from 'react-chartjs-2';
 
 class Stats extends React.Component {
   constructor(props) {
@@ -82,6 +82,7 @@ class Stats extends React.Component {
   render() {
     var moodGRAFz = {
       labels: this.state.uniqueMood,
+      aspectRatio: 1,
       datasets: [
         {
           label: 'Mood Count',
@@ -107,34 +108,51 @@ class Stats extends React.Component {
       labels: this.state.uniqueEvent,
       datasets: [
         {
-          type: 'horizontalBar',
+          type: 'bar',
           backgroundColor: [
-            '#FFB800',
-            '#24FF00',
-            '#414141',
-            '#3A89FF',
-            '#FF0000'
+            '#FFFFFF',
+            '#FFFFFF',
+            '#FFFFFF',
+            '#FFFFFF',
+            '#FFFFFF',
+            '#FFFFFF',
+            '#FFFFFF',
+            '#FFFFFF',
+            '#FFFFFF',
+            '#FFFFFF',
+            '#FFFFFF',
+            '#FFFFFF'
           ],
           hoverBackgroundColor: [
-            '#B28100',
-            '#0F6900',
-            '#0F0F0F',
-            '#1C4F9A',
-            '#AF0000'
+            'rgba(255, 255, 255, 0.466)',
+            'rgba(255, 255, 255, 0.466)',
+            'rgba(255, 255, 255, 0.466)',
+            'rgba(255, 255, 255, 0.466)',
+            'rgba(255, 255, 255, 0.466)',
+            'rgba(255, 255, 255, 0.466)',
+            'rgba(255, 255, 255, 0.466)',
+            'rgba(255, 255, 255, 0.466)',
+            'rgba(255, 255, 255, 0.466)',
+            'rgba(255, 255, 255, 0.466)',
+            'rgba(255, 255, 255, 0.466)',
+            'rgba(255, 255, 255, 0.466)'
+
           ],
           data: this.state.eventIdCount
         }
       ]
     };
     return (
-      <div className="stats-container container d-flex flex-column justify-content-around" >
+      <div className="stats-container d-flex flex-column justify-content-around align-items-center" >
         <Doughnut
           data={moodGRAFz}
           options={{
             title: {
               display: true,
               text: 'Mood Count',
-              fontSize: 32
+              fontSize: 24,
+              fontColor: '#FFFFFF',
+              aspectRatio: 1
             },
             legend: {
               display: true,
@@ -142,14 +160,16 @@ class Stats extends React.Component {
             }
           }}
         />
-        <HorizontalBar
+        <Bar
           data={eventGRAFz}
           options={{
             title: {
               display: true,
               text: 'Event Count',
-              fontSize: 32
+              fontSize: 24,
+              fontColor: '#FFFFFF'
             },
+            aspectRatio: 1,
             legend: {
               display: false
             }
