@@ -229,7 +229,36 @@ ALTER TABLE ONLY public.moods ALTER COLUMN "moodId" SET DEFAULT nextval('public.
 --
 
 COPY public.entries ("entryId", "moodId", "eventsId", note, participants, "time") FROM stdin;
-1	3	8	I am coding and stretching and feeling meh	zack	2020-11-10 22:51:34.451572-08
+86	1	1	Went out to coffee with Zack and he just told me about this new app called Moodometry.  He said it's a great way to track your daily moods and activities	Zack	2020-11-01 12:25:15.367456-08
+87	2	6	Grabbed some drinks with Austin and showed him Moodometry.  He was looking for something just like this.	Austin	2020-11-01 18:45:15.367456-08
+88	4	11	Man... Drank too much with Austin last night... I guess I made a huge feast last night and left a mess	Me	2020-11-02 09:30:15.367456-08
+89	3	7	Feeling pretty hungover still, but I gotta work on this crazy ass Wicked Sales project... It's gonna be rough	Me	2020-11-02 13:11:15.367456-08
+90	2	8	Was struggling with Wicked Sales.  I hit up Tim for help, but he was playing Smash.  Jk he helped me out	Tim	2020-11-03 13:15:47.367456-08
+91	1	9	Decided to take a break from coding and learn how to use Ableton from Austin during lunch	Austin	2020-11-04 13:30:47.367456-08
+92	1	8	Back on the grind.  Troubleshooting our Wicked Sales Code with Austin and Zack in Google Meets	Zack, Austin	2020-11-04 17:07:47.367456-08
+93	5	7	My neck is killing me.  I'm not sure if I slept on it wrong or I'm stressed out... or both	Me	2020-11-05 08:27:47.367456-08
+94	2	4	It's Fridayyy thennn~ It's Saturday, Sunday, WHAT?!  Goin snowboarding with the fam!	Me, Dad, Jake, Blake	2020-11-06 04:59:47.367456-08
+95	3	10	Haven't done laundry in a month.  Someone forgot about their clothes and its all mildewy	Me, Bad Roommate	2020-11-07 11:37:47.367456-08
+96	4	5	Lost my team the round by a shoulder peeking awper during a lag spike.	Me, bad internet	2020-11-08 20:09:47.367456-08
+97	3	8	Back on the coding grind.  Why is backend so confusing...  This is for some nerds!	LFZ Crew	2020-11-09 10:05:47.367456-08
+98	5	7	My UberEats came and I asked for no cheese in my crunchwrap supreme cause I have IBS, but they put it in and now I'm paying the price	Me, TacoBell	2020-11-09 12:59:47.367456-08
+99	2	1	Can't have enough coffee.  Decided to re-energize and meet up with Scott at Starbucks for some social distanced coffee convos	Scott	2020-11-09 18:19:47.367456-08
+100	3	2	Crazy roommate came in with a White Claw and said whoever finishes last has to buy the next pack.  It's not even noon...	Eddy	2020-11-10 11:23:47.367456-08
+101	4	11	My sister came to visit with her dog Mochi and he $#!* on the rug!	Ronnie, Mochi	2020-11-10 14:14:47.367456-08
+102	5	12	My roommate threw a dinner party and left all the dishes and trash out, then went out of town... sick bro.  What a Chad.	Chad	2020-11-11 08:13:47.367456-08
+103	1	1	Nothin' like a fresh pot of coffee!~	Me	2020-11-11 17:39:47.367456-08
+104	2	8	Burnin' the midnight oil tonight.  Gotta finish this feature up!	Me	2020-11-11 23:39:47.367456-08
+105	1	8	Senior project timeee, oh lawd.  Figma, we meet again...	Me	2020-11-10 10:39:47.367456-08
+106	3	9	I spent a long time on this beat and then Austin told me it's straight CHEEKZ	Austin, My destroyed ego	2020-11-09 10:11:47.367456-08
+107	1	3	Got a lunch date with a Michelle.  We met through a mutual friend at a get-together, hope it goes well!	Michelle	2020-11-12 10:11:47.367456-08
+108	4	3	Got back from the disaster of a date.  Things were going well but then she told me she uses spaces instead of tabs.  Deleting her number	Michelle	2020-11-12 10:13:13.367456-08
+109	2	3	Michelle realized told me she see's why I think tabs are supreme, and she said she's gonna make a macro that uses tab instead of space.	Michelle	2020-11-12 15:29:13.367456-08
+110	3	10	I guess it's about time to do something about this heaping pile of dirty underwear... or flip em' inside out? hmm	Me	2020-11-13 09:29:13.367456-08
+111	1	4	Found out Jason and Zack are into snowboarding! We boutta be shred buddies!  ;)	Zack, Jason	2020-11-13 20:00:13.367456-08
+112	2	6	I'm really tired, but John just came home super drunk and is making me drink with him	John	2020-11-13 23:22:13.367456-08
+113	3	7	Our fridge just broke down and we're too cheap to get someone to fix it... We're all on Reddit and Youtube trying to find a way	John, Eddy, Melissa	2020-11-14 09:50:13.367456-08
+114	5	8	Uh oh, isn't our Senior Project due tomorrow?  Why did I spend the whole weekend fixing fridges and drinking?	Me, Zack, Austin	2020-11-15 11:45:13.367456-08
+115	1	5	Been a while since I fragged with the boys.  Got my gaming socks on.  Apex Legends let's goooo!	Me, Jon, Tyler, Alex, Tom	2020-11-14 21:31:13.367456-08
 \.
 
 
@@ -282,7 +311,7 @@ COPY public.moods ("moodId", label, "imageUrl") FROM stdin;
 -- Name: entries_entryId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."entries_entryId_seq"', 1, true);
+SELECT pg_catalog.setval('public."entries_entryId_seq"', 115, true);
 
 
 --
