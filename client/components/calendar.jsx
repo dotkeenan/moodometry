@@ -99,13 +99,13 @@ class Calendar extends React.Component {
       width: 30,
       position: 'relative'
     };
+
     return (
       <div style={cellStyle}>
         <div style={dateStyle}>{date}</div>
         {moods[date] &&
           moods[date].map((name, i) => (
-            <div key={i}>
-              <img src={'/images/moods/laugh-beam-regular.svg'}></img>{name}
+            <div key={i} className={name}>
             </div>
           ))}
       </div>
@@ -117,7 +117,7 @@ class Calendar extends React.Component {
       <>
         <div className="calendar-body">
           <DayPicker
-            canChangeMonth={false}
+            canChangeMonth={true}
             renderDay={this.renderDay}
           />
         </div>
