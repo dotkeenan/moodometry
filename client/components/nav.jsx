@@ -18,6 +18,9 @@ function Nav(props) {
     props.setHeaderLabel('Stats');
   }
 
+  function handleCalendarClick() {
+    props.setView('calendar');
+  }
   function handleChangeUserClick() {
     props.setView('homepage');
     props.setHeaderLabel('Home');
@@ -27,7 +30,6 @@ function Nav(props) {
     <React.Fragment>
       <div className="footer">
         <div className="nav nav-row">
-
           <div>
             <img
               onClick={handleHomeClick}
@@ -35,7 +37,6 @@ function Nav(props) {
               src="/images/ui-icons/home.svg"
               alt="home" />
           </div>
-
           <div>
             <img
               onClick={handleStatsClick}
@@ -45,18 +46,18 @@ function Nav(props) {
           </div>
 
           <div onClick={handleAddClick} className="add-entry-button menu-hover">
+
             <div className="button-icon">
               <img src="/images/ui-icons/add.svg" alt="add" />
             </div>
           </div>
 
-          <div>
-            <img
-              className="menu-hover"
-              src="/images/ui-icons/calendar.svg"
-              alt="calendar" />
-          </div>
+          <div >
+            <div>
+              <img onClick={handleCalendarClick} className="menu-hover" src="/images/ui-icons/calendar.svg" alt="calendar" />
+            </div>
 
+          </div>
           <div>
             <img
               onClick={handleChangeUserClick}

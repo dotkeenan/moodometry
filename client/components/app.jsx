@@ -5,6 +5,7 @@ import EntryList from './entry-list';
 import Nav from './nav';
 // import CreateEntry from './create-entry';
 import Stats from './stats';
+import Calendar from './calendar';
 import FilterEntry from './filter-entry';
 import HomePage from './homepage';
 // create entry stuff
@@ -197,6 +198,9 @@ export default class App extends React.Component {
         break;
       case 'stats':
         view = <Stats setView={this.setView} />;
+        break;
+      case 'calendar':
+        view = <Calendar setView={this.setView} />;
         break;
       case 'timeAndMood':
         view = <TimeAndMood createMoods={this.createMoods} entry={this.state.entry} />;
