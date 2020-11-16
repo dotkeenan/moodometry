@@ -22,6 +22,7 @@ export default class App extends React.Component {
         name: 'homepage'
       },
       // useless i think. this was before and goes along with addEntry
+      headerLabel: 'Entries',
       entries: [],
       filterModal: false,
       filterOptions: {
@@ -56,7 +57,14 @@ export default class App extends React.Component {
     this.submitEntry = this.submitEntry.bind(this);
     this.setEventUrlAndLabel = this.setEventUrlAndLabel.bind(this);
     this.resetForm = this.resetForm.bind(this);
+    this.setHeaderLabel = this.setHeaderLabel.bind(this);
     // this.setPhase = this.setPhase.bind(this);
+  }
+
+  setHeaderLabel(label) {
+    this.setState({
+      headerLabel: label
+    });
   }
 
   setView(name) {
@@ -179,7 +187,7 @@ export default class App extends React.Component {
 
     if (this.state.view.name === 'homepage') {
       return (
-        <HomePage setView={this.setView}/>
+        <HomePage setView={this.setView} setHeaderLabel={this.setHeaderLabel}/>
       );
     }
 
@@ -228,10 +236,10 @@ export default class App extends React.Component {
     return (
       <React.Fragment>
 
-        <Header displayModal={this.displayModal} name={this.state.view.name} />
+        <Header displayModal={this.displayModal} headerLabel={this.state.headerLabel}/>
         {view}
         <FilterEntry showModal={this.state.filterModal} setFilterOptions={this.setFilterOptions} />
-        <Nav setView={this.setView} resetForm={this.resetForm}/>
+        <Nav setView={this.setView} resetForm={this.resetForm} setHeaderLabel={this.setHeaderLabel}/>
 
       </React.Fragment>
 

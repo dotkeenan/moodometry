@@ -5,18 +5,22 @@ function Nav(props) {
   function handleAddClick() {
     props.resetForm();
     props.setView('timeAndMood');
+    props.setHeaderLabel('Journal Entry');
   }
 
   function handleHomeClick() {
     props.setView('entries');
+    props.setHeaderLabel('Entries');
   }
 
   function handleStatsClick() {
     props.setView('stats');
+    props.setHeaderLabel('Stats');
   }
 
   function handleChangeUserClick() {
     props.setView('homepage');
+    props.setHeaderLabel('Home');
   }
 
   return (
