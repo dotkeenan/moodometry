@@ -3,7 +3,8 @@ import React from 'react';
 // possibly convert into a class since there will be lots of methods
 function Nav(props) {
   function handleAddClick() {
-    props.setView('journal');
+    props.resetForm();
+    props.setView('timeAndMood');
   }
 
   function handleHomeClick() {

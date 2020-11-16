@@ -561,7 +561,7 @@ other than the events choices */
 }
 
 .submitted-block {
-  max-width: 75%;
+  max-width: 80%;
   display: inline-block;
   margin-left: 10px;
 }
@@ -573,9 +573,9 @@ other than the events choices */
   font-size: 1.5rem
 }
 
-.selected-note {
+/* .selected-note {
   font-size: 1.25rem
-}
+} */
 
 /* Event Details page with submitted entries*/
 .submitted-events {}
