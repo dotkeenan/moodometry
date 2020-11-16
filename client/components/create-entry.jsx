@@ -202,6 +202,7 @@ class CreateEntry extends React.Component {
           setPhase={this.setPhase}
           setParticipantState={this.setParticipantState}
           entryState={this.state.entry}
+
           eventsUrls={this.state.eventsUrls}
           eventsLabel={this.state.eventsLabel} />;
         break;
@@ -217,7 +218,7 @@ class CreateEntry extends React.Component {
           eventsLabel={this.state.eventsLabel}
           eventsUrls={this.state.eventsUrls}
 
-          // setView={this.props.setView}
+        // setView={this.props.setView}
         />;
         break;
 

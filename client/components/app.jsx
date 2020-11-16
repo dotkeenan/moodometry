@@ -5,6 +5,7 @@ import EntryList from './entry-list';
 import Nav from './nav';
 import CreateEntry from './create-entry';
 import Stats from './stats';
+import Calendar from './calendar';
 import FilterEntry from './filter-entry';
 import HomePage from './homepage';
 
@@ -109,6 +110,9 @@ export default class App extends React.Component {
       case 'stats':
         view = <Stats setView={this.setView} />;
         break;
+       case 'calendar':
+        view = <Calendar setView={this.setView} />;
+       break;
     }
     // convert to the above switch statement.
     // if (this.state.view.name === 'entries') {
