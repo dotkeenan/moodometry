@@ -44,7 +44,7 @@ body {
 
 /* Entry List aka Home feed */
 .entry-list-time  {
-  font-size: 1.25rem;
+  font-size: 1.20rem;
 }
 
 /*--------*/
@@ -106,7 +106,7 @@ body {
 }
 
 .note-container {
-  width: 75%;
+  width: 77%;
 }
 
 .event-with {
