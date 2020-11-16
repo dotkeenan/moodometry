@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Headers(props) {
-
   function displayModal() {
     props.displayModal();
   }
@@ -9,9 +8,9 @@ function Headers(props) {
   return (
     <div className='nav-container header'>
       <div className="arrow-container">
-        <img src="images/ui-icons/back-arrow.svg" alt="back arrow" />
+        <div></div>
       </div>
-      <div className="title-container">
+      <div className="title-container ml-3">
         <h1 className="nav-title">{props.headerLabel}</h1>
       </div>
       <div onClick={displayModal} className="burger-container">

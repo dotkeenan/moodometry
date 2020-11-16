@@ -10,10 +10,8 @@ class Events extends React.Component {
       chores: [],
       eventsId: '',
       eventsUrls: '',
-      // need eventsLabel
       eventsLabel: ''
     };
-    // find out which ones to delete later.  Don't need to bind if not passing to another component
     this.handleIconClick = this.handleIconClick.bind(this);
     this.getSocialIcons = this.getSocialIcons.bind(this);
     this.handleEventSubmit = this.handleEventSubmit.bind(this);
@@ -50,7 +48,6 @@ class Events extends React.Component {
 
   handleEventSubmit(event) {
     this.props.setEventState(this.state.eventsId);
-    // this.props.setEventsUrls(this.state.eventsUrls);
     this.props.setEventUrlAndLabel(this.state.eventsUrls, this.state.eventsLabel);
     this.props.setView('addParticipants');
 
@@ -181,7 +178,6 @@ class Events extends React.Component {
   }
 
   render() {
-    // this doesnt work as intended.  Still seeing icons render in real time.
     if (!this.state.social || !this.state.hobbies || !this.state.productivity || !this.state.chores) {
       return <p>Loading Icons</p>;
     }
@@ -230,56 +226,6 @@ class Events extends React.Component {
       </React.Fragment>
     );
   }
-
 }
 
 export default Events;
-
-/*
-render() {
-    return (
-      <React.Fragment>
-
-        <div className="event-container">
-          <div className="hobbie-container">
-            <h6>Hobbies</h6>
-            <div className="hobbie-icon">
-              <img onClick={this.handleIconClick} className="svg-icons" src="images/events/drum-solid.svg" alt="drum-solid"></img>
-              <img onClick={this.handleIconClick} className="svg-icons" src="images/events/gamepad-solid.svg" alt="gamepad-solid"></img>
-              <img onClick={this.handleIconClick} className="svg-icons" src="images/events/snowboarding-solid.svg" alt="snowboarding-solid"></img>
-              <img onClick={this.handleIconClick} className="svg-icons" src="images/events/laptop-code-solid.svg" alt="laptop-code-solid"></img>
-            </div>
-          </div>
-          <div className="social-container">
-            <h6>Social</h6>
-            <div className="social-icon">
-              <img onClick={this.handleIconClick} className="svg-icons" src="images/events/coffee-solid.svg" alt="coffee-solid"></img>
-              <img onClick={this.handleIconClick} className="svg-icons" src="images/events/flask-solid.svg" alt="flask-solid"></img>
-              <img onClick={this.handleIconClick} className="svg-icons" src="images/events/glass-cheers-solid.svg" alt="glass-cheers-solid"></img>
-              <img onClick={this.handleIconClick} className="svg-icons" src="images/events/pencil-alt-solid.svg" alt="pencil-alt-solid"></img>
-            </div>
-          </div>
-          <div className="check-container">
-            <svg className="check-button" width="43" height="43" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21.5 41.6562C32.632 41.6562 41.6562 32.632 41.6562 21.5C41.6562 10.368 32.632 1.34375 21.5 1.34375C10.368 1.34375 1.34375 10.368 1.34375 21.5C1.34375 32.632 10.368 41.6562 21.5 41.6562Z" fill="#67D4D2" />
-              <path d="M30.9062 9.40625L16.7969 23.9187L12.0938 19.0812L7.39062 23.9187L16.7969 33.5938L35.6094 14.2438L30.9062 9.40625Z" fill="white" />
-            </svg>
-          </div>
-        </div>
-
-      </React.Fragment>
-    );
-  }
-
-  // tagCreator(imageUrl, name) {
-  //   return (
-  //     <img
-  //       onClick={this.handleIconClick}
-  //       className="svg-icons"
-  //       src={imageUrl}
-  //       alt={name}>
-  //     </img>
-  //   );
-  // }
-
-*/

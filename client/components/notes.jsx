@@ -15,11 +15,8 @@ class Notes extends React.Component {
   }
 
   handleSubmit(event) {
-    // test alert
-    // alert('A name was submitted: ' + this.state.value);
     this.props.setNoteState(this.state.note);
     this.props.setSubmitState(true);
-    // find a way to close the card and display the note next to the +
     event.preventDefault();
   }
 

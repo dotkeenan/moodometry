@@ -13,7 +13,6 @@ class FilterEntry extends React.Component {
       filterEvents: []
 
     };
-    // bind
     this.setFilterOptions = this.setFilterOptions.bind(this);
     this.getMoodCss = this.getMoodCss.bind(this);
     this.getDowCss = this.getDowCss.bind(this);
@@ -86,7 +85,6 @@ class FilterEntry extends React.Component {
   }
 
   render() {
-
     const drop = this.state.filterEvents;
     const optionItems = drop.map(drop =>
       <option value={drop.label} key={drop.eventsId} data-id={drop.eventsId}>{drop.label}</option>
@@ -141,16 +139,12 @@ class FilterEntry extends React.Component {
               </div>
             </div>
           </div>
-
         </React.Fragment>
-
       );
     } else {
       return null;
     }
-
   }
-
 }
 
 export default FilterEntry;

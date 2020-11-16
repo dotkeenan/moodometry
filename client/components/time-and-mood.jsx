@@ -7,7 +7,6 @@ function TimeAndMood(props) {
       <div className="container">
         <div className="row date-and-mood">
           <h1 className="h1-form">How&apos;s it going?</h1>
-
           <div className="entry-date-container">
             <div className="date-choice">
               <img src="/images/ui-icons/date-chooser.svg" alt="calendar" />

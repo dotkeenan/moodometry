@@ -7,7 +7,6 @@ class EntryListItem extends React.Component {
       editDropdown: false
     };
     this.handleClick = this.handleClick.bind(this);
-    this.editEntry = this.editEntry.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
   }
 
@@ -15,11 +14,6 @@ class EntryListItem extends React.Component {
     this.setState({
       editDropdown: !this.state.editDropdown
     });
-  }
-
-  // didnt get to edit.
-  editEntry() {
-
   }
 
   deleteEntry() {

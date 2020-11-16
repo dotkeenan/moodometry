@@ -71,7 +71,6 @@ class EntryList extends React.Component {
       );
     }
   }
-
 }
 
 export default EntryList;
