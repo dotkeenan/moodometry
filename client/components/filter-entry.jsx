@@ -122,11 +122,6 @@ class FilterEntry extends React.Component {
                   </select>
                 </form>
               </div>
-              <h4 className="drop-title">Sort by</h4>
-              <div className="modal-body">
-                <h6 className={this.getSortCss(1)}>Date Des</h6>
-                <h6 className={this.getSortCss(2)}>Date Asc</h6>
-              </div>
               <div className="modal-footer">
 
                 <button className='clear-button' onClick={e => this.clearFilterOptions(e) }>clear</button>
