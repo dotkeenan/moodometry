@@ -78,7 +78,6 @@ export default class App extends React.Component {
     });
   }
 
-  // create entry stuff
   handleClick() {
     const moodId = parseInt(event.target.getAttribute('moodid'), 10);
     const newEntryObject = Object.assign({}, this.state.entry);
