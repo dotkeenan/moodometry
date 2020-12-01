@@ -8,6 +8,7 @@ class EntryListItem extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
+    this.editEntry = this.editEntry.bind(this);
   }
 
   handleClick() {
@@ -27,6 +28,10 @@ class EntryListItem extends React.Component {
         this.props.createEntries();
       })
       .catch(err => console.error(err));
+  }
+
+  editEntry() {
+
   }
 
   render() {

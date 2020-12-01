@@ -85,7 +85,7 @@ class AddNoteRender extends React.Component {
                 <img className="hover-pointer" onClick={this.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createEventIcons()}
               </div>
-              <div className="add-field row align-items-start form-margin-fix">
+              <div className="add-field row form-margin-fix">
                 <img className="hover-pointer" onClick={this.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createParticipantsText()}
               </div>
@@ -112,11 +112,11 @@ class AddNoteRender extends React.Component {
                 <img className="hover-pointer" onClick={this.handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createEventIcons()}
               </div>
-              <div className="add-field row align-items-start form-margin-fix">
+              <div className="add-field row form-margin-fix">
                 <img className="hover-pointer" onClick={this.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createParticipantsText()}
               </div>
-              <div className="add-field row align-items-start form-margin-fix">
+              <div className="add-field row form-margin-fix">
                 <img className="hover-pointer" onClick={this.handleNoteEdit} src="/images/ui-icons/add-detail.svg" alt="add detail" />
                 {this.createNoteText()}
               </div>

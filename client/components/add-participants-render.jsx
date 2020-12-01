@@ -35,7 +35,7 @@ function AddParticipantsRender(props) {
           <div className="add-field">
             <Participants setParticipantState={props.setParticipantState} setView={props.setView}/>
           </div>
-          <div className="add-field row align-items-start form-margin-fix">
+          <div className="add-field row form-margin-fix">
             <img className="hover-pointer" onClick={handleAddNote} src="/images/ui-icons/add-detail.svg" alt="add detail" />
             <span className="selected-participants hover-pointer margin-left-10" onClick={handleAddNote}>{props.entryState.note}</span>
           </div>
