@@ -29,12 +29,12 @@ export default class App extends React.Component {
       },
       moods: [],
       eventsUrls: '',
-      eventsLabel: 'Add Event',
+      eventsLabel: '',
       entry: {
         moodId: null,
         eventId: '',
-        participants: 'Add Participants',
-        note: 'Add a note',
+        participants: '',
+        note: '',
         time: new Date()
       }
     };
@@ -201,6 +201,8 @@ export default class App extends React.Component {
           // entryState={this.state.entry}
           state={this.state}
           setParticipantState={this.setParticipantState}
+          setNoteState={this.setNoteState}
+          submitEntry={this.submitEntry}
         />;
         break;
       case 'addEvent':

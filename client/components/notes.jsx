@@ -4,7 +4,7 @@ class Notes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      note: ''
+      note: this.props.state.entry.note
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,7 +16,8 @@ class Notes extends React.Component {
 
   handleSubmit(event) {
     this.props.setNoteState(this.state.note);
-    this.props.setSubmitState(true);
+    this.props.handleAddNote();
+    // this.props.setSubmitState(true);
     event.preventDefault();
   }
 

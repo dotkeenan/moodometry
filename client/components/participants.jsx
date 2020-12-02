@@ -4,7 +4,7 @@ class Participants extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      participants: ''
+      participants: this.props.state.entry.participants
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
