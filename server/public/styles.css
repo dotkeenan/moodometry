@@ -207,9 +207,9 @@ p {
   margin-right: 5px;
 }
 
-.add-field-container-start  {
+/* .add-field-container-start  {
   margin-left: 20px;
-}
+} */
 
 .add-field-container  {
   margin-left: auto;
@@ -236,7 +236,7 @@ p {
 }
 
 .date-and-mood  {
-  margin-top: 50px;
+  /* margin-top: 50px; */
   justify-content: center;
   /* padding-bottom: 70px; */
 }

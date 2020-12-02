@@ -54,7 +54,7 @@ class EventDetailsRender extends React.Component {
 
     } else {
       return (
-        <div className="row add-field">
+        <div className="row add-field pl-3">
           <img
             className="hover-pointer"
             onClick={this.handleAddEvent}
@@ -96,7 +96,7 @@ class EventDetailsRender extends React.Component {
       );
     } else {
       return (
-        <div className="row add-field">
+        <div className="row add-field pl-3">
           <img className="hover-pointer" onClick={this.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
           <span className="add-field-text hover-pointer"
             onClick={this.handleAddParticipants}>
@@ -126,7 +126,7 @@ class EventDetailsRender extends React.Component {
       );
     } else {
       return (
-        <div className="row add-field">
+        <div className="row add-field pl-3">
           <img
             className="hover-pointer"
             onClick={this.handleAddNote}
@@ -158,7 +158,7 @@ So far I transfered add-event-render's functionality all into here.
   render() {
     return (
       <>
-        <div className="container">
+        <div className="container mt-4 cutoff-fix">
           <div className="row date-and-mood">
             <h1 className="h1-form">What&apos;s up?</h1>
 
@@ -168,16 +168,17 @@ So far I transfered add-event-render's functionality all into here.
               {this.noteRender()}
             </div>
           </div>
-        </div>
-        <div className="container">
-          <div className="row justify-content-center">
-            <button
-              className="btn btn-primary submit-entry"
-              onClick={this.handleEntrySubmit}>
-              Submit Entry
-            </button>
+          <div className="container">
+            <div className="row justify-content-center">
+              <button
+                className="btn btn-primary submit-entry"
+                onClick={this.handleEntrySubmit}>
+                Submit Entry
+              </button>
+            </div>
           </div>
         </div>
+
       </>
     );
   }

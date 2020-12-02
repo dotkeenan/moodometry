@@ -4,7 +4,7 @@ import TimeConverter from './time-converter';
 function TimeAndMood(props) {
   return (
     <React.Fragment>
-      <div className="container">
+      <div className="container mt-5">
         <div className="row date-and-mood">
           <h1 className="h1-form">How&apos;s it going?</h1>
           <div className="entry-date-container">
