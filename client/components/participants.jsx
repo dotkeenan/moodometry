@@ -16,7 +16,8 @@ class Participants extends React.Component {
 
   handleSubmit(event) {
     this.props.setParticipantState(this.state.participants);
-    this.props.setView('addNote');
+    // this.props.setView('addNote');
+    this.props.handleAddParticipants();
     event.preventDefault();
   }
 

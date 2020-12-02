@@ -17,7 +17,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'entries'
+        name: 'eventDetails'
       },
       headerLabel: 'Entries',
       filterModal: false,
@@ -29,7 +29,7 @@ export default class App extends React.Component {
       },
       moods: [],
       eventsUrls: '',
-      eventsLabel: '',
+      eventsLabel: 'Add Event',
       entry: {
         moodId: null,
         eventId: '',
@@ -105,7 +105,7 @@ export default class App extends React.Component {
   resetForm() {
     this.setState({
       eventsUrls: '',
-      eventsLabel: '',
+      eventsLabel: 'Add Event',
       entry: {
         moodId: null,
         eventId: '',
@@ -195,7 +195,13 @@ export default class App extends React.Component {
         break;
       case 'eventDetails':
         view = <EventDetailsRender
-          setView={this.setView} />;
+          setView={this.setView}
+          setEventState={this.setEventState}
+          setEventUrlAndLabel={this.setEventUrlAndLabel}
+          // entryState={this.state.entry}
+          state={this.state}
+          setParticipantState={this.setParticipantState}
+        />;
         break;
       case 'addEvent':
         view = <AddEventRender
