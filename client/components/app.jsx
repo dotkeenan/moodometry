@@ -7,7 +7,7 @@ import Calendar from './calendar';
 import FilterEntry from './filter-entry';
 import HomePage from './homepage';
 import TimeAndMood from './time-and-mood';
-import EventDetailsRender from './event-details.render';
+import EventDetailsRender from './event-details-render';
 import AddEventRender from './add-event-render';
 import AddParticipantsRender from './add-participants-render';
 import AddNoteRender from './add-note-render';
@@ -17,7 +17,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'eventDetails'
+        name: 'entries'
       },
       headerLabel: 'Entries',
       filterModal: false,
@@ -105,12 +105,12 @@ export default class App extends React.Component {
   resetForm() {
     this.setState({
       eventsUrls: '',
-      eventsLabel: 'Add Event',
+      eventsLabel: '',
       entry: {
         moodId: null,
         eventId: '',
-        participants: 'Add Participants',
-        note: 'Add a note',
+        participants: '',
+        note: '',
         time: new Date()
       }
     });

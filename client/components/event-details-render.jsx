@@ -17,6 +17,7 @@ class EventDetailsRender extends React.Component {
     this.eventRender = this.eventRender.bind(this);
     this.participantsRender = this.participantsRender.bind(this);
     this.noteRender = this.noteRender.bind(this);
+    this.handleEntrySubmit = this.handleEntrySubmit.bind(this);
   }
 
   handleAddEvent() {
@@ -36,17 +37,6 @@ class EventDetailsRender extends React.Component {
       noteOpen: !this.state.noteOpen
     });
   }
-  // handleAddEvent() {
-  //   this.props.setView('addEvent');
-  // }
-
-  // handleAddParticipants() {
-  //   this.props.setView('addParticipants');
-  // }
-
-  // handleAddNote() {
-  //   this.props.setView('addNote');
-  // }
 
   eventRender() {
     const eventLabel = this.props.state.eventsLabel;
@@ -73,12 +63,16 @@ class EventDetailsRender extends React.Component {
           <span
             className="add-field-text hover-pointer"
             onClick={this.handleAddEvent}>
-            <img
-              className="selected-event hover-pointer"
-              src={this.props.state.eventsUrls}
-            />
+            {this.props.state.eventsUrls
+              ? <img
+                className="selected-event hover-pointer mr-3"
+                src={this.props.state.eventsUrls}
+              />
+              : null
+            }
             <span
-              className="add-field-text">
+              className="">
+              {/* className="add-field-text"> */}
               {this.props.state.eventsLabel
                 ? eventLabel.charAt(0).toUpperCase() + eventLabel.slice(1)
                 : 'Add Event'}
