@@ -19,6 +19,7 @@ function Nav(props) {
 
   function handleCalendarClick() {
     props.setView('calendar');
+    props.setHeaderLabel('Month in Moods');
   }
   function handleChangeUserClick() {
     props.setView('homepage');

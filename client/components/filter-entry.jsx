@@ -87,7 +87,12 @@ class FilterEntry extends React.Component {
   render() {
     const drop = this.state.filterEvents;
     const optionItems = drop.map(drop =>
-      <option value={drop.label} key={drop.eventsId} data-id={drop.eventsId}>{drop.label}</option>
+      <option
+        value={drop.label}
+        key={drop.eventsId}
+        data-id={drop.eventsId}>
+        {drop.label}
+      </option>
     );
 
     if (this.props.showModal) {
