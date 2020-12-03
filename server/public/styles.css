@@ -207,24 +207,20 @@ p {
   margin-right: 5px;
 }
 
-.add-field-container-start  {
-  margin-left: 20px;
-}
-
 .add-field-container  {
   margin-left: auto;
 }
 
 .add-field  {
-  width: 100%;
   align-items: center;
   margin-bottom: 20px;
 }
 
 .add-field-text {
   color: white;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-left: 20px;
+  max-width: 75%;
 }
 
 .form-margin-fix  {
@@ -236,9 +232,9 @@ p {
 }
 
 .date-and-mood  {
-  margin-top: 10px;
+  /* margin-top: 50px; */
   justify-content: center;
-  padding-bottom: 70px;
+  /* padding-bottom: 70px; */
 }
 
 .h1-form  {
@@ -426,15 +422,6 @@ p {
   margin-top: 10px;
 }
 
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
 h6 {
   margin-left: 15px;
 }
@@ -477,29 +464,40 @@ h6 {
 
 .modal-container {
   margin-top: 20px;
-  position: absolute;
-  left: 5%;
-  top: 5%;
+  position: fixed;
+  left: 50%;
+  top: 33%;
   z-index: 1;
   -moz-border-radius: 6px 6px 6px 6px;
   -webkit-border-radius: 6px;
   border-radius: 6px 6px 6px 6px;
   overflow: hidden;
-  position:fixed;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  opacity: 0;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.8s
 }
 
 @-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {bottom:0; opacity:1}
+  0% {
+    transform: translate(-50%, -100%)
+  }
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 }
 
 @keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {bottom:0; opacity:1}
+  0% {
+    transform: translate(-50%, -100%)
+  }
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
 }
 
 .select-modal  {

@@ -101,70 +101,71 @@ app.get('/api/entries/search', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.put('/api/entries/moodId/:entryId', (req, res, next) => {
-  const values = [req.body.moodId, req.params.entryId];
-  const sql =
-    `update "entries"
-      set "moodId"  = $1
-      where "entryId" = $2;
-    `;
-  db.query(sql, values)
-    .then(result => {
-      res.status(200).json({});
-    })
-    .catch(err => next(err));
-});
+// app.put('/api/entries/moodId/:entryId', (req, res, next) => {
+//   const values = [req.body.moodId, req.params.entryId];
+//   const sql =
+//     `update "entries"
+//       set "moodId"  = $1
+//       where "entryId" = $2;
+//     `;
+//   db.query(sql, values)
+//     .then(result => {
+//       res.status(200).json({});
+//     })
+//     .catch(err => next(err));
+// });
 
-app.put('/api/entries/eventsId/:entryId', (req, res, next) => {
-  const values = [req.body.eventsId, req.params.entryId];
-  const sql =
-    `update "entries"
-      set "eventsId"  = $1
-      where "entryId" = $2;
-    `;
-  db.query(sql, values)
-    .then(result => {
-      res.status(200).json({});
-    })
-    .catch(err => next(err));
-});
+// app.put('/api/entries/eventsId/:entryId', (req, res, next) => {
+//   const values = [req.body.eventsId, req.params.entryId];
+//   const sql =
+//     `update "entries"
+//       set "eventsId"  = $1
+//       where "entryId" = $2;
+//     `;
+//   db.query(sql, values)
+//     .then(result => {
+//       res.status(200).json({});
+//     })
+//     .catch(err => next(err));
+// });
 
-app.put('/api/entries/participants/:entryId', (req, res, next) => {
-  const values = [req.body.participants, req.params.entryId];
-  const sql =
-    `update "entries"
-      set "participants"  = $1
-      where "entryId" = $2;
-    `;
-  db.query(sql, values)
-    .then(result => {
-      res.status(200).json({});
-    })
-    .catch(err => next(err));
-});
+// app.put('/api/entries/participants/:entryId', (req, res, next) => {
+//   const values = [req.body.participants, req.params.entryId];
+//   const sql =
+//     `update "entries"
+//       set "participants"  = $1
+//       where "entryId" = $2;
+//     `;
+//   db.query(sql, values)
+//     .then(result => {
+//       res.status(200).json({});
+//     })
+//     .catch(err => next(err));
+// });
 
-app.put('/api/entries/notes/:entryId', (req, res, next) => {
-  const values = [req.body.notes, req.params.entryId];
-  const sql =
-    `update "entries"
-      set "notes"  = $1
-      where "entryId" = $2;
-    `;
-  db.query(sql, values)
-    .then(result => {
-      res.status(200).json({});
-    })
-    .catch(err => next(err));
-});
+// app.put('/api/entries/notes/:entryId', (req, res, next) => {
+//   const values = [req.body.notes, req.params.entryId];
+//   const sql =
+//     `update "entries"
+//       set "notes"  = $1
+//       where "entryId" = $2;
+//     `;
+//   db.query(sql, values)
+//     .then(result => {
+//       res.status(200).json({});
+//     })
+//     .catch(err => next(err));
+// });
 
 app.put('/api/entries/:entryId', (req, res, next) => {
-  const values = [req.body.eventsId, req.body.participants, req.body.notes, req.params.entryId];
+  const values = [req.body.moodId, req.body.eventsId, req.body.note, req.body.participants, req.params.entryId];
   const sql =
     `update "entries"
-      set "eventsId"  = $1,
-      "participants"  = $2,
-      "note"  = $3
-      where "entryId" = $4;
+        set "moodId"  = $1,
+            "eventsId"  = $2,
+            "note"  = $3,
+            "participants" = $4
+      where "entryId" = $5;
     `;
   db.query(sql, values)
     .then(result => {

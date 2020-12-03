@@ -28,6 +28,9 @@ Coming soon!
 - User can delete an entry.
 - User can filter their list of entries by any combination of mood, day, or event type.
 - User can view a graphical summary of their entries' moods and events.
+
+## In Progress
+
 - User can view a month breakdown of their mood on each day.
 
 ## Preview

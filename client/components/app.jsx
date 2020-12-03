@@ -7,10 +7,7 @@ import Calendar from './calendar';
 import FilterEntry from './filter-entry';
 import HomePage from './homepage';
 import TimeAndMood from './time-and-mood';
-import EventDetailsRender from './event-details.render';
-import AddEventRender from './add-event-render';
-import AddParticipantsRender from './add-participants-render';
-import AddNoteRender from './add-note-render';
+import EventDetailsRender from './event-details-render';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -33,8 +30,8 @@ export default class App extends React.Component {
       entry: {
         moodId: null,
         eventId: '',
-        participants: 'Add Participants',
-        note: 'Add a note',
+        participants: '',
+        note: '',
         time: new Date()
       }
     };
@@ -109,8 +106,8 @@ export default class App extends React.Component {
       entry: {
         moodId: null,
         eventId: '',
-        participants: 'Add Participants',
-        note: 'Add a note',
+        participants: '',
+        note: '',
         time: new Date()
       }
     });
@@ -195,32 +192,13 @@ export default class App extends React.Component {
         break;
       case 'eventDetails':
         view = <EventDetailsRender
-          setView={this.setView} />;
-        break;
-      case 'addEvent':
-        view = <AddEventRender
+          setView={this.setView}
           setEventState={this.setEventState}
-          setView={this.setView}
           setEventUrlAndLabel={this.setEventUrlAndLabel}
-          entryState={this.state.entry}
-        />;
-        break;
-      case 'addParticipants':
-        view = <AddParticipantsRender
-          setView={this.setView}
+          state={this.state}
           setParticipantState={this.setParticipantState}
-          entryState={this.state.entry}
-          eventsUrls={this.state.eventsUrls}
-          eventsLabel={this.state.eventsLabel} />;
-        break;
-      case 'addNote':
-        view = <AddNoteRender
-          setView={this.setView}
           setNoteState={this.setNoteState}
           submitEntry={this.submitEntry}
-          entryState={this.state.entry}
-          eventsLabel={this.state.eventsLabel}
-          eventsUrls={this.state.eventsUrls}
         />;
         break;
     }
