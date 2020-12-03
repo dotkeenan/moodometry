@@ -28,22 +28,23 @@ class Events extends React.Component {
     const eventId = parseInt(event.target.getAttribute('eventid'), 10);
     const eventUrl = (event.target.src);
     const eventLabel = event.target.alt;
+    const allSvgs = document.querySelectorAll('.svg-icons');
+    allSvgs.forEach(svg => svg.classList.remove('invert-event'));
     if (this.state.eventsId === eventId && this.state.eventsUrls === eventUrl) {
       this.setState({
         eventsId: '',
         eventsUrls: '',
         eventsLabel: ''
       });
+
     } else {
       this.setState({
         eventsId: eventId,
         eventsUrls: eventUrl,
         eventsLabel: eventLabel
       });
+      event.target.classList.toggle('invert-event');
     }
-    const allSvgs = document.querySelectorAll('.svg-icons');
-    allSvgs.forEach(svg => svg.classList.remove('invert-event'));
-    event.target.classList.toggle('invert-event');
   }
 
   handleEventSubmit(event) {

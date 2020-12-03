@@ -22,19 +22,25 @@ class EventDetailsRender extends React.Component {
 
   handleAddEvent() {
     this.setState({
-      eventOpen: !this.state.eventOpen
+      eventOpen: !this.state.eventOpen,
+      participantsOpen: false,
+      noteOpen: false
     });
   }
 
   handleAddParticipants() {
     this.setState({
-      participantsOpen: !this.state.participantsOpen
+      participantsOpen: !this.state.participantsOpen,
+      eventOpen: false,
+      noteOpen: false
     });
   }
 
   handleAddNote() {
     this.setState({
-      noteOpen: !this.state.noteOpen
+      noteOpen: !this.state.noteOpen,
+      eventOpen: false,
+      participantsOpen: false
     });
   }
 
