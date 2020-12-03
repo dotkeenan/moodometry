@@ -57,7 +57,6 @@ class EventDetailsRender extends React.Component {
           />
         </div>
       );
-
     } else {
       return (
         <div className="row add-field pl-3">
@@ -72,13 +71,10 @@ class EventDetailsRender extends React.Component {
             {this.props.state.eventsUrls
               ? <img
                 className="selected-event hover-pointer mr-3"
-                src={this.props.state.eventsUrls}
-              />
+                src={this.props.state.eventsUrls} />
               : null
             }
-            <span
-              className="">
-              {/* className="add-field-text"> */}
+            <span>
               {this.props.state.eventsLabel
                 ? eventLabel.charAt(0).toUpperCase() + eventLabel.slice(1)
                 : 'Add Event'}
@@ -121,10 +117,6 @@ class EventDetailsRender extends React.Component {
         <div className="add-field">
           <Notes
             setNoteState={this.props.setNoteState}
-            // setSubmitState={this.setSubmitState}
-            // eventsUrls={this.props.eventsUrls}
-            // eventLabel={this.props.eventLabel}
-            // entryState={this.props.entryState}
             state={this.props.state}
             handleAddNote={this.handleAddNote}
           />
@@ -154,13 +146,6 @@ class EventDetailsRender extends React.Component {
     this.props.submitEntry();
   }
 
-  /* My attempt at re-formatting the application so that it all is
-conditional rendering from event-details.render.jsx instead of hacky
-modules that just re-render the same stuff with one change
-
-So far I transfered add-event-render's functionality all into here.
-<Participants setParticipantState={props.setParticipantState} setView={props.setView}/>
-*/
   render() {
     return (
       <>
@@ -168,7 +153,7 @@ So far I transfered add-event-render's functionality all into here.
           <div className="row date-and-mood">
             <h1 className="h1-form">What&apos;s up?</h1>
 
-            <div className="container add-field-container-start">
+            <div className="container">
               {this.eventRender()}
               {this.participantsRender()}
               {this.noteRender()}
@@ -192,41 +177,3 @@ So far I transfered add-event-render's functionality all into here.
 }
 
 export default EventDetailsRender;
-
-// import React from 'react';
-
-// function EventDetailsRender(props) {
-//   function handleAddEvent() {
-//     props.setView('addEvent');
-//   }
-//   function handleAddParticipants() {
-//     props.setView('addParticipants');
-//   }
-//   function handleAddNote() {
-//     props.setView('addNote');
-//   }
-//   return (
-//     <div className="container">
-//       <div className="row date-and-mood">
-//         <h1 className="h1-form">What&apos;s up?</h1>
-
-//         <div className="container add-field-container-start">
-//           <div className="row add-field">
-//             <img className="hover-pointer" onClick={handleAddEvent} src="/images/ui-icons/add-detail.svg" alt="add detail" />
-//             <span className="add-field-text hover-pointer" onClick={handleAddEvent}>Add an event</span>
-//           </div>
-//           <div className="row add-field">
-//             <img className="hover-pointer" onClick={handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
-//             <span className="add-field-text hover-pointer" onClick={handleAddParticipants}>Add Participants</span>
-//           </div>
-//           <div className="row add-field">
-//             <img className="hover-pointer" onClick={handleAddNote} src="/images/ui-icons/add-detail.svg" alt="add detail" />
-//             <span className="add-field-text hover-pointer" onClick={handleAddNote}>Add a note</span>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default EventDetailsRender;

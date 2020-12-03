@@ -8,16 +8,13 @@ import FilterEntry from './filter-entry';
 import HomePage from './homepage';
 import TimeAndMood from './time-and-mood';
 import EventDetailsRender from './event-details-render';
-import AddEventRender from './add-event-render';
-import AddParticipantsRender from './add-participants-render';
-import AddNoteRender from './add-note-render';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'entries'
+        name: 'homepage'
       },
       headerLabel: 'Entries',
       filterModal: false,
@@ -198,37 +195,10 @@ export default class App extends React.Component {
           setView={this.setView}
           setEventState={this.setEventState}
           setEventUrlAndLabel={this.setEventUrlAndLabel}
-          // entryState={this.state.entry}
           state={this.state}
           setParticipantState={this.setParticipantState}
           setNoteState={this.setNoteState}
           submitEntry={this.submitEntry}
-        />;
-        break;
-      case 'addEvent':
-        view = <AddEventRender
-          setEventState={this.setEventState}
-          setView={this.setView}
-          setEventUrlAndLabel={this.setEventUrlAndLabel}
-          entryState={this.state.entry}
-        />;
-        break;
-      case 'addParticipants':
-        view = <AddParticipantsRender
-          setView={this.setView}
-          setParticipantState={this.setParticipantState}
-          entryState={this.state.entry}
-          eventsUrls={this.state.eventsUrls}
-          eventsLabel={this.state.eventsLabel} />;
-        break;
-      case 'addNote':
-        view = <AddNoteRender
-          setView={this.setView}
-          setNoteState={this.setNoteState}
-          submitEntry={this.submitEntry}
-          entryState={this.state.entry}
-          eventsLabel={this.state.eventsLabel}
-          eventsUrls={this.state.eventsUrls}
         />;
         break;
     }
