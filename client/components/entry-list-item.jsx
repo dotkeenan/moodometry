@@ -87,7 +87,7 @@ class EntryListItem extends React.Component {
                 <img
                   className="entry-list-item-mood"
                   src={this.props.entry.imageUrl}
-                  alt="laugh" />
+                  alt={this.props.entry.mood} />
               </div>
             </div>
             <div className="note-container">
