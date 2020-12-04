@@ -29,7 +29,7 @@ function TimeConverter(timestamp) {
     'Friday',
     'Saturday'
   ];
-  return `${daysOfWeek[dayNum]} ${months[monthNum]} ${dayDate}th, ${time}`;
+  return `${daysOfWeek[dayNum]} ${months[monthNum]} ${dayDate}, ${time}`;
 
 }
 

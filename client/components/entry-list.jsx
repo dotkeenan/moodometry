@@ -43,7 +43,10 @@ class EntryList extends React.Component {
           entry={entry}
           getEntries={this.getEntries}
           createEntries={this.createEntries}
-        />
+          setView={this.props.setView}
+          setHeaderLabel={this.props.setHeaderLabel}
+          setEntryStateEdit={this.props.setEntryStateEdit}
+          setEditMode={this.props.setEditMode} />
       );
     });
     return entryList;

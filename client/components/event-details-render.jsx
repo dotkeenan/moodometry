@@ -18,6 +18,8 @@ class EventDetailsRender extends React.Component {
     this.participantsRender = this.participantsRender.bind(this);
     this.noteRender = this.noteRender.bind(this);
     this.handleEntrySubmit = this.handleEntrySubmit.bind(this);
+    this.handleEditSubmit = this.handleEditSubmit.bind(this);
+    this.formSubmissionType = this.formSubmissionType.bind(this);
   }
 
   handleAddEvent() {
@@ -42,6 +44,35 @@ class EventDetailsRender extends React.Component {
       eventOpen: false,
       participantsOpen: false
     });
+  }
+
+  // might be unnecessary.  but I guess makes it more clear.
+  handleEntrySubmit() {
+    this.props.submitEntry();
+  }
+
+  handleEditSubmit() {
+    this.props.editEntry();
+  }
+
+  formSubmissionType() {
+    if (this.props.editMode) {
+      return (
+        <button
+          className="btn btn-primary submit-entry"
+          onClick={this.handleEditSubmit}>
+          Edit Entry
+        </button>
+      );
+    } else {
+      return (
+        <button
+          className="btn btn-primary submit-entry"
+          onClick={this.handleEntrySubmit}>
+        Submit Entry
+        </button>
+      );
+    }
   }
 
   eventRender() {
@@ -142,10 +173,6 @@ class EventDetailsRender extends React.Component {
     }
   }
 
-  handleEntrySubmit() {
-    this.props.submitEntry();
-  }
-
   render() {
     return (
       <>
@@ -161,11 +188,7 @@ class EventDetailsRender extends React.Component {
           </div>
           <div className="container">
             <div className="row justify-content-center">
-              <button
-                className="btn btn-primary submit-entry"
-                onClick={this.handleEntrySubmit}>
-                Submit Entry
-              </button>
+              {this.formSubmissionType()}
             </div>
           </div>
         </div>
