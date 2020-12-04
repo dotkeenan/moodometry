@@ -143,38 +143,40 @@ class Stats extends React.Component {
       ]
     };
     return (
-      <div className="stats-container d-flex flex-column justify-content-around align-items-center" >
-        <Doughnut
-          data={moodGRAFz}
-          options={{
-            title: {
-              display: true,
-              text: 'Mood Count',
-              fontSize: 24,
-              fontColor: '#FFFFFF',
-              aspectRatio: 1
-            },
-            legend: {
-              display: true,
-              position: 'right'
-            }
-          }}
-        />
-        <Bar
-          data={eventGRAFz}
-          options={{
-            title: {
-              display: true,
-              text: 'Event Count',
-              fontSize: 24,
-              fontColor: '#FFFFFF'
-            },
-            aspectRatio: 1,
-            legend: {
-              display: false
-            }
-          }}
-        />
+      <div className="container">
+        <div className="row stats-container mt-5">
+          <Doughnut
+            data={moodGRAFz}
+            options={{
+              title: {
+                display: true,
+                text: 'Mood Count',
+                fontSize: 24,
+                fontColor: '#FFFFFF',
+                aspectRatio: 1
+              },
+              legend: {
+                display: true,
+                position: 'right'
+              }
+            }}
+          />
+          <Bar
+            data={eventGRAFz}
+            options={{
+              title: {
+                display: true,
+                text: 'Event Count',
+                fontSize: 24,
+                fontColor: '#FFFFFF'
+              },
+              aspectRatio: 1,
+              legend: {
+                display: false
+              }
+            }}
+          />
+        </div>
       </div >
     );
   }
