@@ -31,7 +31,19 @@ class EntryListItem extends React.Component {
   }
 
   editEntry() {
-
+    this.props.setEditMode(true);
+    this.props.setHeaderLabel('Edit Entry');
+    this.props.setEntryStateEdit(
+      this.props.entry.eventUrl,
+      this.props.entry.event,
+      this.props.entry.entryId,
+      this.props.entry.moodId,
+      this.props.entry.eventsId,
+      this.props.entry.participants,
+      this.props.entry.note,
+      this.props.entry.dateFormat
+    );
+    this.props.setView('timeAndMood');
   }
 
   render() {

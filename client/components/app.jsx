@@ -14,7 +14,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       view: {
-        name: 'homepage'
+        name: 'entries'
       },
       headerLabel: 'Entries',
       filterModal: false,
@@ -24,10 +24,12 @@ export default class App extends React.Component {
         dowId: '',
         sort: 'DESC'
       },
+      editMode: false,
       moods: [],
       eventsUrls: '',
       eventsLabel: '',
       entry: {
+        entryId: null,
         moodId: null,
         eventId: '',
         participants: '',
@@ -48,6 +50,9 @@ export default class App extends React.Component {
     this.setEventUrlAndLabel = this.setEventUrlAndLabel.bind(this);
     this.resetForm = this.resetForm.bind(this);
     this.setHeaderLabel = this.setHeaderLabel.bind(this);
+    this.setEntryStateEdit = this.setEntryStateEdit.bind(this);
+    this.setEditMode = this.setEditMode.bind(this);
+    this.editEntry = this.editEntry.bind(this);
   }
 
   setHeaderLabel(label) {
@@ -99,11 +104,27 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  editEntry() {
+    const reqOptions = {
+      method: 'PUT',
+      body: JSON.stringify(this.state.entry),
+      headers: { 'Content-Type': 'application/json' }
+    };
+    fetch(`api/entries/${this.state.entry.entryId}`, reqOptions)
+      .then(() => {
+        this.resetForm();
+        this.setView('entries');
+      })
+      .catch(err => console.error(err));
+  }
+
   resetForm() {
     this.setState({
+      editMode: false,
       eventsUrls: '',
       eventsLabel: '',
       entry: {
+        entryId: null,
         moodId: null,
         eventId: '',
         participants: '',
@@ -164,6 +185,25 @@ export default class App extends React.Component {
     });
   }
 
+  setEntryStateEdit(eventsUrls, eventsLabel, entryId, moodId, eventId, participants, note, time) {
+    this.setState({
+      eventsUrls: eventsUrls,
+      eventsLabel: eventsLabel,
+      entry: {
+        entryId: entryId,
+        moodId: moodId,
+        eventId: eventId,
+        participants: participants,
+        note: note,
+        time: time
+      }
+    });
+  }
+
+  setEditMode(status) {
+    this.setState({ editMode: status });
+  }
+
   componentDidMount() {
     this.getMoods();
   }
@@ -179,7 +219,12 @@ export default class App extends React.Component {
 
     switch (this.state.view.name) {
       case 'entries':
-        view = <EntryList filterOptions={this.state.filterOptions} />;
+        view = <EntryList
+          filterOptions={this.state.filterOptions}
+          setView={this.setView}
+          setHeaderLabel={this.setHeaderLabel}
+          setEntryStateEdit={this.setEntryStateEdit}
+          setEditMode={this.setEditMode} />;
         break;
       case 'stats':
         view = <Stats setView={this.setView} />;
@@ -188,7 +233,11 @@ export default class App extends React.Component {
         view = <Calendar setView={this.setView} />;
         break;
       case 'timeAndMood':
-        view = <TimeAndMood createMoods={this.createMoods} entry={this.state.entry} />;
+        view = <TimeAndMood
+          createMoods={this.createMoods}
+          entry={this.state.entry}
+          editMode={this.state.editMode}
+          state={this.state} />;
         break;
       case 'eventDetails':
         view = <EventDetailsRender
@@ -199,17 +248,25 @@ export default class App extends React.Component {
           setParticipantState={this.setParticipantState}
           setNoteState={this.setNoteState}
           submitEntry={this.submitEntry}
-        />;
+          editEntry={this.editEntry}
+          editMode={this.state.editMode} />;
         break;
     }
 
     return (
       <React.Fragment>
 
-        <Header displayModal={this.displayModal} headerLabel={this.state.headerLabel}/>
+        <Header
+          displayModal={this.displayModal}
+          headerLabel={this.state.headerLabel}/>
         {view}
-        <FilterEntry showModal={this.state.filterModal} setFilterOptions={this.setFilterOptions} />
-        <Nav setView={this.setView} resetForm={this.resetForm} setHeaderLabel={this.setHeaderLabel}/>
+        <FilterEntry
+          showModal={this.state.filterModal}
+          setFilterOptions={this.setFilterOptions} />
+        <Nav
+          setView={this.setView}
+          resetForm={this.resetForm}
+          setHeaderLabel={this.setHeaderLabel}/>
 
       </React.Fragment>
 

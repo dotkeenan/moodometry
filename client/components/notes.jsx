@@ -17,7 +17,6 @@ class Notes extends React.Component {
   handleSubmit(event) {
     this.props.setNoteState(this.state.note);
     this.props.handleAddNote();
-    // this.props.setSubmitState(true);
     event.preventDefault();
   }
 
