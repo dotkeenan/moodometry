@@ -25,6 +25,7 @@ Coming soon!
 
 - User can view a list of their entries
 - User can add an entry composed of the time/date, a mood, an event, participants, and a note.
+- User can edit an entry.
 - User can delete an entry.
 - User can filter their list of entries by any combination of mood, day, or event type.
 - User can view a graphical summary of their entries' moods and events.
