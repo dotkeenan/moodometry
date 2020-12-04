@@ -200,7 +200,7 @@ app.get('/api/entries', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/events/social', (req, res, next) => {
+app.get('/api/events/:iconType', (req, res, next) => {
   const sql = `
     select "events"."label",
            "imageUrl",
@@ -209,57 +209,9 @@ app.get('/api/events/social', (req, res, next) => {
            "et"."label" as "eventTypeLabel"
       from "events"
       join "eventTypes" as "et" using ("eventTypeId")
-     where "et"."label" = 'social';
+     where "et"."label" = $1;
   `;
-  db.query(sql)
-    .then(result => res.status(200).json(result.rows))
-    .catch(err => next(err));
-});
-
-app.get('/api/events/hobbies', (req, res, next) => {
-  const sql = `
-    select "events"."label",
-           "imageUrl",
-           "eventTypeId",
-           "eventsId",
-           "et"."label" as "eventTypeLabel"
-      from "events"
-      join "eventTypes" as "et" using ("eventTypeId")
-     where "et"."label" = 'hobbies';
-  `;
-  db.query(sql)
-    .then(result => res.status(200).json(result.rows))
-    .catch(err => next(err));
-});
-
-app.get('/api/events/productivity', (req, res, next) => {
-  const sql = `
-    select "events"."label",
-           "imageUrl",
-           "eventTypeId",
-           "eventsId",
-           "et"."label" as "eventTypeLabel"
-      from "events"
-      join "eventTypes" as "et" using ("eventTypeId")
-     where "et"."label" = 'productivity';
-  `;
-  db.query(sql)
-    .then(result => res.status(200).json(result.rows))
-    .catch(err => next(err));
-});
-
-app.get('/api/events/chores', (req, res, next) => {
-  const sql = `
-    select "events"."label",
-           "imageUrl",
-           "eventTypeId",
-           "eventsId",
-           "et"."label" as "eventTypeLabel"
-      from "events"
-      join "eventTypes" as "et" using ("eventTypeId")
-     where "et"."label" = 'chores';
-  `;
-  db.query(sql)
+  db.query(sql, [req.params.iconType])
     .then(result => res.status(200).json(result.rows))
     .catch(err => next(err));
 });

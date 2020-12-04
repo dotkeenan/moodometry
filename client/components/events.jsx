@@ -13,15 +13,7 @@ class Events extends React.Component {
       eventsLabel: ''
     };
     this.handleIconClick = this.handleIconClick.bind(this);
-    this.getSocialIcons = this.getSocialIcons.bind(this);
     this.handleEventSubmit = this.handleEventSubmit.bind(this);
-    this.getHobbiesIcons = this.getHobbiesIcons.bind(this);
-    this.getProductivityIcons = this.getProductivityIcons.bind(this);
-    this.getChoresIcons = this.getChoresIcons.bind(this);
-    this.socialCreator = this.socialCreator.bind(this);
-    this.hobbiesCreator = this.hobbiesCreator.bind(this);
-    this.productivityCreator = this.productivityCreator.bind(this);
-    this.choresCreator = this.choresCreator.bind(this);
   }
 
   handleIconClick(event) {
@@ -55,116 +47,29 @@ class Events extends React.Component {
     event.preventDefault();
   }
 
-  getSocialIcons() {
-    fetch('api/events/social')
+  getIcons(iconType) {
+    fetch(`api/events/${iconType}`)
       .then(result => result.json(result.rows))
-      .then(socialIcons => {
-        this.setState({ social: socialIcons });
+      .then(icons => {
+        this.setState({ [iconType]: icons });
       })
       .catch(err => console.error(err));
   }
 
-  getHobbiesIcons() {
-    fetch('api/events/hobbies')
-      .then(result => result.json(result.rows))
-      .then(hobbyIcons => {
-        this.setState({ hobbies: hobbyIcons });
-      })
-      .catch(err => console.error(err));
-  }
-
-  getProductivityIcons() {
-    fetch('api/events/productivity')
-      .then(result => result.json(result.rows))
-      .then(productivityIcons => {
-        this.setState({ productivity: productivityIcons });
-      })
-      .catch(err => console.error(err));
-  }
-
-  getChoresIcons() {
-    fetch('api/events/chores')
-      .then(result => result.json(result.rows))
-      .then(choreIcons => {
-        this.setState({ chores: choreIcons });
-      })
-      .catch(err => console.error(err));
-  }
-
-  socialCreator() {
-    const iconGenerator = this.state.social.map(social => {
+  iconCreator(iconType) {
+    const iconGenerator = this.state[iconType].map(icons => {
       return (
-        <div className="text-center icon-and-label col-3" key={social.eventsId}>
+        <div className="text-center icon-and-label col-3" key={icons.eventsId}>
           <img
             onClick={this.handleIconClick}
             className="svg-icons"
-            src={social.imageUrl}
-            alt={social.label}
-            key={social.eventsId}
-            eventid={social.eventsId}
-            category={social.eventTypeLabel}>
+            src={icons.imageUrl}
+            alt={icons.label}
+            key={icons.eventsId}
+            eventid={icons.eventsId}
+            category={icons.eventTypeLabel}>
           </img>
-          <p className="event-label text-center">{social.label}</p>
-        </div>
-      );
-    });
-    return iconGenerator;
-  }
-
-  hobbiesCreator() {
-    const iconGenerator = this.state.hobbies.map(hobby => {
-      return (
-        <div className="text-center icon-and-label col-3" key={hobby.eventsId}>
-          <img
-            onClick={this.handleIconClick}
-            className="svg-icons"
-            src={hobby.imageUrl}
-            alt={hobby.label}
-            key={hobby.eventsId}
-            eventid={hobby.eventsId}
-            category={hobby.eventTypeLabel}>
-          </img>
-          <p className="event-label text-center">{hobby.label}</p>
-        </div>
-      );
-    });
-    return iconGenerator;
-  }
-
-  productivityCreator() {
-    const iconGenerator = this.state.productivity.map(productivity => {
-      return (
-        <div className="text-center icon-and-label col-3" key={productivity.eventsId}>
-          <img
-            onClick={this.handleIconClick}
-            className="svg-icons"
-            src={productivity.imageUrl}
-            alt={productivity.label}
-            key={productivity.eventsId}
-            eventid={productivity.eventsId}
-            category={productivity.eventTypeLabel}>
-          </img>
-          <p className="event-label text-center">{productivity.label}</p>
-        </div>
-      );
-    });
-    return iconGenerator;
-  }
-
-  choresCreator() {
-    const iconGenerator = this.state.chores.map(chore => {
-      return (
-        <div className="text-center icon-and-label col-3" key={chore.eventsId}>
-          <img
-            onClick={this.handleIconClick}
-            className="svg-icons"
-            src={chore.imageUrl}
-            alt={chore.label}
-            key={chore.eventsId}
-            eventid={chore.eventsId}
-            category={chore.eventTypeLabel}>
-          </img>
-          <p className="event-label text-center">{chore.label}</p>
+          <p className="event-label text-center">{icons.label}</p>
         </div>
       );
     });
@@ -172,10 +77,10 @@ class Events extends React.Component {
   }
 
   componentDidMount() {
-    this.getSocialIcons();
-    this.getHobbiesIcons();
-    this.getProductivityIcons();
-    this.getChoresIcons();
+    this.getIcons('social');
+    this.getIcons('hobbies');
+    this.getIcons('productivity');
+    this.getIcons('chores');
   }
 
   render() {
@@ -189,25 +94,25 @@ class Events extends React.Component {
           <div className="first-category-container">
             <h6>Social</h6>
             <div className="row category-row justify-content-center">
-              {this.socialCreator()}
+              {this.iconCreator('social')}
             </div>
           </div>
           <div className="category-container">
             <h6>Hobbies</h6>
             <div className="row category-row justify-content-center">
-              {this.hobbiesCreator()}
+              {this.iconCreator('hobbies')}
             </div>
           </div>
           <div className="category-container">
             <h6>Productivity</h6>
             <div className="row category-row justify-content-center">
-              {this.productivityCreator()}
+              {this.iconCreator('productivity')}
             </div>
           </div>
           <div className="category-container">
             <h6>Chores</h6>
             <div className="row category-row justify-content-center">
-              {this.choresCreator()}
+              {this.iconCreator('chores')}
             </div>
           </div>
           <div className="check-container">
