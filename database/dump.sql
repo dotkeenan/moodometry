@@ -257,8 +257,12 @@ COPY public.entries ("entryId", "moodId", "eventsId", note, participants, "time"
 111	1	4	Found out Jason and Zack are into snowboarding! We boutta be shred buddies!  ;)	Zack, Jason	2020-11-13 20:00:13.367456-08
 112	2	6	I'm really tired, but John just came home super drunk and is making me drink with him	John	2020-11-13 23:22:13.367456-08
 113	3	7	Our fridge just broke down and we're too cheap to get someone to fix it... We're all on Reddit and Youtube trying to find a way	John, Eddy, Melissa	2020-11-14 09:50:13.367456-08
-114	5	8	Uh oh, isn't our Senior Project due tomorrow?  Why did I spend the whole weekend fixing fridges and drinking?	Me, Zack, Austin	2020-11-15 11:45:13.367456-08
 115	1	5	Been a while since I fragged with the boys.  Got my gaming socks on.  Apex Legends let's goooo!	Me, Jon, Tyler, Alex, Tom	2020-11-14 21:31:13.367456-08
+117	1	8	Presenting our senior project!!	Austin, Zack, Keenan, and all of LFZ	2020-11-16 11:19:17.023-08
+124	2	6	Got a new bottle of wine!	Mel	2020-12-01 18:56:11.264-08
+129	5	8	HardStuck	Keenan	2020-12-02 20:23:15.248-08
+128	2	11	Cleaning Up Bugs!!!	Keenan Ng	2020-12-02 19:56:38.119-08
+131	1	8	Finished User Can Update Entry!!	Keenan Ng	2020-12-03 22:54:45.5-08
 \.
 
 
@@ -311,7 +315,7 @@ COPY public.moods ("moodId", label, "imageUrl") FROM stdin;
 -- Name: entries_entryId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."entries_entryId_seq"', 115, true);
+SELECT pg_catalog.setval('public."entries_entryId_seq"', 133, true);
 
 
 --
