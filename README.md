@@ -18,8 +18,9 @@ A full stack web application for journalers who want to track their moods and da
 - react-day-picker
 
 ## Live Demo
-- Try the application live at [https://moodometry.keenanng.com/](https://moodometry.keenanng.com/)
-- Best viewed on mobile!
+Coming Soon!
+<!-- - Try the application live at [https://moodometry.keenanng.com/](https://moodometry.keenanng.com/)
+- Best viewed on mobile! -->
 
 ## Features
 
