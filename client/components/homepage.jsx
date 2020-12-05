@@ -24,11 +24,11 @@ class HomePage extends React.Component {
     } else {
 
       return (
-        <div className="home-body">
+        <>
           <div className="home-overlay"></div>
-          <div className="homepage-container container">
+          <div className="homepage-container">
             <div className="d-flex flex-column homepage-elements align-items-center">
-              <div className="d-flex justify-content-center logo-container">
+              <div className="logo-container d-flex justify-content-center">
                 <div className="logo-background row justify-content-center logo-animate logo-animate-spin">
                   <img src="/images/photos/logo-letter.svg" alt="logo letter"/>
                 </div>
@@ -43,7 +43,7 @@ class HomePage extends React.Component {
               </div>
             </div>
           </div>
-        </div>
+        </>
       );
     }
   }

@@ -13,8 +13,9 @@ A full stack web application for journalers who want to track their moods and da
 - HTML 5
 - CSS3
 - Bootstrap 4
-- Chartist.js
-- React-Day-Picker
+- Chart.js
+- react-chartjs-2
+- react-day-picker
 
 ## Live Demo
 Coming soon!
@@ -33,6 +34,7 @@ Coming soon!
 ## In Progress
 
 - User can view a month breakdown of their mood on each day.
+- Responsiveness on larger devices (works best on mobile).
 
 ## Preview
   <p align="center">

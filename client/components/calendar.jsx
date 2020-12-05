@@ -99,11 +99,15 @@ class Calendar extends React.Component {
   render() {
     return (
       <>
-        <div className="calendar-body">
-          <DayPicker
-            canChangeMonth={true}
-            renderDay={this.renderDay}
-          />
+        <div className="container mt-5">
+          <div className="row justify-content-center">
+            <div className="calendar-body">
+              <DayPicker
+                canChangeMonth={true}
+                renderDay={this.renderDay}
+              />
+            </div>
+          </div>
         </div>
       </>
     );

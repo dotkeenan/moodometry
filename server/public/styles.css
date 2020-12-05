@@ -62,8 +62,12 @@ body {
 }
 
 .stats-container {
-  height: 80vh;
+  height: 36vh;
   width: 98vw;
+}
+
+.calendar-container {
+  height: 100vh;
 }
 
 /* Card Item  */
@@ -608,29 +612,30 @@ h6 {
 /*   home page      */
 .homepage-container {
   height: 100vh;
-  background-image: url('/images/photos/background-image-bw-scaled.jpg');
+  width: 100%;
+  background: url('/images/photos/tj-holowaychuk-bg.jpg') no-repeat center center fixed;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .homepage-elements  {
-  height: 100%;
   opacity: 100%;
   z-index: 100;
 }
 
 .logo-container {
-  margin-top: 25%;
+  position: fixed;
+  top: 15%;
 }
 .app-name-container {
+  position: fixed;
+  top: 40%;
   z-index: 100;
-  margin-top: 10%;
 }
 
 .start-button-container {
+  position: fixed;
   z-index: 100;
-  margin-top: 50%;
+  bottom: 10%;
 }
 
 .start-button {
