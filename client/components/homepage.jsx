@@ -34,7 +34,7 @@ class HomePage extends React.Component {
                 </div>
               </div>
               <div className="d-flex justify-content-center app-name-container">
-                <h1 className="text-light heading-content-animation">Hello</h1>
+                <h1 className="text-light heading-content-animation">Moodometry</h1>
               </div>
               <div className="d-flex justify-content-center start-button-container button-content-animation">
                 <div>
