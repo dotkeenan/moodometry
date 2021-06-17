@@ -6,7 +6,7 @@ function TimeAndMood(props) {
     if (!props.editMode) {
       return (<span className="date">{TimeConverter(props.entry.time)}</span>);
     } else {
-      return (< span className="date" > { TimeConverter(props.entry.time) }</span >);
+      return (< span className="date" > { props.entry.time }</span >);
       // return (< span className="date" > { props.entry.time }</span >);
     }
   }
