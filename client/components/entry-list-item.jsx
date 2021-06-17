@@ -42,7 +42,10 @@ class EntryListItem extends React.Component {
       this.props.entry.eventsId,
       this.props.entry.participants,
       this.props.entry.note,
-      this.props.entry.dateFormat
+      new Date(this.props.entry.time)
+      // This can't be used in my time converters because i pre-formatted it in
+      // the back-end in index.js.
+      // this.props.entry.dateFormat
     );
     this.props.setView('timeAndMood');
   }
