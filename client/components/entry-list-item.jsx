@@ -43,9 +43,6 @@ class EntryListItem extends React.Component {
       this.props.entry.participants,
       this.props.entry.note,
       new Date(this.props.entry.time)
-      // This can't be used in my time converters because i pre-formatted it in
-      // the back-end in index.js.
-      // this.props.entry.dateFormat
     );
     this.props.setView('timeAndMood');
   }
@@ -86,10 +83,6 @@ class EntryListItem extends React.Component {
               {serverDateFormatter(this.props.entry.time)}
               <span className="entry-hour">{serverTimeFormatter(this.props.entry.time)}</span>
             </h3>
-            {/* <h3 className="entry-list-time">
-              {this.props.entry.date}
-              <span className="entry-hour">{this.props.entry.hour}</span>
-            </h3> */}
             <div className="event-partic-container">
               <p className="event-with">{this.props.entry.event}</p>
               <p className="event-with">{this.props.entry.participants}</p>
