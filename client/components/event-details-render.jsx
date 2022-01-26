@@ -67,7 +67,7 @@ class EventDetailsRender extends React.Component {
     } else {
       return (
         <button
-          className="btn btn-primary submit-entry"
+          className="btn  submit-entry"
           onClick={this.handleEntrySubmit}>
         Submit Entry
         </button>
@@ -92,19 +92,21 @@ class EventDetailsRender extends React.Component {
       return (
         <div className="row add-field pl-3">
           <img
-            className="hover-pointer"
+            className="hover-pointer plus-button-hover"
             onClick={this.handleAddEvent}
             src="/images/ui-icons/add-detail.svg"
-            alt="add detail" />
+            alt="add detail"
+          />
           <span
-            className="add-field-text hover-pointer"
-            onClick={this.handleAddEvent}>
-            {this.props.state.eventsUrls
-              ? <img
+            className="add-field-text hover-pointer plus-button-hover"
+            onClick={this.handleAddEvent}
+          >
+            {this.props.state.eventsUrls ? (
+              <img
                 className="selected-event hover-pointer mr-3"
-                src={this.props.state.eventsUrls} />
-              : null
-            }
+                src={this.props.state.eventsUrls}
+              />
+            ) : null}
             <span>
               {this.props.state.eventsLabel
                 ? eventLabel.charAt(0).toUpperCase() + eventLabel.slice(1)
@@ -112,7 +114,6 @@ class EventDetailsRender extends React.Component {
             </span>
           </span>
         </div>
-
       );
     }
   }
@@ -130,9 +131,16 @@ class EventDetailsRender extends React.Component {
     } else {
       return (
         <div className="row add-field pl-3">
-          <img className="hover-pointer" onClick={this.handleAddParticipants} src="/images/ui-icons/add-detail.svg" alt="add detail" />
-          <span className="add-field-text hover-pointer"
-            onClick={this.handleAddParticipants}>
+          <img
+            className="hover-pointer plus-button-hover"
+            onClick={this.handleAddParticipants}
+            src="/images/ui-icons/add-detail.svg"
+            alt="add detail"
+          />
+          <span
+            className="add-field-text hover-pointer plus-button-hover"
+            onClick={this.handleAddParticipants}
+          >
             {this.props.state.entry.participants
               ? this.props.state.entry.participants
               : 'Add Participants'}
@@ -157,13 +165,15 @@ class EventDetailsRender extends React.Component {
       return (
         <div className="row add-field pl-3">
           <img
-            className="hover-pointer"
+            className="hover-pointer plus-button-hover"
             onClick={this.handleAddNote}
             src="/images/ui-icons/add-detail.svg"
-            alt="add detail" />
+            alt="add detail"
+          />
           <span
-            className="add-field-text hover-pointer"
-            onClick={this.handleAddNote}>
+            className="add-field-text hover-pointer plus-button-hover"
+            onClick={this.handleAddNote}
+          >
             {this.props.state.entry.note
               ? this.props.state.entry.note
               : 'Add Note'}
@@ -176,7 +186,7 @@ class EventDetailsRender extends React.Component {
   render() {
     return (
       <>
-        <div className="container mt-4 cutoff-fix">
+        <div className="container mt-4 cutoff-fix event-details-container">
           <div className="row date-and-mood">
             <h1 className="h1-form">What&apos;s up?</h1>
 

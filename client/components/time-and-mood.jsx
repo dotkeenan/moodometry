@@ -14,9 +14,7 @@ function TimeAndMood(props) {
             </div>
           </div>
         </div>
-        <div className="">
-          <div className="mood-chooser row">{props.createMoods()}</div>
-        </div>
+        <div className="row mood-chooser">{props.createMoods()}</div>
       </div>
     </React.Fragment>
   );
