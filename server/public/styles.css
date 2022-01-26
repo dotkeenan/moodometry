@@ -306,6 +306,11 @@ p {
   max-width: 500px;
 }
 
+.plus-button-hover:hover {
+  transition: transform .25s ease;
+  transform: scale(1.1);
+}
+
 .participants-container {
   width: 100%;
   padding-top: 1rem;
