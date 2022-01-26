@@ -67,7 +67,7 @@ class EventDetailsRender extends React.Component {
     } else {
       return (
         <button
-          className="btn btn-primary submit-entry"
+          className="btn  submit-entry"
           onClick={this.handleEntrySubmit}>
         Submit Entry
         </button>
@@ -176,7 +176,7 @@ class EventDetailsRender extends React.Component {
   render() {
     return (
       <>
-        <div className="container mt-4 cutoff-fix">
+        <div className="container mt-4 cutoff-fix event-details-container">
           <div className="row date-and-mood">
             <h1 className="h1-form">What&apos;s up?</h1>
 
